@@ -4,13 +4,9 @@
              x:Class="EE.Hillewaere.Views.StocklistView">
     <ContentPage.Content>
         <StackLayout>
-            <ListView x:Name="lvCategoriesLists" ItemTapped="lvCategoriesLists_ItemTapped">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <TextCell Text="{Binding Name}" />
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+            <Label Text="Welcome to Xamarin.Forms!"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
