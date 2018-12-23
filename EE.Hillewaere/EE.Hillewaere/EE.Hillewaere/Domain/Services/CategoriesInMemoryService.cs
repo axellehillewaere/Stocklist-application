@@ -103,6 +103,18 @@ namespace EE.Hillewaere.Domain.Services
             return categoryLists.ToList();
         }
 
+        public async Task<IEnumerable<SubCategory>> GetSubCategoryList()
+        {
+            await Task.Delay(0);
+            return categoryLists.FirstOrDefault().SubCategories.ToList();
+        }
+
+        public async Task<IEnumerable<Product>> GetProductList()
+        {
+            await Task.Delay(0);
+            return categoryLists.FirstOrDefault().SubCategories.FirstOrDefault().Products.ToList();
+        }
+
         public async Task SaveCategoryList(Category category)
         {
             await Task.Delay(0);
