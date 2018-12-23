@@ -1,16 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="EE.Hillewaere.Views.MainView"
-             Title="Stocklist">
+             x:Class="EE.Hillewaere.Views.PreviousOrdersView">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Stocklist"
+            <Label Text="Welcome to Xamarin.Forms!"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
-            <Button Text="Place new order" Clicked="btnPlaceNewOrder_Clicked" />
-            <Button Text="Overview of stocklist" Clicked="btnOverviewStocklist_Clicked"/>
-            <Button Text="Previous orders" Clicked="btnPreviousOrders_Clicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

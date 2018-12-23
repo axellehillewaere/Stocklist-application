@@ -97,10 +97,10 @@ namespace EE.Hillewaere.Domain.Services
             }
         };
 
-        public async Task<Category> GetCategoryList(Guid categoryId)
+        public async Task<IEnumerable<Category>> GetCategoryList()
         {
             await Task.Delay(0);
-            return categoryLists.FirstOrDefault(c => c.Id == categoryId);
+            return categoryLists.ToList();
         }
 
         public async Task SaveCategoryList(Category category)
