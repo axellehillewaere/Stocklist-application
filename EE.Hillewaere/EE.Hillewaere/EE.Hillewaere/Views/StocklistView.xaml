@@ -7,7 +7,18 @@
             <ListView x:Name="lvCategoriesLists" ItemTapped="lvCategoriesLists_ItemTapped">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextCell Text="{Binding Name}" />
+                        <ViewCell>
+                            <ViewCell.ContextActions>
+                                <MenuItem Clicked="mnuCategoryEdit_Clicked" CommandParameter="{Binding .}" Text="Edit" />
+                                <MenuItem Clicked="mnuCategoryDelete_Clicked" CommandParameter="{Binding .}" Text="Delete"
+                                          IsDestructive="True"/>
+                            </ViewCell.ContextActions>
+                            <StackLayout>
+                                <Label Text="{Binding Name}"
+                                       VerticalOptions="CenterAndExpand"
+                                       HorizontalOptions="StartAndExpand" />
+                            </StackLayout>
+                        </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

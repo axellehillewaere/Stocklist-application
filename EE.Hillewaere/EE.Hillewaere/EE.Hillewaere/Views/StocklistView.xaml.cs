@@ -24,6 +24,7 @@ namespace EE.Hillewaere.Views
         private async Task RefreshCategoryLists()
         {
             var categories = await categoryListService.GetCategoryList();
+            lvCategoriesLists.ItemsSource = null;
             lvCategoriesLists.ItemsSource = categories;
         }
 
@@ -39,8 +40,22 @@ namespace EE.Hillewaere.Views
             if (category != null)
             {
                 await DisplayAlert("Tap", $"You tapped {category.Name}", "OK");
-                await Navigation.PushAsync(new MainView());
+                await Navigation.PushAsync(new StocklistSubCategoryView());
             }
+        }
+
+        private async void mnuCategoryEdit_Clicked(object sender, EventArgs e)
+        {
+            var selectedCategory = ((MenuItem)sender).CommandParameter as Category;
+            await DisplayAlert("Edit", $"Editing {selectedCategory.Name}", "OK");
+            await Navigation.PushAsync(new StocklistSubCategoryView());
+        }
+
+        private async void mnuCategoryDelete_Clicked(object sender, EventArgs e)
+        {
+            var selectedCategory = ((MenuItem)sender).CommandParameter as Category;
+            await categoryListService.DeleteCategoryList(selectedCategory.Id);
+            await RefreshCategoryLists();
         }
     }
 }
