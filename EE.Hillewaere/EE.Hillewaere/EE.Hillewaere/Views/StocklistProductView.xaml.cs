@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EE.Hillewaere.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,8 @@ namespace EE.Hillewaere.Views
 		public StocklistProductView ()
 		{
 			InitializeComponent ();
-		}
-	}
+            BindingContext = new StocklistProductViewModel();
+
+        }
+    }
 }

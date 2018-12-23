@@ -1,5 +1,8 @@
-﻿using System;
+﻿using EE.Hillewaere.Domain.Models;
+using EE.Hillewaere.Domain.Services;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Text;
 
@@ -7,6 +10,8 @@ namespace EE.Hillewaere.ViewModels
 {
     public class StocklistProductViewModel : INotifyPropertyChanged
     {
+        private CategoriesInMemoryService categoryService;
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void RaisePropertyChanged(string propertyName)
@@ -47,5 +52,17 @@ namespace EE.Hillewaere.ViewModels
                 RaisePropertyChanged(nameof(Price));
             }
         }
+
+        private ObservableCollection<Product> products;
+        public ObservableCollection<Product> Products
+        {
+            get { return products; }
+            set
+            {
+                products = value;
+                RaisePropertyChanged(nameof(Products));
+            }
+        }
+
     }
 }

@@ -4,7 +4,7 @@
              x:Class="EE.Hillewaere.Views.StocklistView">
     <ContentPage.Content>
         <StackLayout>
-            <ListView x:Name="lvCategoriesLists" ItemTapped="lvCategoriesLists_ItemTapped">
+            <ListView x:Name="lvCategoriesLists" ItemTapped="lvCategoriesLists_ItemTapped" ItemsSource="{Binding Categories}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

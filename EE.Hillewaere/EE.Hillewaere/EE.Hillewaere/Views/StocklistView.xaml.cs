@@ -1,5 +1,6 @@
 ﻿using EE.Hillewaere.Domain.Models;
 using EE.Hillewaere.Domain.Services;
+using EE.Hillewaere.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,21 +19,22 @@ namespace EE.Hillewaere.Views
 		public StocklistView ()
 		{
 			InitializeComponent ();
-            categoryListService = new CategoriesInMemoryService();
+            BindingContext = new StocklistViewModel();
+            //categoryListService = new CategoriesInMemoryService();
 		}
 
-        private async Task RefreshCategoryLists()
-        {
-            var categories = await categoryListService.GetCategoryList();
-            lvCategoriesLists.ItemsSource = null;
-            lvCategoriesLists.ItemsSource = categories;
-        }
+        //private async Task RefreshCategoryLists()
+        //{
+        //    var categories = await categoryListService.GetCategoryList();
+        //    lvCategoriesLists.ItemsSource = null;
+        //    lvCategoriesLists.ItemsSource = categories;
+        //}
 
-        protected async override void OnAppearing()
-        {
-            await RefreshCategoryLists();
-            base.OnAppearing();
-        }
+        //protected async override void OnAppearing()
+        //{
+        //    await RefreshCategoryLists();
+        //    base.OnAppearing();
+        //}
 
         private async void lvCategoriesLists_ItemTapped(object sender, ItemTappedEventArgs e)
         {
@@ -55,7 +57,7 @@ namespace EE.Hillewaere.Views
         {
             var selectedCategory = ((MenuItem)sender).CommandParameter as Category;
             await categoryListService.DeleteCategoryList(selectedCategory.Id);
-            await RefreshCategoryLists();
+            //await RefreshCategoryLists();
         }
     }
 }

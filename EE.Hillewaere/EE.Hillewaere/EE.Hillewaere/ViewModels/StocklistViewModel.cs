@@ -1,4 +1,5 @@
 ﻿using EE.Hillewaere.Domain.Models;
+using EE.Hillewaere.Domain.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -9,6 +10,14 @@ namespace EE.Hillewaere.ViewModels
 {
     public class StocklistViewModel : INotifyPropertyChanged
     {
+        private CategoriesInMemoryService categoryService;
+
+        public StocklistViewModel()
+        {
+            categoryService = new CategoriesInMemoryService();
+            Categories = new ObservableCollection<Category>(categoryService.GetCategoryList().Result);
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void RaisePropertyChanged(string propertyName)

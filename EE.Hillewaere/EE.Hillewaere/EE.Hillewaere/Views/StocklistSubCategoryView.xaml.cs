@@ -1,5 +1,6 @@
 ﻿using EE.Hillewaere.Domain.Models;
 using EE.Hillewaere.Domain.Services;
+using EE.Hillewaere.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,8 @@ namespace EE.Hillewaere.Views
 		public StocklistSubCategoryView (Category subCategory)
 		{
 			InitializeComponent ();
+            BindingContext = new StocklistSubCategoryViewModel();
+
             categoryService = new CategoriesInMemoryService();
 
             if (subCategory == null)
