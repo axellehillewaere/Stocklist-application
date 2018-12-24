@@ -13,44 +13,43 @@ using Xamarin.Forms;
 
 namespace EE.Hillewaere.ViewModels
 {
-    public class StocklistProductViewModel : INotifyPropertyChanged
+    public class StocklistAddProductViewModel : INotifyPropertyChanged
     {
         private CategoriesInMemoryService categoryService;
-        private SubCategory currentSubCategory;
+        private Product currentProduct;
         private INavigation navigation;
+        public event PropertyChangedEventHandler PropertyChanged;
 
-        public StocklistProductViewModel(SubCategory subCategory, INavigation navigation)
+
+        public StocklistAddProductViewModel(Product product, INavigation navigation)
         {
             this.navigation = navigation;
-            this.currentSubCategory = subCategory;
+            this.currentProduct = product;
             categoryService = new CategoriesInMemoryService();
-            RefreshSubCategories();
+            RefreshProducts();
         }
 
-        private async Task RefreshSubCategories()
+        private async Task RefreshProducts()
         {
-            if (currentSubCategory != null)
+            if (currentProduct != null)
             {
-                PageTitle = currentSubCategory.Name;
-                //currentSubCategory = await categoryService.GetSubCategoryById(currentSubCategory.Id);
+                PageTitle = currentProduct.Name;
             }
             else
             {
-                PageTitle = "New Subcategory List";
-                currentSubCategory = new SubCategory();
-                currentSubCategory.Id = Guid.NewGuid();
-                currentSubCategory.Products = new List<Product>();
+                PageTitle = "New Product";
+                currentProduct = new Product();
+                currentProduct.Id = Guid.NewGuid();
             }
-            LoadSubCategoryState();
+            LoadProductsState();
         }
 
-        private void LoadSubCategoryState()
+        private void LoadProductsState()
         {
-            Name = currentSubCategory.Name;
-            products = new ObservableCollection<Product>(currentSubCategory.Products);
+            Name = currentProduct.Name;
+            Price = currentProduct.Price;
+            Description = currentProduct.Description;
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         private void RaisePropertyChanged(string propertyName)
         {
@@ -91,6 +90,17 @@ namespace EE.Hillewaere.ViewModels
             }
         }
 
+        private string description;
+        public string Description
+        {
+            get { return description; }
+            set
+            {
+                description = value;
+                RaisePropertyChanged(nameof(Description));
+            }
+        }
+
         private string pageTitle;
         public string PageTitle
         {
@@ -112,11 +122,26 @@ namespace EE.Hillewaere.ViewModels
                 RaisePropertyChanged(nameof(Products));
             }
         }
-        public ICommand ViewProductCommand => new Command<Product>(
-            (Product product) =>
+
+        private ObservableCollection<SubCategory> sub;
+        public ObservableCollection<SubCategory> Sub
+        {
+            get { return sub; }
+            set
             {
-                navigation.PushAsync(new StocklistAddProductView(product));
-                Debug.WriteLine(product);
-            });
+                sub = value;
+                RaisePropertyChanged(nameof(Sub));
+            }
+        }
+
+        public ICommand SaveProductCommand => new Command(
+            async () =>
+            {
+                //await categoryService.SaveCategoryList(currentProduct.SubCategory.Category);
+                //Sub.Add(new SubCategory { Name = currentProduct.SubCategory.Name, Products = currentProduct.SubCategory.Products });
+                    //Products.Add(new Product { Name = currentProduct.Name, Price = currentProduct.Price, Description = currentProduct.Description });
+                    await navigation.PushAsync(new MainView());
+                }
+            );
     }
 }

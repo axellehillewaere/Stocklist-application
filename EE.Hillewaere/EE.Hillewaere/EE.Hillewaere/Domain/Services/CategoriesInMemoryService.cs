@@ -75,7 +75,8 @@ namespace EE.Hillewaere.Domain.Services
                             {
                                 Id = Guid.NewGuid(),
                                 Name = "Chicken Nuggets (Nuggiez)",
-                                Price = 14M
+                                Price = 14M,
+                                Description = "Test"
                             }
                         }
                     },
@@ -139,6 +140,21 @@ namespace EE.Hillewaere.Domain.Services
             }
             savedCategory.Name = category.Name;
             savedCategory.SubCategories = category.SubCategories;
+        }
+
+        public async Task SaveProduct(Product product)
+        {
+            await Task.Delay(0);
+            var savedProduct = categoryLists.SingleOrDefault().SubCategories.SingleOrDefault().Products.FirstOrDefault(c => c.Id == product.Id);
+            if (savedProduct == null)
+            {
+                savedProduct = product;
+                savedProduct.Id = Guid.NewGuid();
+                //categoryLists.Add(savedProduct);
+            }
+            savedProduct.Name = product.Name;
+            savedProduct.Price = product.Price;
+            savedProduct.Description = product.Description;
         }
 
         public async Task DeleteCategoryList(Guid categoryId)
