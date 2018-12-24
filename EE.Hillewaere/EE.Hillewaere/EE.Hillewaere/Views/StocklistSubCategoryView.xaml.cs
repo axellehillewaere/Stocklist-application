@@ -26,18 +26,5 @@ namespace EE.Hillewaere.Views
             categoryService = new CategoriesInMemoryService();
         }
 
-        //private async Task RefreshSubCategoryLists()
-        //{
-        //    var subCategories = await categoryService.GetSubCategoryList();
-        //    lvSubCategoriesLists.ItemsSource = null;
-        //    lvSubCategoriesLists.ItemsSource = subCategories;
-        //}
-
-        //protected async override void OnAppearing()
-        //{
-        //    await RefreshSubCategoryLists();
-        //    base.OnAppearing();
-        //}
-
     }
 }

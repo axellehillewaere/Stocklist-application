@@ -1,11 +1,14 @@
 ﻿using EE.Hillewaere.Domain.Models;
 using EE.Hillewaere.Domain.Services;
+using EE.Hillewaere.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace EE.Hillewaere.ViewModels
@@ -21,10 +24,10 @@ namespace EE.Hillewaere.ViewModels
             this.navigation = navigation;
             this.currentCategory = category;
             categoryService = new CategoriesInMemoryService();
-            RefreshSubCategories();
+            RefreshCategories();
         }
 
-        private async Task RefreshSubCategories()
+        private async Task RefreshCategories()
         {
             if (currentCategory != null)
             {
@@ -99,6 +102,11 @@ namespace EE.Hillewaere.ViewModels
             }
         }
 
-
+        public ICommand ViewProductsCommand => new Command<SubCategory>(
+            (SubCategory subCategory) =>
+            {
+                navigation.PushAsync(new StocklistProductView(subCategory));
+                Debug.WriteLine(subCategory.Name);
+            });
     }
 }

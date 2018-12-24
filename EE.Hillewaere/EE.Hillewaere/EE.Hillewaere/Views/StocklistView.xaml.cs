@@ -23,29 +23,6 @@ namespace EE.Hillewaere.Views
             //categoryListService = new CategoriesInMemoryService();
 		}
 
-        //private async Task RefreshCategoryLists()
-        //{
-        //    var categories = await categoryListService.GetCategoryList();
-        //    lvCategoriesLists.ItemsSource = null;
-        //    lvCategoriesLists.ItemsSource = categories;
-        //}
-
-        //protected async override void OnAppearing()
-        //{
-        //    await RefreshCategoryLists();
-        //    base.OnAppearing();
-        //}
-
-        private async void lvCategoriesLists_ItemTapped(object sender, ItemTappedEventArgs e)
-        {
-            var category = e.Item as Category;
-            if (category != null)
-            {
-                await DisplayAlert("Tap", $"You tapped {category.Name}", "OK");
-                //await Navigation.PushAsync(new StocklistSubCategoryView());
-            }
-        }
-
         private async void mnuCategoryEdit_Clicked(object sender, EventArgs e)
         {
             var selectedCategory = ((MenuItem)sender).CommandParameter as Category;

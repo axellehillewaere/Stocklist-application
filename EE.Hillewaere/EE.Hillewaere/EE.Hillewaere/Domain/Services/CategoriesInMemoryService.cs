@@ -109,10 +109,16 @@ namespace EE.Hillewaere.Domain.Services
             return categoryLists.FirstOrDefault(c => c.Id == categoryId);
         }
 
-        public async Task<IEnumerable<SubCategory>> GetSubCategoryList()
+        public async Task<SubCategory> GetSubCategoryById(Guid subCategoryId)
         {
             await Task.Delay(0);
-            return categoryLists.FirstOrDefault().SubCategories.ToList();
+            return categoryLists.FirstOrDefault().SubCategories.FirstOrDefault(c => c.Id == subCategoryId);
+        }
+
+        public async Task<IEnumerable<SubCategory>> GetSubCategoryList(Guid subCategoryId)
+        {
+            await Task.Delay(0);
+            return categoryLists.FirstOrDefault().SubCategories.Where(c => c.Id ==subCategoryId);
         }
 
         public async Task<IEnumerable<Product>> GetProductList()

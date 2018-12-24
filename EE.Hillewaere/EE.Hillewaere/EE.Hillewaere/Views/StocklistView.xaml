@@ -5,11 +5,11 @@
              x:Class="EE.Hillewaere.Views.StocklistView">
     <ContentPage.Content>
         <StackLayout>
-            <ListView x:Name="lvCategoriesLists" ItemTapped="lvCategoriesLists_ItemTapped" ItemsSource="{Binding Categories}">
+            <ListView x:Name="lvCategoriesLists" ItemsSource="{Binding Categories}">
                 <ListView.Behaviors>
                     <bhv:EventToCommandBehavior
                         EventName="ItemTapped"
-                        Command="{Binding ViewSubCategoryCommand}"
+                        Command="{Binding ViewSubCategoriesCommand}"
                         EventArgsConverter="{StaticResource ItemTappedEventArgsConv}" />
                 </ListView.Behaviors>
                 <ListView.ItemTemplate>

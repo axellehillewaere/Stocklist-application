@@ -65,7 +65,7 @@ namespace EE.Hillewaere.ViewModels
             }
         }
 
-        public ICommand ViewSubCategoryCommand => new Command<Category>(
+        public ICommand ViewSubCategoriesCommand => new Command<Category>(
             (Category category) =>
             {
                 navigation.PushAsync(new StocklistSubCategoryView(category));

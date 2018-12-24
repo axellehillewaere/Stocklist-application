@@ -1,4 +1,5 @@
-﻿using EE.Hillewaere.ViewModels;
+﻿using EE.Hillewaere.Domain.Models;
+using EE.Hillewaere.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +14,10 @@ namespace EE.Hillewaere.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class StocklistProductView : ContentPage
 	{
-		public StocklistProductView ()
+		public StocklistProductView (SubCategory subCategory)
 		{
 			InitializeComponent ();
-            BindingContext = new StocklistProductViewModel();
+            BindingContext = new StocklistProductViewModel(subCategory, this.Navigation);
 
         }
     }
