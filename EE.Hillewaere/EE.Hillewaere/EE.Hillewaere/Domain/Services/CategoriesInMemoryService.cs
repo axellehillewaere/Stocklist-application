@@ -103,6 +103,12 @@ namespace EE.Hillewaere.Domain.Services
             return categoryLists.ToList();
         }
 
+        public async Task<Category> GetById(Guid categoryId)
+        {
+            await Task.Delay(0);
+            return categoryLists.FirstOrDefault(c => c.Id == categoryId);
+        }
+
         public async Task<IEnumerable<SubCategory>> GetSubCategoryList()
         {
             await Task.Delay(0);

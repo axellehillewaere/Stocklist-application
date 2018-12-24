@@ -1,5 +1,6 @@
 ﻿using EE.Hillewaere.Domain.Models;
 using EE.Hillewaere.Domain.Services;
+using EE.Hillewaere.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -14,9 +15,11 @@ namespace EE.Hillewaere.ViewModels
     public class StocklistViewModel : INotifyPropertyChanged
     {
         private CategoriesInMemoryService categoryService;
+        private INavigation navigation;
 
-        public StocklistViewModel()
+        public StocklistViewModel(INavigation navigation)
         {
+            this.navigation = navigation;
             categoryService = new CategoriesInMemoryService();
             Categories = new ObservableCollection<Category>(categoryService.GetCategoryList().Result);
         }
@@ -65,6 +68,7 @@ namespace EE.Hillewaere.ViewModels
         public ICommand ViewSubCategoryCommand => new Command<Category>(
             (Category category) =>
             {
+                navigation.PushAsync(new StocklistSubCategoryView(category));
                 Debug.WriteLine(category.Name);
             });
     }

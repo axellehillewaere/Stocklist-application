@@ -5,17 +5,46 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Text;
+using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace EE.Hillewaere.ViewModels
 {
     public class StocklistSubCategoryViewModel : INotifyPropertyChanged
     {
         private CategoriesInMemoryService categoryService;
+        private Category currentCategory;
+        private INavigation navigation;
 
-        public StocklistSubCategoryViewModel()
+        public StocklistSubCategoryViewModel(Category category, INavigation navigation)
         {
+            this.navigation = navigation;
+            this.currentCategory = category;
             categoryService = new CategoriesInMemoryService();
-            SubCategories = new ObservableCollection<SubCategory>(categoryService.GetSubCategoryList().Result);
+            RefreshSubCategories();
+        }
+
+        private async Task RefreshSubCategories()
+        {
+            if (currentCategory != null)
+            {
+                PageTitle = currentCategory.Name;
+                currentCategory = await categoryService.GetById(currentCategory.Id);
+            }
+            else
+            {
+                PageTitle = "New Category List";
+                currentCategory = new Category();
+                currentCategory.Id = Guid.NewGuid();
+                currentCategory.SubCategories = new List<SubCategory>();
+            }
+            LoadCategoryState();
+        }
+
+        private void LoadCategoryState()
+        {
+            Name = currentCategory.Name;
+            SubCategories = new ObservableCollection<SubCategory>(currentCategory.SubCategories);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -45,6 +74,17 @@ namespace EE.Hillewaere.ViewModels
             {
                 name = value;
                 RaisePropertyChanged(nameof(Name));
+            }
+        }
+
+        private string pageTitle;
+        public string PageTitle
+        {
+            get { return pageTitle; }
+            set
+            {
+                pageTitle = value;
+                RaisePropertyChanged(nameof(PageTitle));
             }
         }
 

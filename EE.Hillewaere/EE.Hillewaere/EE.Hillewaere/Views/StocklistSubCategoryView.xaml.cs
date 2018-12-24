@@ -21,21 +21,10 @@ namespace EE.Hillewaere.Views
 		public StocklistSubCategoryView (Category category)
 		{
 			InitializeComponent ();
-            BindingContext = new StocklistSubCategoryViewModel();
+            BindingContext = new StocklistSubCategoryViewModel(category, this.Navigation);
 
             categoryService = new CategoriesInMemoryService();
-
-            if (category == null)
-            {
-                currentCategory = new Category();
-                Title = "New Category List";
-            }
-            else
-            {
-                currentCategory = category;
-                Title = currentCategory.Name;
-            }
-		}
+        }
 
         //private async Task RefreshSubCategoryLists()
         //{
@@ -50,10 +39,5 @@ namespace EE.Hillewaere.Views
         //    base.OnAppearing();
         //}
 
-
-        private void lvSubCategoryLists_ItemTapped(object sender, ItemTappedEventArgs e)
-        {
-            var subCategory = e.Item as SubCategory;
-        }
     }
 }

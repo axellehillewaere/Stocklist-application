@@ -19,7 +19,7 @@ namespace EE.Hillewaere.Views
 		public StocklistView ()
 		{
 			InitializeComponent ();
-            BindingContext = new StocklistViewModel();
+            BindingContext = new StocklistViewModel(this.Navigation);
             //categoryListService = new CategoriesInMemoryService();
 		}
 
@@ -42,7 +42,7 @@ namespace EE.Hillewaere.Views
             if (category != null)
             {
                 await DisplayAlert("Tap", $"You tapped {category.Name}", "OK");
-                await Navigation.PushAsync(new StocklistSubCategoryView(category));
+                //await Navigation.PushAsync(new StocklistSubCategoryView());
             }
         }
 
@@ -50,7 +50,7 @@ namespace EE.Hillewaere.Views
         {
             var selectedCategory = ((MenuItem)sender).CommandParameter as Category;
             await DisplayAlert("Edit", $"Editing {selectedCategory.Name}", "OK");
-            await Navigation.PushAsync(new StocklistSubCategoryView(selectedCategory));
+            //await Navigation.PushAsync(new StocklistSubCategoryView());
         }
 
         private async void mnuCategoryDelete_Clicked(object sender, EventArgs e)
