@@ -18,37 +18,37 @@ namespace EE.Hillewaere.Views
         private CategoriesInMemoryService categoryService;
         private Category currentCategory;
 
-		public StocklistSubCategoryView (Category subCategory)
+		public StocklistSubCategoryView (Category category)
 		{
 			InitializeComponent ();
             BindingContext = new StocklistSubCategoryViewModel();
 
             categoryService = new CategoriesInMemoryService();
 
-            if (subCategory == null)
+            if (category == null)
             {
                 currentCategory = new Category();
                 Title = "New Category List";
             }
             else
             {
-                currentCategory = subCategory;
+                currentCategory = category;
                 Title = currentCategory.Name;
             }
 		}
 
-        private async Task RefreshSubCategoryLists()
-        {
-            var subCategories = await categoryService.GetSubCategoryList();
-            lvSubCategoriesLists.ItemsSource = null;
-            lvSubCategoriesLists.ItemsSource = subCategories;
-        }
+        //private async Task RefreshSubCategoryLists()
+        //{
+        //    var subCategories = await categoryService.GetSubCategoryList();
+        //    lvSubCategoriesLists.ItemsSource = null;
+        //    lvSubCategoriesLists.ItemsSource = subCategories;
+        //}
 
-        protected async override void OnAppearing()
-        {
-            await RefreshSubCategoryLists();
-            base.OnAppearing();
-        }
+        //protected async override void OnAppearing()
+        //{
+        //    await RefreshSubCategoryLists();
+        //    base.OnAppearing();
+        //}
 
 
         private void lvSubCategoryLists_ItemTapped(object sender, ItemTappedEventArgs e)

@@ -1,10 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:bhv="clr-namespace:EE.Hillewaere.Behaviors"
              x:Class="EE.Hillewaere.Views.StocklistView">
     <ContentPage.Content>
         <StackLayout>
             <ListView x:Name="lvCategoriesLists" ItemTapped="lvCategoriesLists_ItemTapped" ItemsSource="{Binding Categories}">
+                <ListView.Behaviors>
+                    <bhv:EventToCommandBehavior
+                        EventName="ItemTapped"
+                        Command="{Binding ViewSubCategoryCommand}"
+                        EventArgsConverter="{StaticResource ItemTappedEventArgsConv}" />
+                </ListView.Behaviors>
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

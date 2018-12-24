@@ -4,7 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Text;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace EE.Hillewaere.ViewModels
 {
@@ -59,5 +62,10 @@ namespace EE.Hillewaere.ViewModels
             }
         }
 
+        public ICommand ViewSubCategoryCommand => new Command<Category>(
+            (Category category) =>
+            {
+                Debug.WriteLine(category.Name);
+            });
     }
 }

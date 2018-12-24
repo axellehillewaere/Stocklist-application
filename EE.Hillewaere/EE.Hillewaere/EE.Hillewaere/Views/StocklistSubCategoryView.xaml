@@ -4,13 +4,12 @@
              x:Class="EE.Hillewaere.Views.StocklistSubCategoryView">
     <ContentPage.Content>
         <StackLayout>
-            <ListView x:Name="lvSubCategoriesLists" ItemTapped="lvSubCategoryLists_ItemTapped">
+            <ListView x:Name="lvSubCategoriesLists" ItemTapped="lvSubCategoryLists_ItemTapped" ItemsSource="{Binding SubCategories}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout>
                             <Label Text="{Binding Name}" />
-                            <Label Text="{Binding Products}" />
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
