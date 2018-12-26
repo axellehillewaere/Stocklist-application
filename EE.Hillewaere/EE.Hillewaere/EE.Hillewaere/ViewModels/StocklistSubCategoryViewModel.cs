@@ -111,5 +111,14 @@ namespace EE.Hillewaere.ViewModels
                 Debug.WriteLine(subCategory.Name);
             });
 
+        public ICommand DeleteSubCategoryCommand => new Command<SubCategory>(
+        async (SubCategory subCategory) =>
+        {
+            Debug.WriteLine(subCategory.Name);
+            await stocklistService.DeleteSubCategoryList(subCategory.Id);
+            var subCategories = await stocklistService.GetSubCategoryListById(currentCategory.Id);
+            SubCategories = null;
+            SubCategories = new ObservableCollection<SubCategory>(subCategories);
+        });
     }
 }

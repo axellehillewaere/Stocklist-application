@@ -71,5 +71,15 @@ namespace EE.Hillewaere.ViewModels
                 navigation.PushAsync(new StocklistSubCategoryView(category));
                 Debug.WriteLine(category.Name);
             });
+
+        public ICommand DeleteCategoryCommand => new Command<Category>(
+            async (Category category) =>
+            {
+                Debug.WriteLine(category.Name);
+                await stocklistService.DeleteCategoryList(category.Id);
+                var categories = await stocklistService.GetCategoryList();
+                Categories = null;
+                Categories = new ObservableCollection<Category>(categories);
+            });
     }
 }

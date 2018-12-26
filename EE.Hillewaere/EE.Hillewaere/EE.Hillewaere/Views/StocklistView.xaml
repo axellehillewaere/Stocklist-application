@@ -2,6 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:bhv="clr-namespace:EE.Hillewaere.Behaviors"
+             Title="Overview of stocklist"
+             x:Name="page"
              x:Class="EE.Hillewaere.Views.StocklistView">
     <ContentPage.Content>
         <StackLayout>
@@ -16,8 +18,9 @@
                     <DataTemplate>
                         <ViewCell>
                             <ViewCell.ContextActions>
-                                <MenuItem Clicked="mnuCategoryEdit_Clicked" CommandParameter="{Binding .}" Text="Edit" />
-                                <MenuItem Clicked="mnuCategoryDelete_Clicked" CommandParameter="{Binding .}" Text="Delete"
+                                <MenuItem Command="{Binding BindingContext.DeleteCategoryCommand, Source={x:Reference page}}" 
+                                          CommandParameter="{Binding .}"
+                                          Text="Delete" 
                                           IsDestructive="True"/>
                             </ViewCell.ContextActions>
                             <StackLayout>

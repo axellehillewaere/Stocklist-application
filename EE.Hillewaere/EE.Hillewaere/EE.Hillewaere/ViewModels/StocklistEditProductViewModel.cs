@@ -34,7 +34,6 @@ namespace EE.Hillewaere.ViewModels
             if (currentProduct != null)
             {
                 PageTitle = currentProduct.Name;
-
                 //currentProduct = await stocklistService.GetProductListById(currentProduct.Id);
             }
             else
@@ -149,16 +148,6 @@ namespace EE.Hillewaere.ViewModels
                 SaveProductState();
                 await stocklistService.SaveProduct(currentProduct);
                 await navigation.PushAsync(new MainView());
-            }
-            );
-
-        public ICommand DeleteProductCommand => new Command<Product>(
-            async (Product product) =>
-            {
-                product.SubCategory.Products.Remove(product);
-                //currentProduct.SubCategory.Products.Remove(currentProduct);
-                //await stocklistService.SaveCategoryList(product.)
-                await RefreshProducts();
             }
             );
     }

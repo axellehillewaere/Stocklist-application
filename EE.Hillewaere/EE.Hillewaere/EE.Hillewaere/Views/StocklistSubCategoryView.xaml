@@ -3,10 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:bhv="clr-namespace:EE.Hillewaere.Behaviors"
              Title="{Binding PageTitle}"
+             x:Name="page"
              x:Class="EE.Hillewaere.Views.StocklistSubCategoryView">
     <ContentPage.Content>
         <StackLayout>
-            <ListView x:Name="lvSubCategoriesLists" ItemsSource="{Binding SubCategories}">
+            <ListView x:Name="lvSubCategoriesList" ItemsSource="{Binding SubCategories}">
                 <ListView.Behaviors>
                     <bhv:EventToCommandBehavior
                         EventName="ItemTapped"
@@ -16,6 +17,12 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
+                            <ViewCell.ContextActions>
+                                <MenuItem Command="{Binding BindingContext.DeleteSubCategoryCommand, Source={x:Reference page}}"
+                                          CommandParameter="{Binding .}"
+                                          Text="Delete"
+                                          IsDestructive="True" />
+                            </ViewCell.ContextActions>
                             <StackLayout>
                             <Label Text="{Binding Name}" />
                             </StackLayout>

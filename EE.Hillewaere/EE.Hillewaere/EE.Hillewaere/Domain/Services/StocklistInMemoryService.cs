@@ -103,12 +103,6 @@ namespace EE.Hillewaere.Domain.Services
             return categoryLists.ToList();
         }
 
-        public async Task<IEnumerable<SubCategory>> GetSubCategoryList()
-        {
-            await Task.Delay(0);
-            return subCategoryLists.ToList();
-        }
-
         public async Task<IEnumerable<SubCategory>> GetSubCategoryListById(Guid subCategoryId)
         {
             await Task.Delay(0);
@@ -119,25 +113,6 @@ namespace EE.Hillewaere.Domain.Services
         {
             await Task.Delay(0);
             return productLists.Where(s => s.SubCategory.Id == productId);
-        }
-
-        public async Task<Category> GetById(Guid categoryId)
-        {
-            await Task.Delay(0);
-            return categoryLists.FirstOrDefault(c => c.Id == categoryId);
-        }
-
-        public async Task<SubCategory> GetSubCategoryById(Guid subCategoryId)
-        {
-            await Task.Delay(0);
-            return categoryLists.FirstOrDefault(c => c.Id == subCategoryId).SubCategories.FirstOrDefault(ci => ci.Id == subCategoryId);
-        }
-
-
-        public async Task<IEnumerable<Product>> GetProductList()
-        {
-            await Task.Delay(0);
-            return categoryLists.FirstOrDefault().SubCategories.FirstOrDefault().Products.ToList();
         }
 
         public async Task SaveCategoryList(Category category)
@@ -170,6 +145,20 @@ namespace EE.Hillewaere.Domain.Services
             savedProduct.SubCategory = product.SubCategory;
         }
 
+        public async Task DeleteCategoryList(Guid categoryId)
+        {
+            await Task.Delay(0);
+            var category = categoryLists.FirstOrDefault(c => c.Id == categoryId);
+            categoryLists.Remove(category);
+        }
+
+        public async Task DeleteSubCategoryList(Guid subCategoryId)
+        {
+            await Task.Delay(0);
+            var subCategory = subCategoryLists.FirstOrDefault(c => c.Id == subCategoryId);
+            subCategoryLists.Remove(subCategory);
+        }
+
         public async Task DeleteProduct(Guid productId)
         {
             await Task.Delay(0);
@@ -177,10 +166,6 @@ namespace EE.Hillewaere.Domain.Services
             productLists.Remove(product);
         }
 
-        public async Task DeleteCategoryList(Guid categoryId)
-        {
-            await Task.Delay(0);
-            var category = categoryLists.FirstOrDefault(c => c.Id == categoryId);
-        }
+
     }
 }

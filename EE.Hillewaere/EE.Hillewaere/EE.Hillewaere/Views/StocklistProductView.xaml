@@ -7,7 +7,7 @@
              x:Class="EE.Hillewaere.Views.StocklistProductView">
     <ContentPage.Content>
         <StackLayout>
-            <ListView x:Name="lvProductsLists" ItemsSource="{Binding Products}">
+            <ListView x:Name="lvProductsList" ItemsSource="{Binding Products}">
                 <ListView.Behaviors>
                     <bhv:EventToCommandBehavior
                         EventName="ItemTapped"
