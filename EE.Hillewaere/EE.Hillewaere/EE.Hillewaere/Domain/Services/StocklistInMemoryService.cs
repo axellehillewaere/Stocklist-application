@@ -115,6 +115,12 @@ namespace EE.Hillewaere.Domain.Services
             return productLists.Where(s => s.SubCategory.Id == productId);
         }
 
+        public async Task<IEnumerable<SubCategory>> GetSubCategories()
+        {
+            await Task.Delay(0);
+            return subCategoryLists.ToList();
+        }
+
         public async Task SaveCategoryList(Category category)
         {
             await Task.Delay(0);

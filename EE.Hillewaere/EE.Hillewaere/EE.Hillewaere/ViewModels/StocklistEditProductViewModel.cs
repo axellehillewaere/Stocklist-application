@@ -137,6 +137,17 @@ namespace EE.Hillewaere.ViewModels
             }
         }
 
+        private ObservableCollection<SubCategory> subCategories;
+        public ObservableCollection<SubCategory> SubCategories
+        {
+            get { return subCategories; }
+            set
+            {
+                subCategories = value;
+                RaisePropertyChanged(nameof(SubCategories));
+            }
+        }
+
         private string subCategoryName;
         public string SubCategoryName
         {
@@ -153,6 +164,7 @@ namespace EE.Hillewaere.ViewModels
             currentProduct.Name = Name;
             currentProduct.Price = Price;
             currentProduct.Description = Description;
+            currentProduct.SubCategory.Name = SubCategoryName;
         }
 
         public ICommand SaveProductCommand => new Command(

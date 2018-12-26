@@ -50,7 +50,7 @@ namespace EE.Hillewaere.ViewModels
         private void LoadSubCategoryState()
         {
             Name = currentSubCategory.Name;
-            products = new ObservableCollection<Product>(currentSubCategory.Products);
+            Products = new ObservableCollection<Product>(currentSubCategory.Products);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -116,16 +116,28 @@ namespace EE.Hillewaere.ViewModels
             }
         }
 
-        public ICommand AddNewProductCommand => new Command(
-            async () =>
+        public ICommand AddNewProductCommand => new Command<Product>(
+            async (Product product) =>
             {
-                await navigation.PushAsync(new MainView());
+                if (product == null)
+                {
+                    product = new Product();
+                    product.SubCategory = new SubCategory();
+                    product.SubCategory.Name = currentSubCategory.Name;
+                }
+                await navigation.PushAsync(new StocklistEditProductView(product));
             });
 
         public ICommand ViewProductCommand => new Command<Product>(
-            (Product product) =>
+            async (Product product) =>
             {
-                navigation.PushAsync(new StocklistEditProductView(product));
+                if (product == null)
+                {
+                    product = new Product();
+                    product.SubCategory = new SubCategory();
+                    product.SubCategory.Name = currentSubCategory.Name;
+                }
+                await navigation.PushAsync(new StocklistEditProductView(product));
             });
 
         public ICommand DeleteProductCommand => new Command<Product>(
