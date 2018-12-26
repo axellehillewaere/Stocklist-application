@@ -32,7 +32,10 @@ namespace EE.Hillewaere.ViewModels
             if (currentCategory != null)
             {
                 PageTitle = currentCategory.Name;
-                currentCategory = await categoryService.GetById(currentCategory.Id);
+                //currentCategory = await categoryService.GetSubCategoryList();
+                var subCategories = await categoryService.GetSubCategoryListById(currentCategory.Id);
+                SubCategories = null;
+                SubCategories = new ObservableCollection<SubCategory>(subCategories);
             }
             else
             {
@@ -47,7 +50,6 @@ namespace EE.Hillewaere.ViewModels
         private void LoadCategoryState()
         {
             Name = currentCategory.Name;
-            SubCategories = new ObservableCollection<SubCategory>(currentCategory.SubCategories);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

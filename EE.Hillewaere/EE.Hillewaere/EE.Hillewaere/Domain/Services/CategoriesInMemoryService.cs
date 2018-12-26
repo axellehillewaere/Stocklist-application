@@ -15,86 +15,85 @@ namespace EE.Hillewaere.Domain.Services
             {
                 Id = Guid.NewGuid(),
                 Name = "Drinks",
-                SubCategories = new List<SubCategory>
-                {
-                    new SubCategory
-                    {
-                        Id = Guid.NewGuid(),
-                        Name = "Soft drinks",
-                        Products = new List<Product>
-                        {
-                            new Product
-                            {
-                                Id = Guid.NewGuid(),
-                                Name = "Coca-Cola",
-                                Price = 10M
-                            },
-                            new Product
-                            {
-                                Id = Guid.NewGuid(),
-                                Name = "Coca-Cola Zero",
-                                Price = 12M
-                            }
-                        }
-                    },
-                    new SubCategory
-                    {
-                        Id = Guid.NewGuid(),
-                        Name = "Hot drinks",
-                        Products = new List<Product>
-                        {
-                            new Product
-                            {
-                                Id = Guid.NewGuid(),
-                                Name = "Coffee beans",
-                                Price = 15M
-                            },
-                            new Product
-                            {
-                                Id = Guid.NewGuid(),
-                                Name = "Cécémel",
-                                Price = 8M
-                            }
-                        }
-                    }
-                }
             },
             new Category
             {
                 Id = Guid.NewGuid(),
                 Name = "Snacks",
-                SubCategories = new List<SubCategory>
-                {
-                    new SubCategory
-                    {
-                        Id = Guid.NewGuid(),
-                        Name = "Chicken",
-                        Products = new List<Product>
-                        {
-                            new Product
-                            {
-                                Id = Guid.NewGuid(),
-                                Name = "Chicken Nuggets (Nuggiez)",
-                                Price = 14M,
-                                Description = "Test"
-                            }
-                        }
-                    },
-                    new SubCategory
-                    {
-                        Id = Guid.NewGuid(),
-                        Name = "Fish",
-                        Products = new List<Product>
-                        {
-                            new Product
-                            {
-                                Id = Guid.NewGuid(),
-                                Name = "Fish burger (Mora)",
-                                Price = 15M
-                            }
-                        }
-                    }
-                }
+            }
+        };
+
+        private static List<SubCategory> subCategoryLists = new List<SubCategory>
+        {
+            new SubCategory
+            {
+                Id = Guid.NewGuid(),
+                Name = "Soft drinks",
+                Category = categoryLists[0]
+            },
+            new SubCategory
+            {
+                Id = Guid.NewGuid(),
+                Name = "Hot drinks",
+                Category = categoryLists[0]
+            },
+            new SubCategory
+            {
+                Id = Guid.NewGuid(),
+                Name = "Chicken",
+                Category = categoryLists[1]
+            },
+            new SubCategory
+            {
+                Id = Guid.NewGuid(),
+                Name = "Fish",
+                Category = categoryLists[1]
+            }
+        };
+
+        private static List<Product> productLists = new List<Product>
+        {
+            new Product
+            {
+                Id = Guid.NewGuid(),
+                Name = "Coca-Cola",
+                Price = 10M,
+                SubCategory = subCategoryLists[0]
+            },
+            new Product
+            {
+                Id = Guid.NewGuid(),
+                Name = "Coca-Cola Zero",
+                Price = 12M,
+                SubCategory = subCategoryLists[0]
+            },
+            new Product
+            {
+                Id = Guid.NewGuid(),
+                Name = "Coffee beans",
+                Price = 14M,
+                SubCategory = subCategoryLists[1]
+            },
+            new Product
+            {
+                Id = Guid.NewGuid(),
+                Name = "Cécémel",
+                Price = 13M,
+                SubCategory = subCategoryLists[1]
+            },
+            new Product
+            {
+                Id = Guid.NewGuid(),
+                Name = "Chicken Nuggets (Nuggiez)",
+                Price = 15M,
+                SubCategory = subCategoryLists[2]
+            },
+            new Product
+            {
+                Id = Guid.NewGuid(),
+                Name = "Fish Burger (Mora)",
+                Price = 14M,
+                SubCategory = subCategoryLists[3]
             }
         };
 
@@ -102,6 +101,24 @@ namespace EE.Hillewaere.Domain.Services
         {
             await Task.Delay(0);
             return categoryLists.ToList();
+        }
+
+        public async Task<IEnumerable<SubCategory>> GetSubCategoryList()
+        {
+            await Task.Delay(0);
+            return subCategoryLists.ToList();
+        }
+
+        public async Task<IEnumerable<SubCategory>> GetSubCategoryListById(Guid subCategoryId)
+        {
+            await Task.Delay(0);
+            return subCategoryLists.Where(s => s.Category.Id == subCategoryId);
+        }
+
+        public async Task<IEnumerable<Product>> GetProductListById(Guid productId)
+        {
+            await Task.Delay(0);
+            return productLists.Where(s => s.SubCategory.Id == productId);
         }
 
         public async Task<Category> GetById(Guid categoryId)
@@ -113,14 +130,9 @@ namespace EE.Hillewaere.Domain.Services
         public async Task<SubCategory> GetSubCategoryById(Guid subCategoryId)
         {
             await Task.Delay(0);
-            return categoryLists.FirstOrDefault().SubCategories.FirstOrDefault(c => c.Id == subCategoryId);
+            return categoryLists.FirstOrDefault(c => c.Id == subCategoryId).SubCategories.FirstOrDefault(ci => ci.Id == subCategoryId);
         }
 
-        public async Task<IEnumerable<SubCategory>> GetSubCategoryList(Guid subCategoryId)
-        {
-            await Task.Delay(0);
-            return categoryLists.FirstOrDefault().SubCategories.Where(c => c.Id ==subCategoryId);
-        }
 
         public async Task<IEnumerable<Product>> GetProductList()
         {

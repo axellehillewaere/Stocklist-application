@@ -137,11 +137,9 @@ namespace EE.Hillewaere.ViewModels
         public ICommand SaveProductCommand => new Command(
             async () =>
             {
-                //await categoryService.SaveCategoryList(currentProduct.SubCategory.Category);
-                //Sub.Add(new SubCategory { Name = currentProduct.SubCategory.Name, Products = currentProduct.SubCategory.Products });
-                    //Products.Add(new Product { Name = currentProduct.Name, Price = currentProduct.Price, Description = currentProduct.Description });
-                    await navigation.PushAsync(new MainView());
-                }
+                await categoryService.SaveProduct(currentProduct);
+                await navigation.PushAsync(new MainView());
+            }
             );
     }
 }
