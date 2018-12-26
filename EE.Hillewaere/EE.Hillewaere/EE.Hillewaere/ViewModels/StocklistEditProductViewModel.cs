@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -50,6 +51,7 @@ namespace EE.Hillewaere.ViewModels
             Name = currentProduct.Name;
             Price = currentProduct.Price;
             Description = currentProduct.Description;
+            SubCategoryName = currentProduct.SubCategory.Name;
         }
 
         private void RaisePropertyChanged(string propertyName)
@@ -124,14 +126,25 @@ namespace EE.Hillewaere.ViewModels
             }
         }
 
-        private ObservableCollection<SubCategory> sub;
-        public ObservableCollection<SubCategory> Sub
+        private SubCategory subcategory;
+        public SubCategory SubCategory
         {
-            get { return sub; }
+            get { return subcategory; }
             set
             {
-                sub = value;
-                RaisePropertyChanged(nameof(Sub));
+                subcategory = value;
+                RaisePropertyChanged(nameof(SubCategory));
+            }
+        }
+
+        private string subCategoryName;
+        public string SubCategoryName
+        {
+            get { return subCategoryName; }
+            set
+            {
+                subCategoryName = value;
+                RaisePropertyChanged(nameof(SubCategoryName));
             }
         }
 

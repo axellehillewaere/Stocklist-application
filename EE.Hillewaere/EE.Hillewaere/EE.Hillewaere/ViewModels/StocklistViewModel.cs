@@ -65,6 +65,12 @@ namespace EE.Hillewaere.ViewModels
             }
         }
 
+        public ICommand AddNewProductCommand => new Command(
+            async () =>
+            {
+                await navigation.PushAsync(new MainView());
+            });
+
         public ICommand ViewSubCategoriesCommand => new Command<Category>(
             (Category category) =>
             {

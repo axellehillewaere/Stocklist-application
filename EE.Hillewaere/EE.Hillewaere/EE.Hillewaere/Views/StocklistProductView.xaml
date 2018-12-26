@@ -5,6 +5,9 @@
              Title="{Binding PageTitle}"
              x:Name="page"
              x:Class="EE.Hillewaere.Views.StocklistProductView">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add product" Command="{Binding AddNewProductCommand}"></ToolbarItem>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
             <ListView x:Name="lvProductsList" ItemsSource="{Binding Products}">
