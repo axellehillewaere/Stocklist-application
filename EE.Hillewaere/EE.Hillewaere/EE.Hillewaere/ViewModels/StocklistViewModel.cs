@@ -14,14 +14,14 @@ namespace EE.Hillewaere.ViewModels
 {
     public class StocklistViewModel : INotifyPropertyChanged
     {
-        private CategoriesInMemoryService categoryService;
+        private StocklistInMemoryService stocklistService;
         private INavigation navigation;
 
         public StocklistViewModel(INavigation navigation)
         {
             this.navigation = navigation;
-            categoryService = new CategoriesInMemoryService();
-            Categories = new ObservableCollection<Category>(categoryService.GetCategoryList().Result);
+            stocklistService = new StocklistInMemoryService();
+            Categories = new ObservableCollection<Category>(stocklistService.GetCategoryList().Result);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

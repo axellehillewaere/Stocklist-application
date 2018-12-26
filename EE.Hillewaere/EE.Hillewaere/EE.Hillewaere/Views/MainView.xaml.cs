@@ -13,12 +13,12 @@ namespace EE.Hillewaere.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class MainView : ContentPage
 	{
-        CategoriesInMemoryService categoryListService;
+        StocklistInMemoryService stocklistService;
 
 		public MainView ()
 		{
 			InitializeComponent ();
-            categoryListService = new CategoriesInMemoryService();
+            stocklistService = new StocklistInMemoryService();
 		}
 
         private async void btnPlaceNewOrder_Clicked(object sender, EventArgs e)

@@ -15,7 +15,7 @@ namespace EE.Hillewaere.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class StocklistSubCategoryView : ContentPage
 	{
-        private CategoriesInMemoryService categoryService;
+        private StocklistInMemoryService stocklistService;
         private Category currentCategory;
 
 		public StocklistSubCategoryView (Category category)
@@ -23,7 +23,7 @@ namespace EE.Hillewaere.Views
 			InitializeComponent ();
             BindingContext = new StocklistSubCategoryViewModel(category, this.Navigation);
 
-            categoryService = new CategoriesInMemoryService();
+            stocklistService = new StocklistInMemoryService();
         }
 
     }

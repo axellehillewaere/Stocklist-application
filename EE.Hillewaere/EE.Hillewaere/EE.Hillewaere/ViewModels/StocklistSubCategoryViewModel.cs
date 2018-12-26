@@ -15,7 +15,7 @@ namespace EE.Hillewaere.ViewModels
 {
     public class StocklistSubCategoryViewModel : INotifyPropertyChanged
     {
-        private CategoriesInMemoryService categoryService;
+        private StocklistInMemoryService stocklistService;
         private Category currentCategory;
         private INavigation navigation;
 
@@ -23,7 +23,7 @@ namespace EE.Hillewaere.ViewModels
         {
             this.navigation = navigation;
             this.currentCategory = category;
-            categoryService = new CategoriesInMemoryService();
+            stocklistService = new StocklistInMemoryService();
             RefreshCategories();
         }
 
@@ -33,7 +33,7 @@ namespace EE.Hillewaere.ViewModels
             {
                 PageTitle = currentCategory.Name;
                 //currentCategory = await categoryService.GetSubCategoryList();
-                var subCategories = await categoryService.GetSubCategoryListById(currentCategory.Id);
+                var subCategories = await stocklistService.GetSubCategoryListById(currentCategory.Id);
                 SubCategories = null;
                 SubCategories = new ObservableCollection<SubCategory>(subCategories);
             }

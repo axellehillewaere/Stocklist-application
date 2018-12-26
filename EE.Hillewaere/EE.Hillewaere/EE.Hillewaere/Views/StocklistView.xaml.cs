@@ -15,7 +15,7 @@ namespace EE.Hillewaere.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class StocklistView : ContentPage
 	{
-        CategoriesInMemoryService categoryListService;
+        StocklistInMemoryService stocklistService;
 		public StocklistView ()
 		{
 			InitializeComponent ();
@@ -33,7 +33,7 @@ namespace EE.Hillewaere.Views
         private async void mnuCategoryDelete_Clicked(object sender, EventArgs e)
         {
             var selectedCategory = ((MenuItem)sender).CommandParameter as Category;
-            await categoryListService.DeleteCategoryList(selectedCategory.Id);
+            await stocklistService.DeleteCategoryList(selectedCategory.Id);
             //await RefreshCategoryLists();
         }
     }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EE.Hillewaere.Domain.Services
 {
-    public class CategoriesInMemoryService
+    public class StocklistInMemoryService
     {
         private static List<Category> categoryLists = new List<Category>
         {
@@ -157,12 +157,12 @@ namespace EE.Hillewaere.Domain.Services
         public async Task SaveProduct(Product product)
         {
             await Task.Delay(0);
-            var savedProduct = categoryLists.SingleOrDefault().SubCategories.SingleOrDefault().Products.FirstOrDefault(c => c.Id == product.Id);
+            var savedProduct = productLists.FirstOrDefault(s => s.Id == product.Id);
             if (savedProduct == null)
             {
                 savedProduct = product;
                 savedProduct.Id = Guid.NewGuid();
-                //categoryLists.Add(savedProduct);
+                productLists.Add(savedProduct);
             }
             savedProduct.Name = product.Name;
             savedProduct.Price = product.Price;

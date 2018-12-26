@@ -15,7 +15,7 @@ namespace EE.Hillewaere.ViewModels
 {
     public class StocklistAddProductViewModel : INotifyPropertyChanged
     {
-        private CategoriesInMemoryService categoryService;
+        private StocklistInMemoryService stocklistService;
         private Product currentProduct;
         private INavigation navigation;
         public event PropertyChangedEventHandler PropertyChanged;
@@ -25,7 +25,7 @@ namespace EE.Hillewaere.ViewModels
         {
             this.navigation = navigation;
             this.currentProduct = product;
-            categoryService = new CategoriesInMemoryService();
+            stocklistService = new StocklistInMemoryService();
             RefreshProducts();
         }
 
@@ -123,21 +123,17 @@ namespace EE.Hillewaere.ViewModels
             }
         }
 
-        private ObservableCollection<SubCategory> sub;
-        public ObservableCollection<SubCategory> Sub
+        private void SaveProductState()
         {
-            get { return sub; }
-            set
-            {
-                sub = value;
-                RaisePropertyChanged(nameof(Sub));
-            }
+            currentProduct.Name = Name;
+            currentProduct.Price = Price;
         }
 
         public ICommand SaveProductCommand => new Command(
             async () =>
             {
-                await categoryService.SaveProduct(currentProduct);
+                SaveProductState();
+                await stocklistService.SaveProduct(currentProduct);
                 await navigation.PushAsync(new MainView());
             }
             );
