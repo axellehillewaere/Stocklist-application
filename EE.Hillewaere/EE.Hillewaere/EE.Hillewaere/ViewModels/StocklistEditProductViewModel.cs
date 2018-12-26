@@ -34,6 +34,8 @@ namespace EE.Hillewaere.ViewModels
             if (currentProduct != null)
             {
                 PageTitle = currentProduct.Name;
+
+                //currentProduct = await stocklistService.GetProductListById(currentProduct.Id);
             }
             else
             {
@@ -123,6 +125,17 @@ namespace EE.Hillewaere.ViewModels
             }
         }
 
+        private ObservableCollection<SubCategory> sub;
+        public ObservableCollection<SubCategory> Sub
+        {
+            get { return sub; }
+            set
+            {
+                sub = value;
+                RaisePropertyChanged(nameof(Sub));
+            }
+        }
+
         private void SaveProductState()
         {
             currentProduct.Name = Name;
@@ -142,8 +155,8 @@ namespace EE.Hillewaere.ViewModels
         public ICommand DeleteProductCommand => new Command<Product>(
             async (Product product) =>
             {
-                //currentProduct.SubCategory.Category.SubCategories.Remove(product);
-                //product.SubCategory.Products.Remove(product);
+                product.SubCategory.Products.Remove(product);
+                //currentProduct.SubCategory.Products.Remove(currentProduct);
                 //await stocklistService.SaveCategoryList(product.)
                 await RefreshProducts();
             }

@@ -110,5 +110,6 @@ namespace EE.Hillewaere.ViewModels
                 navigation.PushAsync(new StocklistProductView(subCategory));
                 Debug.WriteLine(subCategory.Name);
             });
+
     }
 }

@@ -121,5 +121,15 @@ namespace EE.Hillewaere.ViewModels
             {
                 navigation.PushAsync(new StocklistEditProductView(product));
             });
+
+        public ICommand DeleteProductCommand => new Command<Product>(
+        async (Product product) =>
+        {
+            Debug.WriteLine(product.Name);
+            await stocklistService.DeleteProduct(product.Id);
+            var products = await stocklistService.GetProductListById(currentSubCategory.Id);
+            Products = null;
+            Products = new ObservableCollection<Product>(products);
+        });
     }
 }

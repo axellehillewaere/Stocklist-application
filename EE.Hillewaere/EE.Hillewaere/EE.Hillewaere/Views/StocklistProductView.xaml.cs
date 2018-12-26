@@ -1,4 +1,5 @@
 ﻿using EE.Hillewaere.Domain.Models;
+using EE.Hillewaere.Domain.Services;
 using EE.Hillewaere.ViewModels;
 using System;
 using System.Collections.Generic;
