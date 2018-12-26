@@ -167,6 +167,14 @@ namespace EE.Hillewaere.Domain.Services
             savedProduct.Name = product.Name;
             savedProduct.Price = product.Price;
             savedProduct.Description = product.Description;
+            savedProduct.SubCategory = product.SubCategory;
+        }
+
+        public async Task DeleteProduct(Guid productId)
+        {
+            await Task.Delay(0);
+            var product = productLists.FirstOrDefault(p => p.Id == productId);
+            productLists.Remove(product);
         }
 
         public async Task DeleteCategoryList(Guid categoryId)

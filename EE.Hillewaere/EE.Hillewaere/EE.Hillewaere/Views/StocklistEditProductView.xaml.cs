@@ -12,12 +12,12 @@ using Xamarin.Forms.Xaml;
 namespace EE.Hillewaere.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class StocklistAddProductView : ContentPage
+	public partial class StocklistEditProductView : ContentPage
 	{
-		public StocklistAddProductView (Product product)
+		public StocklistEditProductView (Product product)
 		{
-			InitializeComponent ();
-            BindingContext = new StocklistAddProductViewModel(product, this.Navigation);
+			InitializeComponent();
+            BindingContext = new StocklistEditProductViewModel(product, this.Navigation);
 		}
 	}
 }

@@ -13,7 +13,7 @@ using Xamarin.Forms;
 
 namespace EE.Hillewaere.ViewModels
 {
-    public class StocklistAddProductViewModel : INotifyPropertyChanged
+    public class StocklistEditProductViewModel : INotifyPropertyChanged
     {
         private StocklistInMemoryService stocklistService;
         private Product currentProduct;
@@ -21,7 +21,7 @@ namespace EE.Hillewaere.ViewModels
         public event PropertyChangedEventHandler PropertyChanged;
 
 
-        public StocklistAddProductViewModel(Product product, INavigation navigation)
+        public StocklistEditProductViewModel(Product product, INavigation navigation)
         {
             this.navigation = navigation;
             this.currentProduct = product;
@@ -127,6 +127,7 @@ namespace EE.Hillewaere.ViewModels
         {
             currentProduct.Name = Name;
             currentProduct.Price = Price;
+            currentProduct.Description = Description;
         }
 
         public ICommand SaveProductCommand => new Command(
@@ -135,6 +136,16 @@ namespace EE.Hillewaere.ViewModels
                 SaveProductState();
                 await stocklistService.SaveProduct(currentProduct);
                 await navigation.PushAsync(new MainView());
+            }
+            );
+
+        public ICommand DeleteProductCommand => new Command<Product>(
+            async (Product product) =>
+            {
+                //currentProduct.SubCategory.Category.SubCategories.Remove(product);
+                //product.SubCategory.Products.Remove(product);
+                //await stocklistService.SaveCategoryList(product.)
+                await RefreshProducts();
             }
             );
     }

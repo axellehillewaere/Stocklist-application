@@ -115,11 +115,11 @@ namespace EE.Hillewaere.ViewModels
                 RaisePropertyChanged(nameof(Products));
             }
         }
+
         public ICommand ViewProductCommand => new Command<Product>(
             (Product product) =>
             {
-                navigation.PushAsync(new StocklistAddProductView(product));
-                Debug.WriteLine(product.Name);
+                navigation.PushAsync(new StocklistEditProductView(product));
             });
     }
 }
