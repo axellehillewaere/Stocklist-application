@@ -16,12 +16,14 @@ namespace EE.Hillewaere.ViewModels
     {
         private StocklistInMemoryService stocklistService;
         private INavigation navigation;
+        private Category currentCategory;
 
         public StocklistViewModel(INavigation navigation)
         {
             this.navigation = navigation;
             stocklistService = new StocklistInMemoryService();
             Categories = new ObservableCollection<Category>(stocklistService.GetCategoryList().Result);
+            //Sub = new ObservableCollection<SubCategory>(stocklistService.GetSubCategories().Result);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -62,6 +64,17 @@ namespace EE.Hillewaere.ViewModels
             {
                 categories = value;
                 RaisePropertyChanged(nameof(Categories));
+            }
+        }
+
+        private ObservableCollection<SubCategory> sub;
+        public ObservableCollection<SubCategory> Sub
+        {
+            get { return sub; }
+            set
+            {
+                sub = value;
+                RaisePropertyChanged(nameof(Sub));
             }
         }
 

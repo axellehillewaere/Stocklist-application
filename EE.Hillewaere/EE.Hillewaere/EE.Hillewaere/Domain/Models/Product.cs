@@ -11,5 +11,6 @@ namespace EE.Hillewaere.Domain.Models
         public decimal Price { get; set; }
         public string Description { get; set; }
         public SubCategory SubCategory { get; set; }
+        public Category Category { get; set; }
     }
 }

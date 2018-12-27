@@ -30,12 +30,11 @@ namespace EE.Hillewaere.ViewModels
             RefreshProducts();
         }
 
-        private async Task RefreshProducts()
-        {
+        private void RefreshProducts()
+        { 
             if (currentProduct != null)
             {
                 PageTitle = currentProduct.Name;
-                //currentProduct = await stocklistService.GetProductListById(currentProduct.Id);
             }
             else
             {
@@ -52,6 +51,7 @@ namespace EE.Hillewaere.ViewModels
             Price = currentProduct.Price;
             Description = currentProduct.Description;
             SubCategoryName = currentProduct.SubCategory.Name;
+            Category = currentProduct.Category;
         }
 
         private void RaisePropertyChanged(string propertyName)
@@ -134,6 +134,17 @@ namespace EE.Hillewaere.ViewModels
             {
                 subcategory = value;
                 RaisePropertyChanged(nameof(SubCategory));
+            }
+        }
+
+        private Category category;
+        public Category Category
+        {
+            get { return category; }
+            set
+            {
+                category = value;
+                RaisePropertyChanged(nameof(Category));
             }
         }
 

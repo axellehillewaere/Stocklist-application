@@ -20,9 +20,10 @@ namespace EE.Hillewaere.Domain.Services
             {
                 Id = Guid.NewGuid(),
                 Name = "Snacks",
-            }
-        };
+            },
 
+        };
+        
         private static List<SubCategory> subCategoryLists = new List<SubCategory>
         {
             new SubCategory
@@ -58,14 +59,16 @@ namespace EE.Hillewaere.Domain.Services
                 Id = Guid.NewGuid(),
                 Name = "Coca-Cola",
                 Price = 10M,
-                SubCategory = subCategoryLists[0]
+                SubCategory = subCategoryLists[0],
+                Category = categoryLists[0]
             },
             new Product
             {
                 Id = Guid.NewGuid(),
                 Name = "Coca-Cola Zero",
                 Price = 12M,
-                SubCategory = subCategoryLists[0]
+                SubCategory = subCategoryLists[0],
+                Category = categoryLists[0]
             },
             new Product
             {
@@ -149,6 +152,7 @@ namespace EE.Hillewaere.Domain.Services
             savedProduct.Price = product.Price;
             savedProduct.Description = product.Description;
             savedProduct.SubCategory = product.SubCategory;
+            savedProduct.Category = product.Category;
         }
 
         public async Task DeleteCategoryList(Guid categoryId)

@@ -36,13 +36,15 @@ namespace EE.Hillewaere.ViewModels
                 var subCategories = await stocklistService.GetSubCategoryListById(currentCategory.Id);
                 SubCategories = null;
                 SubCategories = new ObservableCollection<SubCategory>(subCategories);
+                var product = await stocklistService.GetProductListById(currentCategory.Id);
+                Prod = new ObservableCollection<Product>(product);
             }
             else
             {
                 PageTitle = "New Category List";
                 currentCategory = new Category();
                 currentCategory.Id = Guid.NewGuid();
-                currentCategory.SubCategories = new List<SubCategory>();
+                //currentCategory.SubCategories = new List<SubCategory>();
             }
             LoadCategoryState();
         }
@@ -104,11 +106,28 @@ namespace EE.Hillewaere.ViewModels
             }
         }
 
+        private ObservableCollection<Product> prod;
+        public ObservableCollection<Product> Prod
+        {
+            get { return prod; }
+            set
+            {
+                prod = value;
+                RaisePropertyChanged(nameof(Prod));
+            }
+        }
+
         public ICommand ViewProductsCommand => new Command<SubCategory>(
             (SubCategory subCategory) =>
             {
+                if (subCategory.Products == null)
+                {
+                    var test = stocklistService.GetProductListById(currentCategory.Id);
+                    //subCategory.Products = currentCategory.Name;
+                    Debug.WriteLine("lol");
+                }
                 navigation.PushAsync(new StocklistProductView(subCategory));
-                Debug.WriteLine(subCategory.Name);
+                Debug.WriteLine("test" +subCategory);
             });
 
         public ICommand DeleteSubCategoryCommand => new Command<SubCategory>(

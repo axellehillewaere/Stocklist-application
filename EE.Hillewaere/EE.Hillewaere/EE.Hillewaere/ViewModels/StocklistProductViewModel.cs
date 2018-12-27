@@ -32,7 +32,6 @@ namespace EE.Hillewaere.ViewModels
             if (currentSubCategory != null)
             {
                 PageTitle = currentSubCategory.Name;
-                //currentSubCategory = await categoryService.GetSubCategoryList(currentSubCategory.Id);
                 var products = await stocklistService.GetProductListById(currentSubCategory.Id);
                 Products = null;
                 Products = new ObservableCollection<Product>(products);
@@ -116,18 +115,6 @@ namespace EE.Hillewaere.ViewModels
             }
         }
 
-        public ICommand AddNewProductCommand => new Command<Product>(
-            async (Product product) =>
-            {
-                if (product == null)
-                {
-                    product = new Product();
-                    product.SubCategory = new SubCategory();
-                    product.SubCategory.Name = currentSubCategory.Name;
-                }
-                await navigation.PushAsync(new StocklistEditProductView(product));
-            });
-
         public ICommand ViewProductCommand => new Command<Product>(
             async (Product product) =>
             {
@@ -136,6 +123,10 @@ namespace EE.Hillewaere.ViewModels
                     product = new Product();
                     product.SubCategory = new SubCategory();
                     product.SubCategory.Name = currentSubCategory.Name;
+                    product.SubCategory.Id = currentSubCategory.Id;
+                    product.Category = new Category();
+                    product.Category.Name = currentSubCategory.Category.Name;
+                    product.Category.Id = currentSubCategory.Category.Id;
                 }
                 await navigation.PushAsync(new StocklistEditProductView(product));
             });
