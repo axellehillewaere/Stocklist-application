@@ -44,7 +44,7 @@ namespace EE.Hillewaere.ViewModels
                 PageTitle = "New Category List";
                 currentCategory = new Category();
                 currentCategory.Id = Guid.NewGuid();
-                //currentCategory.SubCategories = new List<SubCategory>();
+                currentCategory.SubCategories = new List<SubCategory>();
             }
             LoadCategoryState();
         }
@@ -120,12 +120,6 @@ namespace EE.Hillewaere.ViewModels
         public ICommand ViewProductsCommand => new Command<SubCategory>(
             (SubCategory subCategory) =>
             {
-                if (subCategory.Products == null)
-                {
-                    var test = stocklistService.GetProductListById(currentCategory.Id);
-                    //subCategory.Products = currentCategory.Name;
-                    Debug.WriteLine("lol");
-                }
                 navigation.PushAsync(new StocklistProductView(subCategory));
                 Debug.WriteLine("test" +subCategory);
             });

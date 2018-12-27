@@ -32,15 +32,13 @@ namespace EE.Hillewaere.ViewModels
 
         private void RefreshProducts()
         { 
-            if (currentProduct != null)
+            if (currentProduct.Name != null)
             {
                 PageTitle = currentProduct.Name;
             }
             else
             {
                 PageTitle = "New Product";
-                currentProduct = new Product();
-                currentProduct.Id = Guid.NewGuid();
             }
             LoadProductsState();
         }
@@ -49,6 +47,7 @@ namespace EE.Hillewaere.ViewModels
         {
             Name = currentProduct.Name;
             Price = currentProduct.Price;
+            Code = currentProduct.Code;
             Description = currentProduct.Description;
             SubCategoryName = currentProduct.SubCategory.Name;
             Category = currentProduct.Category;
@@ -90,6 +89,17 @@ namespace EE.Hillewaere.ViewModels
             {
                 price = value;
                 RaisePropertyChanged(nameof(Price));
+            }
+        }
+
+        private string code;
+        public string Code
+        {
+            get { return code; }
+            set
+            {
+                code = value;
+                RaisePropertyChanged(nameof(Code));
             }
         }
 
@@ -174,6 +184,7 @@ namespace EE.Hillewaere.ViewModels
         {
             currentProduct.Name = Name;
             currentProduct.Price = Price;
+            currentProduct.Code = Code;
             currentProduct.Description = Description;
             currentProduct.SubCategory.Name = SubCategoryName;
         }

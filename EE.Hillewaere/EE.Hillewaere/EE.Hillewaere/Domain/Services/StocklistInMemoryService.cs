@@ -59,6 +59,8 @@ namespace EE.Hillewaere.Domain.Services
                 Id = Guid.NewGuid(),
                 Name = "Coca-Cola",
                 Price = 10M,
+                Description = "24 x 33cl",
+                Code = "A1234",
                 SubCategory = subCategoryLists[0],
                 Category = categoryLists[0]
             },
@@ -150,6 +152,7 @@ namespace EE.Hillewaere.Domain.Services
             }
             savedProduct.Name = product.Name;
             savedProduct.Price = product.Price;
+            savedProduct.Code = product.Code;
             savedProduct.Description = product.Description;
             savedProduct.SubCategory = product.SubCategory;
             savedProduct.Category = product.Category;
