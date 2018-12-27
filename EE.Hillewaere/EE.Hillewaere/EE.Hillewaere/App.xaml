@@ -5,6 +5,20 @@
              x:Class="EE.Hillewaere.App">
     <Application.Resources>
         <ResourceDictionary>
+            <Color x:Key="ColorError">#ff0000</Color>
+
+            <OnPlatform x:Key="ErrorMessageFontSize" x:TypeArguments="NamedSize">
+                <On Platform="Android" Value="Small"></On>
+                <On Platform="UWP" Value="Micro"></On>
+            </OnPlatform>
+
+            <Style x:Key="ErrorMessage" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource ColorError}" />
+                <Setter Property="FontSize" Value="{StaticResource ErrorMessageFontSize}" />
+                <Setter Property="Margin" Value="2, -3, 7, 0" />
+                <Setter Property="IsVisible" Value="False" />
+            </Style>
+            
             <conv:ItemTappedEventArgsConverter x:Key="ItemTappedEventArgsConv" />
         </ResourceDictionary>
     </Application.Resources>

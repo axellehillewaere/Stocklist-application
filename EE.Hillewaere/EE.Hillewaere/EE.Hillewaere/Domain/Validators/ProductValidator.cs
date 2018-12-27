@@ -18,13 +18,19 @@ namespace EE.Hillewaere.Domain.Validators
 
             RuleFor(product => product.Price)
                 .NotEmpty()
-                .WithMessage("Price cannot be empty");
+                .WithMessage("Price cannot be empty")
+                .GreaterThan(0)
+                .WithMessage("Must be greater than 0");
 
-            //RuleFor(product => product.)
-            //    .NotEmpty()
-            //    .WithMessage("")
+            RuleFor(product => product.Code)
+                .NotEmpty()
+                .WithMessage("Code cannot be empty")
+                .MaximumLength(20)
+                .WithMessage("Length cannot be greater than 20 characters");
 
-
+            RuleFor(product => product.Description)
+                .NotEqual(p => p.Name)
+                .WithMessage("Must be different than Name");
         }
     }
 }

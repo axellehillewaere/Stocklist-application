@@ -1,5 +1,6 @@
 ﻿using EE.Hillewaere.Domain.Models;
 using EE.Hillewaere.Domain.Services;
+using EE.Hillewaere.Domain.Validators;
 using EE.Hillewaere.Views;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,7 @@ namespace EE.Hillewaere.ViewModels
         private StocklistInMemoryService stocklistService;
         private Product currentProduct;
         private INavigation navigation;
+        private ProductValidator productValidator;
         public event PropertyChangedEventHandler PropertyChanged;
 
 
@@ -27,6 +29,7 @@ namespace EE.Hillewaere.ViewModels
             this.navigation = navigation;
             this.currentProduct = product;
             stocklistService = new StocklistInMemoryService();
+            productValidator = new ProductValidator();
             RefreshProducts();
         }
 
@@ -125,6 +128,74 @@ namespace EE.Hillewaere.ViewModels
             }
         }
 
+        private string nameError;
+        public string NameError
+        {
+            get { return nameError; }
+            set
+            {
+                nameError = value;
+                RaisePropertyChanged(nameof(NameError));
+                RaisePropertyChanged(nameof(NameErrorVisible));
+            }
+        }
+
+        private string priceError;
+        public string PriceError
+        {
+            get { return priceError; }
+            set
+            {
+                priceError = value;
+                RaisePropertyChanged(nameof(PriceError));
+                RaisePropertyChanged(nameof(PriceErrorVisible));
+            }
+        }
+
+        private string codeError;
+        public string CodeError
+        {
+            get { return codeError; }
+            set
+            {
+                codeError = value;
+                RaisePropertyChanged(nameof(CodeError));
+                RaisePropertyChanged(nameof(CodeErrorVisible));
+            }
+        }
+
+        private string descriptionError;
+        public string DescriptionError
+        {
+            get { return descriptionError; }
+            set
+            {
+                descriptionError = value;
+                RaisePropertyChanged(nameof(DescriptionError));
+                RaisePropertyChanged(nameof(DescriptionErrorVisible));
+            }
+        }
+
+        public bool NameErrorVisible
+        {
+            get { return !string.IsNullOrWhiteSpace(NameError); }
+        }
+
+        public bool PriceErrorVisible
+        {
+            get { return !string.IsNullOrWhiteSpace(PriceError); }
+        }
+
+        public bool CodeErrorVisible
+        {
+            get { return !string.IsNullOrWhiteSpace(CodeError); }
+        }
+
+        public bool DescriptionErrorVisible
+        {
+            get { return !string.IsNullOrWhiteSpace(DescriptionError); }
+        }
+
         private ObservableCollection<Product> products;
         public ObservableCollection<Product> Products
         {
@@ -193,9 +264,37 @@ namespace EE.Hillewaere.ViewModels
             async () =>
             {
                 SaveProductState();
-                await stocklistService.SaveProduct(currentProduct);
-                await navigation.PushAsync(new MainView());
+                if (Validate(currentProduct))
+                {
+                    await stocklistService.SaveProduct(currentProduct);
+                    await navigation.PushAsync(new MainView());
+                }
             }
             );
+
+        private bool Validate(Product product)
+        {
+            var validationResult = productValidator.Validate(product);
+            foreach (var error in validationResult.Errors)
+            {
+                if (error.PropertyName == nameof(product.Name))
+                {
+                    NameError = error.ErrorMessage;
+                }
+                if (error.PropertyName == nameof(product.Price))
+                {
+                    PriceError = error.ErrorMessage;
+                }
+                if (error.PropertyName == nameof(product.Code))
+                {
+                    CodeError = error.ErrorMessage;
+                }
+                if (error.PropertyName == nameof(product.Description))
+                {
+                    DescriptionError = error.ErrorMessage;
+                }
+            }
+            return validationResult.IsValid;
+        }
     }
 }
