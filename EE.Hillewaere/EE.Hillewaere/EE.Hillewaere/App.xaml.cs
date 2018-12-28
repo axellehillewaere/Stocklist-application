@@ -11,7 +11,6 @@ namespace EE.Hillewaere
         public App()
         {
             InitializeComponent();
-
             MainPage = new NavigationPage(new MainView());
         }
 

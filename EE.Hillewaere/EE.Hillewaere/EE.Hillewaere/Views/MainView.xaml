@@ -11,6 +11,8 @@
             <Button Text="Place new order" Clicked="btnPlaceNewOrder_Clicked" />
             <Button Text="Overview of stocklist" Clicked="btnOverviewStocklist_Clicked"/>
             <Button Text="Previous orders" Clicked="btnPreviousOrders_Clicked"/>
+
+            <Button Text="Play Sound" Command="{Binding PlaySoundCommand}"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
