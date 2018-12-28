@@ -14,13 +14,13 @@ namespace EE.Hillewaere.ViewModels
 {
     public class StocklistViewModel : INotifyPropertyChanged
     {
-        private StocklistInMemoryService stocklistService;
+        private IStocklistService stocklistService;
         private INavigation navigation;
 
-        public StocklistViewModel(INavigation navigation)
+        public StocklistViewModel(INavigation navigation, IStocklistService slService)
         {
             this.navigation = navigation;
-            stocklistService = new StocklistInMemoryService();
+            stocklistService = slService;
             Categories = new ObservableCollection<Category>(stocklistService.GetCategoryList().Result);
         }
 
@@ -93,7 +93,7 @@ namespace EE.Hillewaere.ViewModels
             async (Category category) =>
             {
                 Debug.WriteLine(category.Name);
-                await stocklistService.DeleteCategoryList(category.Id);
+                await stocklistService.DeleteCategory(category.Id);
                 var categories = await stocklistService.GetCategoryList();
                 Categories = null;
                 Categories = new ObservableCollection<Category>(categories);

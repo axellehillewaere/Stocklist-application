@@ -19,7 +19,8 @@ namespace EE.Hillewaere.Views
 		public StocklistProductView (SubCategory subCategory)
 		{
 			InitializeComponent ();
-            BindingContext = new StocklistProductViewModel(subCategory, this.Navigation);
+            IStocklistService slService = new StocklistInMemoryService();
+            BindingContext = new StocklistProductViewModel(subCategory, this.Navigation, slService);
         }
     }
 }

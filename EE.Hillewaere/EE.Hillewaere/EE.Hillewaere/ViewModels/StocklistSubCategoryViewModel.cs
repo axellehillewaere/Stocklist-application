@@ -15,15 +15,15 @@ namespace EE.Hillewaere.ViewModels
 {
     public class StocklistSubCategoryViewModel : INotifyPropertyChanged
     {
-        private StocklistInMemoryService stocklistService;
+        private IStocklistService stocklistService;
         private Category currentCategory;
         private INavigation navigation;
 
-        public StocklistSubCategoryViewModel(Category category, INavigation navigation)
+        public StocklistSubCategoryViewModel(Category category, INavigation navigation, IStocklistService slService)
         {
             this.navigation = navigation;
             this.currentCategory = category;
-            stocklistService = new StocklistInMemoryService();
+            stocklistService = slService;
             RefreshSubCategories();
         }
 
@@ -126,7 +126,7 @@ namespace EE.Hillewaere.ViewModels
         async (SubCategory subCategory) =>
         {
             Debug.WriteLine(subCategory.Name);
-            await stocklistService.DeleteSubCategoryList(subCategory.Id);
+            await stocklistService.DeleteSubCategory(subCategory.Id);
             var subCategories = await stocklistService.GetSubCategoryListById(currentCategory.Id);
             SubCategories = null;
             SubCategories = new ObservableCollection<SubCategory>(subCategories);

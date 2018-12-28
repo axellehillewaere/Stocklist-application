@@ -15,15 +15,15 @@ namespace EE.Hillewaere.ViewModels
 {
     public class StocklistProductViewModel : INotifyPropertyChanged
     {
-        private StocklistInMemoryService stocklistService;
+        private IStocklistService stocklistService;
         private SubCategory currentSubCategory;
         private INavigation navigation;
 
-        public StocklistProductViewModel(SubCategory subCategory, INavigation navigation)
+        public StocklistProductViewModel(SubCategory subCategory, INavigation navigation, IStocklistService slService)
         {
             this.navigation = navigation;
             this.currentSubCategory = subCategory;
-            stocklistService = new StocklistInMemoryService();
+            stocklistService = slService;
             RefreshProducts();
         }
 

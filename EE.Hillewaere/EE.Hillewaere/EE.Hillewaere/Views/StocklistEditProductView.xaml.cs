@@ -1,4 +1,5 @@
 ﻿using EE.Hillewaere.Domain.Models;
+using EE.Hillewaere.Domain.Services;
 using EE.Hillewaere.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,8 @@ namespace EE.Hillewaere.Views
 		public StocklistEditProductView (Product product)
 		{
 			InitializeComponent();
-            BindingContext = new StocklistEditProductViewModel(product, this.Navigation);
+            IStocklistService slService = new StocklistInMemoryService();
+            BindingContext = new StocklistEditProductViewModel(product, this.Navigation, slService);
 		}
 
         protected override void OnAppearing()

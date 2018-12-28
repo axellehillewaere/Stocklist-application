@@ -18,18 +18,18 @@ namespace EE.Hillewaere.ViewModels
 {
     public class StocklistEditProductViewModel : INotifyPropertyChanged
     {
-        private StocklistInMemoryService stocklistService;
+        private IStocklistService stocklistService;
         private Product currentProduct;
         private INavigation navigation;
         private ProductValidator productValidator;
         public event PropertyChangedEventHandler PropertyChanged;
 
 
-        public StocklistEditProductViewModel(Product product, INavigation navigation)
+        public StocklistEditProductViewModel(Product product, INavigation navigation, IStocklistService slService)
         {
             this.navigation = navigation;
             this.currentProduct = product;
-            stocklistService = new StocklistInMemoryService();
+            stocklistService =slService;
             productValidator = new ProductValidator();
             RefreshProducts();
         }

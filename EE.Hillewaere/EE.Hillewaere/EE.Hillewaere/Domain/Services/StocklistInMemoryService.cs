@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EE.Hillewaere.Domain.Services
 {
-    public class StocklistInMemoryService
+    public class StocklistInMemoryService : IStocklistService
     {
         private static List<Category> categoryLists = new List<Category>
         {
@@ -120,12 +120,6 @@ namespace EE.Hillewaere.Domain.Services
             return productLists.Where(s => s.SubCategory.Id == productId);
         }
 
-        public async Task<IEnumerable<SubCategory>> GetSubCategories()
-        {
-            await Task.Delay(0);
-            return subCategoryLists.ToList();
-        }
-
         public async Task SaveCategoryList(Category category)
         {
             await Task.Delay(0);
@@ -158,14 +152,14 @@ namespace EE.Hillewaere.Domain.Services
             savedProduct.Category = product.Category;
         }
 
-        public async Task DeleteCategoryList(Guid categoryId)
+        public async Task DeleteCategory(Guid categoryId)
         {
             await Task.Delay(0);
             var category = categoryLists.FirstOrDefault(c => c.Id == categoryId);
             categoryLists.Remove(category);
         }
 
-        public async Task DeleteSubCategoryList(Guid subCategoryId)
+        public async Task DeleteSubCategory(Guid subCategoryId)
         {
             await Task.Delay(0);
             var subCategory = subCategoryLists.FirstOrDefault(c => c.Id == subCategoryId);
