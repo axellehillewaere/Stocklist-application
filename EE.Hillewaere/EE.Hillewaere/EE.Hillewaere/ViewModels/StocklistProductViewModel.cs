@@ -1,4 +1,5 @@
-﻿using EE.Hillewaere.Domain.Models;
+﻿using EE.Hillewaere.Constants;
+using EE.Hillewaere.Domain.Models;
 using EE.Hillewaere.Domain.Services;
 using EE.Hillewaere.Views;
 using System;
@@ -25,6 +26,12 @@ namespace EE.Hillewaere.ViewModels
             this.currentSubCategory = subCategory;
             stocklistService = slService;
             RefreshProducts();
+
+            MessagingCenter.Subscribe(this, MessageNames.ProductSaved,
+                async (StocklistEditProductViewModel sender, Product product) =>
+                {
+                    Products = new ObservableCollection<Product>(await stocklistService.GetProductListById(currentSubCategory.Id));
+                });
         }
 
         private async Task RefreshProducts()

@@ -11,6 +11,7 @@ namespace EE.Hillewaere.Domain.Services
         Task<IEnumerable<Category>> GetCategoryList();
         Task<IEnumerable<SubCategory>> GetSubCategoryListById(Guid subCategoryid);
         Task<IEnumerable<Product>> GetProductListById(Guid productId);
+        Task<IEnumerable<Product>> GetProductListBySub(string name);
         Task SaveProduct(Product product);
         Task DeleteCategory(Guid categoryId);
         Task DeleteSubCategory(Guid subCategoryId);

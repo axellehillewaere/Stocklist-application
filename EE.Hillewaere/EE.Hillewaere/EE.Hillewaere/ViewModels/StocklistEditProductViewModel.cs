@@ -44,11 +44,13 @@ namespace EE.Hillewaere.ViewModels
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        private void RefreshProducts()
+        private async Task RefreshProducts()
         { 
             if (currentProduct.Name != null)
             {
                 PageTitle = currentProduct.Name;
+                Products = null;
+                Products = new ObservableCollection<Product>(stocklistService.GetProductListBySub(currentProduct.SubCategory.Name).Result);
             }
             else
             {
@@ -64,7 +66,7 @@ namespace EE.Hillewaere.ViewModels
             Code = currentProduct.Code;
             Description = currentProduct.Description;
             SubCategoryName = currentProduct.SubCategory.Name;
-            Category = currentProduct.Category;
+            Category = currentProduct.Category;;
             LoadFile();
         }
 
@@ -298,14 +300,15 @@ namespace EE.Hillewaere.ViewModels
                 SaveProductState();
                 if (Validate(currentProduct))
                 {
-                    await stocklistService.SaveProduct(currentProduct);
-                    MessagingCenter.Send(this,
+                    MessagingCenter.Send<StocklistEditProductViewModel, Product>(this,
                         MessageNames.ProductSaved, currentProduct);
                     SaveFile();
-                    await navigation.PopAsync(true);
+                    await stocklistService.SaveProduct(currentProduct);
+                    //await navigation.PopAsync(true);
                 }
             }
             );
+
 
         private async void SaveFile()
         {

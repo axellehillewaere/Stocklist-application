@@ -23,8 +23,6 @@ namespace EE.Hillewaere.Views
             BindingContext = IoCRegistry.Container.Resolve<StocklistEditProductViewModel>(
                 new NamedParameter("product", product),
                 new NamedParameter("navigation", this.Navigation));
-            //IStocklistService slService = IoCRegistry.Container.Resolve<IStocklistService>();
-            //BindingContext = new StocklistEditProductViewModel(product, this.Navigation, slService);
 		}
 
         protected override void OnAppearing()

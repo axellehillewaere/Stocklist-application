@@ -125,7 +125,6 @@ namespace EE.Hillewaere.ViewModels
         public ICommand DeleteSubCategoryCommand => new Command<SubCategory>(
         async (SubCategory subCategory) =>
         {
-            Debug.WriteLine(subCategory.Name);
             await stocklistService.DeleteSubCategory(subCategory.Id);
             var subCategories = await stocklistService.GetSubCategoryListById(currentCategory.Id);
             SubCategories = null;

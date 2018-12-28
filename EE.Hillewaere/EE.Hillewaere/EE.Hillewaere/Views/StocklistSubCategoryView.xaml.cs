@@ -23,8 +23,6 @@ namespace EE.Hillewaere.Views
             BindingContext = IoCRegistry.Container.Resolve<StocklistSubCategoryViewModel>(
                 new NamedParameter("category", category),
                 new NamedParameter("navigation", this.Navigation));
-            //IStocklistService slService = IoCRegistry.Container.Resolve<IStocklistService>();
-            //BindingContext = new StocklistSubCategoryViewModel(category, this.Navigation, slService);
         }
     }
 }

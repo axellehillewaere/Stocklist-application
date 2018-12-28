@@ -21,8 +21,6 @@ namespace EE.Hillewaere.Views
 		{
 			InitializeComponent ();
             BindingContext = IoCRegistry.Container.Resolve<StocklistViewModel>(new NamedParameter("navigation", this.Navigation));
-            //IStocklistService slService = IoCRegistry.Container.Resolve<IStocklistService>();
-            //BindingContext = new StocklistViewModel(this.Navigation, slService);
         }
     }
 }
