@@ -3,15 +3,19 @@ using EE.Hillewaere.Domain.Models;
 using EE.Hillewaere.Domain.Services;
 using EE.Hillewaere.Domain.Validators;
 using EE.Hillewaere.Views;
+using PCLStorage;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Xml;
+using System.Xml.Serialization;
 using Xamarin.Forms;
 
 namespace EE.Hillewaere.ViewModels
@@ -32,6 +36,12 @@ namespace EE.Hillewaere.ViewModels
             stocklistService =slService;
             productValidator = new ProductValidator();
             RefreshProducts();
+        }
+
+        private void RaisePropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
 
         private void RefreshProducts()
@@ -55,14 +65,34 @@ namespace EE.Hillewaere.ViewModels
             Description = currentProduct.Description;
             SubCategoryName = currentProduct.SubCategory.Name;
             Category = currentProduct.Category;
+            LoadFile();
         }
 
-        private void RaisePropertyChanged(string propertyName)
+        private async void LoadFile()
         {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            string fileName = "products.xml";
+            IFolder folder = FileSystem.Current.LocalStorage;
+            ExistenceCheckResult result = await folder.CheckExistsAsync(fileName);
+            if (result == ExistenceCheckResult.FileExists)
+            {
+                try
+                {
+                    IFile file = await folder.GetFileAsync(fileName);
+                    string text = await file.ReadAllTextAsync();
+                    using (var reader = new StringReader(text))
+                    {
+                        var serializer = new XmlSerializer(typeof(Product));
+                        Product product = (Product)serializer.Deserialize(reader);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine($"Error reading location: {ex.Message}");
+                }
+            }
         }
 
+        #region properties
         private Guid id;
         public Guid Id
         {
@@ -251,6 +281,7 @@ namespace EE.Hillewaere.ViewModels
                 RaisePropertyChanged(nameof(SubCategoryName));
             }
         }
+        #endregion
 
         private void SaveProductState()
         {
@@ -270,10 +301,30 @@ namespace EE.Hillewaere.ViewModels
                     await stocklistService.SaveProduct(currentProduct);
                     MessagingCenter.Send(this,
                         MessageNames.ProductSaved, currentProduct);
+                    SaveFile();
                     await navigation.PopAsync(true);
                 }
             }
             );
+
+        private async void SaveFile()
+        {
+            var serializer = new XmlSerializer(typeof(Product));
+            string productAsXml = "";
+            using (var stringWriter = new StringWriter())
+            {
+                using (var writer = XmlWriter.Create(stringWriter))
+                {
+                    serializer.Serialize(writer, currentProduct);
+                    productAsXml = stringWriter.ToString();
+                }
+            }
+            IFolder folder = FileSystem.Current.LocalStorage;
+            IFile file = await folder.CreateFileAsync("products.xml", CreationCollisionOption.ReplaceExisting);
+            await file.WriteAllTextAsync(productAsXml);
+            Debug.WriteLine(folder);
+            Debug.WriteLine(file);
+        }
 
         private bool Validate(Product product)
         {
