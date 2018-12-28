@@ -11,6 +11,7 @@
                 <On Platform="Android" Value="Small"></On>
                 <On Platform="UWP" Value="Micro"></On>
             </OnPlatform>
+            
 
             <Style x:Key="ErrorMessage" TargetType="Label">
                 <Setter Property="TextColor" Value="{StaticResource ColorError}" />

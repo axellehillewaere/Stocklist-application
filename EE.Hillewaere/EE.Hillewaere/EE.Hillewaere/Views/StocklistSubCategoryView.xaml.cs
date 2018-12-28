@@ -16,7 +16,6 @@ namespace EE.Hillewaere.Views
 	public partial class StocklistSubCategoryView : ContentPage
 	{
         private StocklistInMemoryService stocklistService;
-        private Category currentCategory;
 
 		public StocklistSubCategoryView (Category category)
 		{

@@ -1,4 +1,5 @@
-﻿using EE.Hillewaere.Domain.Models;
+﻿using EE.Hillewaere.Constants;
+using EE.Hillewaere.Domain.Models;
 using EE.Hillewaere.Domain.Services;
 using EE.Hillewaere.ViewModels;
 using System;
@@ -19,7 +20,6 @@ namespace EE.Hillewaere.Views
 		{
 			InitializeComponent ();
             BindingContext = new StocklistProductViewModel(subCategory, this.Navigation);
-
         }
     }
 }

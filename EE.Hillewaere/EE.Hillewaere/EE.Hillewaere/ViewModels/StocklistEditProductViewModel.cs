@@ -1,4 +1,5 @@
-﻿using EE.Hillewaere.Domain.Models;
+﻿using EE.Hillewaere.Constants;
+using EE.Hillewaere.Domain.Models;
 using EE.Hillewaere.Domain.Services;
 using EE.Hillewaere.Domain.Validators;
 using EE.Hillewaere.Views;
@@ -267,7 +268,9 @@ namespace EE.Hillewaere.ViewModels
                 if (Validate(currentProduct))
                 {
                     await stocklistService.SaveProduct(currentProduct);
-                    await navigation.PushAsync(new MainView());
+                    MessagingCenter.Send(this,
+                        MessageNames.ProductSaved, currentProduct);
+                    await navigation.PopAsync(true);
                 }
             }
             );

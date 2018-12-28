@@ -11,7 +11,7 @@
                     <Label Text="Name" />
                     <Entry Text="{Binding Name}" Placeholder="Enter product name" />
                     <Label Text="{Binding NameError}"
-                           IsVisible="{Binding NameErrorVisible}"
+                           IsVisible="{Binding NameErrorVisible}" x:Name="lblErrorName"
                            Style="{StaticResource ErrorMessage}"/>
                     <Label Text="Price" />
                     <Entry Text="{Binding Price}" Placeholder="Enter product price" />

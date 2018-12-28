@@ -24,10 +24,10 @@ namespace EE.Hillewaere.ViewModels
             this.navigation = navigation;
             this.currentSubCategory = subCategory;
             stocklistService = new StocklistInMemoryService();
-            RefreshSubCategories();
+            RefreshProducts();
         }
 
-        private async Task RefreshSubCategories()
+        private async Task RefreshProducts()
         {
             if (currentSubCategory != null)
             {
@@ -43,10 +43,10 @@ namespace EE.Hillewaere.ViewModels
                 currentSubCategory.Id = Guid.NewGuid();
                 currentSubCategory.Products = new List<Product>();
             }
-            LoadSubCategoryState();
+            LoadProductState();
         }
 
-        private void LoadSubCategoryState()
+        private void LoadProductState()
         {
             Name = currentSubCategory.Name;
             Products = new ObservableCollection<Product>(currentSubCategory.Products);
@@ -140,5 +140,6 @@ namespace EE.Hillewaere.ViewModels
             Products = null;
             Products = new ObservableCollection<Product>(products);
         });
+
     }
 }

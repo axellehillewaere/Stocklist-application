@@ -24,15 +24,14 @@ namespace EE.Hillewaere.ViewModels
             this.navigation = navigation;
             this.currentCategory = category;
             stocklistService = new StocklistInMemoryService();
-            RefreshCategories();
+            RefreshSubCategories();
         }
 
-        private async Task RefreshCategories()
+        private async Task RefreshSubCategories()
         {
             if (currentCategory != null)
             {
                 PageTitle = currentCategory.Name;
-                //currentCategory = await categoryService.GetSubCategoryList();
                 var subCategories = await stocklistService.GetSubCategoryListById(currentCategory.Id);
                 SubCategories = null;
                 SubCategories = new ObservableCollection<SubCategory>(subCategories);
@@ -46,10 +45,10 @@ namespace EE.Hillewaere.ViewModels
                 currentCategory.Id = Guid.NewGuid();
                 currentCategory.SubCategories = new List<SubCategory>();
             }
-            LoadCategoryState();
+            LoadSubCategoryState();
         }
 
-        private void LoadCategoryState()
+        private void LoadSubCategoryState()
         {
             Name = currentCategory.Name;
         }
@@ -121,7 +120,6 @@ namespace EE.Hillewaere.ViewModels
             (SubCategory subCategory) =>
             {
                 navigation.PushAsync(new StocklistProductView(subCategory));
-                Debug.WriteLine("test" +subCategory);
             });
 
         public ICommand DeleteSubCategoryCommand => new Command<SubCategory>(

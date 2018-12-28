@@ -19,5 +19,21 @@ namespace EE.Hillewaere.Views
 			InitializeComponent();
             BindingContext = new StocklistEditProductViewModel(product, this.Navigation);
 		}
-	}
+
+        protected override void OnAppearing()
+        {
+            MessagingCenter.Subscribe<StocklistEditProductViewModel, Product>(this, Constants.MessageNames.ProductSaved,
+                async (StocklistEditProductViewModel sender, Product savedProduct) =>
+                {
+                    await DisplayAlert("Saved", $"Your product {savedProduct.Name} has been saved", "Ok");
+                });
+            base.OnAppearing();
+        }
+
+        protected override void OnDisappearing()
+        {
+            MessagingCenter.Unsubscribe<StocklistEditProductViewModel, Product>(this, Constants.MessageNames.ProductSaved);
+            base.OnDisappearing();
+        }
+    }
 }
