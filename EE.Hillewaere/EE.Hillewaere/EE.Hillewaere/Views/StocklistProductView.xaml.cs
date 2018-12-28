@@ -21,8 +21,11 @@ namespace EE.Hillewaere.Views
 		public StocklistProductView (SubCategory subCategory)
 		{
 			InitializeComponent ();
-            IStocklistService slService = IoCRegistry.Container.Resolve<IStocklistService>();
-            BindingContext = new StocklistProductViewModel(subCategory, this.Navigation, slService);
+            BindingContext = IoCRegistry.Container.Resolve<StocklistProductViewModel>(
+                new NamedParameter("subCategory", subCategory),
+                new NamedParameter("navigation", this.Navigation));
+            //IStocklistService slService = IoCRegistry.Container.Resolve<IStocklistService>();
+            //BindingContext = new StocklistProductViewModel(subCategory, this.Navigation, slService);
         }
     }
 }
