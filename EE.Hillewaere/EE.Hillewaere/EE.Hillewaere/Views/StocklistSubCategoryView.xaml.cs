@@ -1,5 +1,7 @@
-﻿using EE.Hillewaere.Domain.Models;
+﻿using Autofac;
+using EE.Hillewaere.Domain.Models;
 using EE.Hillewaere.Domain.Services;
+using EE.Hillewaere.IoC;
 using EE.Hillewaere.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -18,7 +20,7 @@ namespace EE.Hillewaere.Views
 		public StocklistSubCategoryView (Category category)
 		{
 			InitializeComponent ();
-            IStocklistService slService = new StocklistInMemoryService();
+            IStocklistService slService = IoCRegistry.Container.Resolve<IStocklistService>();
             BindingContext = new StocklistSubCategoryViewModel(category, this.Navigation, slService);
         }
 
