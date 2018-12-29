@@ -17,6 +17,8 @@ using System.Windows.Input;
 using System.Xml;
 using System.Xml.Serialization;
 using Xamarin.Forms;
+using Xamarin.Essentials;
+using Android.Widget;
 
 namespace EE.Hillewaere.ViewModels
 {
@@ -36,6 +38,7 @@ namespace EE.Hillewaere.ViewModels
             stocklistService =slService;
             productValidator = new ProductValidator();
             RefreshProducts();
+
         }
 
         private void RaisePropertyChanged(string propertyName)
@@ -75,7 +78,7 @@ namespace EE.Hillewaere.ViewModels
         private async void LoadFile()
         {
             string fileName = "products.xml";
-            IFolder folder = FileSystem.Current.LocalStorage;
+            IFolder folder = PCLStorage.FileSystem.Current.LocalStorage;
             ExistenceCheckResult result = await folder.CheckExistsAsync(fileName);
             if (result == ExistenceCheckResult.FileExists)
             {
@@ -309,6 +312,17 @@ namespace EE.Hillewaere.ViewModels
                     await stocklistService.SaveProduct(currentProduct);
                     //await navigation.PopAsync(true);
                 }
+                else
+                {
+                    try
+                    {
+                        Vibration.Vibrate();
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine(ex);
+                    }
+                }
             }
             );
 
@@ -325,7 +339,7 @@ namespace EE.Hillewaere.ViewModels
                     productAsXml = stringWriter.ToString();
                 }
             }
-            IFolder folder = FileSystem.Current.LocalStorage;
+            IFolder folder = PCLStorage.FileSystem.Current.LocalStorage;
             IFile file = await folder.CreateFileAsync("products.xml", CreationCollisionOption.ReplaceExisting);
             await file.WriteAllTextAsync(productAsXml);
             Debug.WriteLine(folder);
