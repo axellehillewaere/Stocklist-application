@@ -302,6 +302,7 @@ namespace EE.Hillewaere.ViewModels
                 SaveProductState();
                 if (Validate(currentProduct))
                 {
+                    await DependencyService.Get<ISoundPlayer>().PlaySound();
                     MessagingCenter.Send<StocklistEditProductViewModel, Product>(this,
                         MessageNames.ProductSaved, currentProduct);
                     SaveFile();

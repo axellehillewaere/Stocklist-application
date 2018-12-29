@@ -18,8 +18,6 @@ namespace EE.Hillewaere.ViewModels
         private IStocklistService stocklistService;
         private SubCategory currentSubCategory;
         private INavigation navigation;
-        public ICommand PlaySoundCommand { get; private set; }
-
 
         public OrderProductViewModel(SubCategory subCategory, INavigation navigation, IStocklistService slService)
         {
