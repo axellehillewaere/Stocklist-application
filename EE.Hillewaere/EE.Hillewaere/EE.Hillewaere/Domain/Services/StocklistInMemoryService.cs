@@ -149,6 +149,7 @@ namespace EE.Hillewaere.Domain.Services
             savedOrder.Price = order.Price;
             savedOrder.Amount = order.Amount;
             savedOrder.PricePerProduct = order.PricePerProduct;
+            savedOrder.TotalPrice = CalculateTotalPrice();
         }
 
         public async Task SaveCategoryList(Category category)
@@ -204,6 +205,9 @@ namespace EE.Hillewaere.Domain.Services
             productLists.Remove(product);
         }
 
-
+        public decimal CalculateTotalPrice()
+        {
+            return orderList.Sum(o => o.PricePerProduct);
+        }
     }
 }

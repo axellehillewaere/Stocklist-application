@@ -89,6 +89,17 @@ namespace EE.Hillewaere.ViewModels
             }
         }
 
+        private decimal totalPrice;
+        public decimal TotalPrice
+        {
+            get { return totalPrice; }
+            set
+            {
+                totalPrice = value;
+                RaisePropertyChanged(nameof(TotalPrice));
+            }
+        }
+
         private string pageTitle;
         public string PageTitle
         {
