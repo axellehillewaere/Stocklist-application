@@ -1,4 +1,5 @@
 ﻿using EE.Hillewaere.Domain.Services;
+using EE.Hillewaere.Views;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -10,18 +11,36 @@ namespace EE.Hillewaere.ViewModels
 {
     public class MainViewModel
     {
-        private ISoundPlayer soundPlayer;
+        private INavigation navigation;
         public ICommand PlaySoundCommand { get; private set; }
 
-        public MainViewModel(ISoundPlayer soundplayer)
+        public MainViewModel(INavigation navigation)
         {
-            soundPlayer = soundplayer;
+            this.navigation = navigation;
             PlaySoundCommand = new Command(PlaySound);
         }
 
         private async void PlaySound()
         {
-            //await DependencyService.Get<ISoundPlayer>().PlaySound();
+            await DependencyService.Get<ISoundPlayer>().PlaySound();
         }
+
+        public ICommand ViewPlaceNewOrder => new Command(
+            async () =>
+            {
+                await navigation.PushAsync(new OrderView());
+            });
+
+        public ICommand ViewOverviewStocklist => new Command(
+            async () =>
+            {
+                await navigation.PushAsync(new StocklistView());
+            });
+
+        public ICommand ViewPreviousOrders => new Command(
+            async () =>
+            {
+                await navigation.PushAsync(new PreviousOrdersView());
+            });
     }
 }

@@ -8,9 +8,9 @@
             <Label Text="Welcome to Stocklist"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
-            <Button Text="Place new order" Clicked="btnPlaceNewOrder_Clicked" />
-            <Button Text="Overview of stocklist" Clicked="btnOverviewStocklist_Clicked"/>
-            <Button Text="Previous orders" Clicked="btnPreviousOrders_Clicked"/>
+            <Button Text="Place new order" Command="{Binding ViewPlaceNewOrder}" />
+            <Button Text="Overview of stocklist" Command="{Binding ViewOverviewStocklist}" />
+            <Button Text="Previous orders" Command="{Binding ViewPreviousOrders}" />
 
             <Button Text="Play Sound" Command="{Binding PlaySoundCommand}"></Button>
         </StackLayout>

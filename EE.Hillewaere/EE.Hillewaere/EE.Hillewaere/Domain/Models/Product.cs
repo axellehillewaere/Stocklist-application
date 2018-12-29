@@ -15,6 +15,8 @@ namespace EE.Hillewaere.Domain.Models
         public int Amount { get; set; }
         [XmlIgnore]
         public SubCategory SubCategory { get; set; }
+        [XmlIgnore]
+        public Category Category { get; set; }
 
         public string SubCategoryAsString
         {
@@ -27,7 +29,17 @@ namespace EE.Hillewaere.Domain.Models
                 SubCategory?.ToString();
             }
         }
-        [XmlIgnore]
-        public Category Category { get; set; }
+
+        public string CategoryAsString
+        {
+            get
+            {
+                return Category?.ToString();
+            }
+            set
+            {
+                Category?.ToString();
+            }
+        }
     }
 }

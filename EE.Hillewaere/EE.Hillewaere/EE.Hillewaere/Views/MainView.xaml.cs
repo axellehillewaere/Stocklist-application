@@ -1,4 +1,7 @@
-﻿using EE.Hillewaere.Domain.Services;
+﻿using Autofac;
+using EE.Hillewaere.Domain.Services;
+using EE.Hillewaere.IoC;
+using EE.Hillewaere.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,22 +21,8 @@ namespace EE.Hillewaere.Views
 		public MainView ()
 		{
 			InitializeComponent ();
-            stocklistService = new StocklistInMemoryService();
+            BindingContext = IoCRegistry.Container.Resolve<MainViewModel>(
+                new NamedParameter("navigation", this.Navigation));
 		}
-
-        private async void btnPlaceNewOrder_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new OrderView());
-        }
-
-        private async void btnOverviewStocklist_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new StocklistView());
-        }
-
-        private async void btnPreviousOrders_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new PreviousOrdersView());
-        }
     }
 }

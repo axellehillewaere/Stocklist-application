@@ -8,6 +8,7 @@
     <ContentPage.Content>
         <StackLayout>
             <Button Text="View order" Command="{Binding ViewOrder}" />
+            <Label Text="Tap on product to add to orderlist"></Label>
 
             <ListView x:Name="lvProductsList" ItemsSource="{Binding Products}">
                 <ListView.Behaviors>
