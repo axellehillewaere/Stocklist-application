@@ -18,6 +18,8 @@ namespace EE.Hillewaere.ViewModels
         private IStocklistService stocklistService;
         private SubCategory currentSubCategory;
         private INavigation navigation;
+        public ICommand PlaySoundCommand { get; private set; }
+
 
         public OrderProductViewModel(SubCategory subCategory, INavigation navigation, IStocklistService slService)
         {
@@ -136,6 +138,8 @@ namespace EE.Hillewaere.ViewModels
         public ICommand AddToOrderCommand => new Command<Product>(
             async (Product product) =>
             {
+                await DependencyService.Get<ISoundPlayer>().PlaySound();
+
                 product.Amount++;
                 var order = new Order
                 {

@@ -22,7 +22,7 @@ namespace EE.Hillewaere.Droid.Services
 
         public Task PlaySound()
         {
-            _mediaPlayer = MediaPlayer.Create(global::Android.App.Application.Context, Resource.Raw.guitarm);
+            _mediaPlayer = MediaPlayer.Create(global::Android.App.Application.Context, Resource.Raw.notbad);
             _mediaPlayer.Start();
             return Task.Delay(0);
         }

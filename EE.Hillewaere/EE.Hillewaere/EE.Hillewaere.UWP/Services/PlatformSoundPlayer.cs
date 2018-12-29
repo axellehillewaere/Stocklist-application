@@ -16,7 +16,7 @@ namespace EE.Hillewaere.UWP.Services
         {
             MediaElement mysong = new MediaElement();
             Windows.Storage.StorageFolder folder = await Windows.ApplicationModel.Package.Current.InstalledLocation.GetFolderAsync("Assets");
-            Windows.Storage.StorageFile file = await folder.GetFileAsync("guitar-m.mp3");
+            Windows.Storage.StorageFile file = await folder.GetFileAsync("not-bad.mp3");
             var stream = await file.OpenReadAsync();
             mysong.SetSource(stream, file.ContentType);
             mysong.Play();

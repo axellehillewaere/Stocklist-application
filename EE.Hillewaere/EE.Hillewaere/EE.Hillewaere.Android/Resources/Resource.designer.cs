@@ -3974,7 +3974,7 @@ namespace EE.Hillewaere.Droid
 		{
 			
 			// aapt resource value: 0x7f080000
-			public const int guitarm = 2131230720;
+			public const int notbad = 2131230720;
 			
 			static Raw()
 			{
