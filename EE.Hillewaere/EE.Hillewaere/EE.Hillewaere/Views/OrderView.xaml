@@ -7,6 +7,8 @@
              x:Class="EE.Hillewaere.Views.OrderView">
     <ContentPage.Content>
         <StackLayout>
+            <Button Text="View order" Command="{Binding ViewOrder}" />
+
             <ListView x:Name="lvCategoriesLists" ItemsSource="{Binding Categories}">
                 <ListView.Behaviors>
                     <bhv:EventToCommandBehavior

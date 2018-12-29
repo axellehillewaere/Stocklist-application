@@ -16,6 +16,7 @@ namespace EE.Hillewaere.IoC
             containerBuilder.RegisterType<OrderViewModel>();
             containerBuilder.RegisterType<OrderSubCategoryViewModel>();
             containerBuilder.RegisterType<OrderProductViewModel>();
+            containerBuilder.RegisterType<OrderListViewModel>();
             containerBuilder.RegisterType<StocklistViewModel>();
             containerBuilder.RegisterType<StocklistSubCategoryViewModel>();
             containerBuilder.RegisterType<StocklistProductViewModel>();

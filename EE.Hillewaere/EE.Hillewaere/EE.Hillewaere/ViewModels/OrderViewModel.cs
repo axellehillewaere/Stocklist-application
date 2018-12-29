@@ -90,5 +90,11 @@ namespace EE.Hillewaere.ViewModels
                 navigation.PushAsync(new OrderSubCategoryView(category));
                 Debug.WriteLine(category.Name);
             });
-    }
+
+        public ICommand ViewOrder => new Command(
+            async () =>
+            {
+                await navigation.PushAsync(new OrderListView());
+            });
+            }
 }

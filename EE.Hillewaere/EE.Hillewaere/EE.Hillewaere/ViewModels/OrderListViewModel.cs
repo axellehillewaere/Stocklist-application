@@ -1,38 +1,34 @@
 ﻿using EE.Hillewaere.Domain.Models;
 using EE.Hillewaere.Domain.Services;
-using EE.Hillewaere.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace EE.Hillewaere.ViewModels
 {
-    public class OrderSubCategoryViewModel
+    public class OrderListViewModel
     {
         private IStocklistService stocklistService;
-        private Category currentCategory;
         private INavigation navigation;
 
-        public OrderSubCategoryViewModel(Category category, INavigation navigation, IStocklistService slService)
+        public OrderListViewModel(INavigation navigation, IStocklistService slService)
         {
             this.navigation = navigation;
-            this.currentCategory = category;
             stocklistService = slService;
             Initialize();
         }
 
         private async Task Initialize()
         {
-            PageTitle = "New Order - Subcategories";
-            var subCategories = await stocklistService.GetSubCategoryListById(currentCategory.Id);
-            SubCategories = null;
-            SubCategories = new ObservableCollection<SubCategory>(subCategories);
+            PageTitle = "New Order - Summary";
+            var orderList = await stocklistService.GetOrderList();
+            OrderList = null;
+            OrderList = new ObservableCollection<Order>(orderList);
+            TotalPrice = stocklistService.CalculateTotalPrice();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -65,6 +61,39 @@ namespace EE.Hillewaere.ViewModels
             }
         }
 
+        private decimal price;
+        public decimal Price
+        {
+            get { return price; }
+            set
+            {
+                price = value;
+                RaisePropertyChanged(nameof(Price));
+            }
+        }
+
+        private decimal pricePerProduct;
+        public decimal PricePerProduct
+        {
+            get { return pricePerProduct; }
+            set
+            {
+                pricePerProduct = value;
+                RaisePropertyChanged(nameof(PricePerProduct));
+            }
+        }
+
+        private decimal totalPrice;
+        public decimal TotalPrice
+        {
+            get { return totalPrice; }
+            set
+            {
+                totalPrice = value;
+                RaisePropertyChanged(nameof(TotalPrice));
+            }
+        }
+
         private string pageTitle;
         public string PageTitle
         {
@@ -76,28 +105,15 @@ namespace EE.Hillewaere.ViewModels
             }
         }
 
-        private ObservableCollection<SubCategory> subCategories;
-        public ObservableCollection<SubCategory> SubCategories
+        private ObservableCollection<Order> orderList;
+        public ObservableCollection<Order> OrderList
         {
-            get { return subCategories; }
+            get { return orderList; }
             set
             {
-                subCategories = value;
-                RaisePropertyChanged(nameof(SubCategories));
+                orderList = value;
+                RaisePropertyChanged(nameof(OrderList));
             }
         }
-
-        public ICommand ViewProductsCommand => new Command<SubCategory>(
-           (SubCategory subCategory) =>
-           {
-               Debug.WriteLine(subCategory.Name);
-               navigation.PushAsync(new OrderProductView(subCategory));
-           });
-
-        public ICommand ViewOrder => new Command(
-            async () =>
-            {
-                await navigation.PushAsync(new OrderListView());
-            });
-            }
+    }
 }

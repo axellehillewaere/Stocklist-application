@@ -7,6 +7,8 @@
              x:Class="EE.Hillewaere.Views.OrderProductView">
     <ContentPage.Content>
         <StackLayout>
+            <Button Text="View order" Command="{Binding ViewOrder}" />
+
             <ListView x:Name="lvProductsList" ItemsSource="{Binding Products}">
                 <ListView.Behaviors>
                     <bhv:EventToCommandBehavior
@@ -22,20 +24,6 @@
                                 <Label Text="{Binding Price}" />
                                 <Label Text="{Binding Code}" />
                                 <Label Text="{Binding Description}" />
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-            <ListView ItemsSource="{Binding OrderList}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout>
-                                <Label Text="{Binding Name}" />
-                                <Label Text="{Binding Amount}" />
-                                <Label Text="{Binding PricePerProduct}" />
-                                <Label Text="{Binding TotalPrice}" />
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

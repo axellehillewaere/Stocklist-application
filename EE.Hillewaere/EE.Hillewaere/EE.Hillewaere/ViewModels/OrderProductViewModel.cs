@@ -1,5 +1,6 @@
 ﻿using EE.Hillewaere.Domain.Models;
 using EE.Hillewaere.Domain.Services;
+using EE.Hillewaere.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -123,7 +124,7 @@ namespace EE.Hillewaere.ViewModels
         }
 
         private ObservableCollection<Order> orderList;
-        public  ObservableCollection<Order> OrderList
+        public ObservableCollection<Order> OrderList
         {
             get { return orderList; }
             set {
@@ -142,13 +143,19 @@ namespace EE.Hillewaere.ViewModels
                     Name = product.Name,
                     Price = product.Price,
                     Amount = product.Amount,
-                    PricePerProduct =  product.Price * product.Amount
+                    PricePerProduct = product.Price * product.Amount
                 };
                 OrderList.Add(order);
                 await stocklistService.SaveToOrder(order);
                 var orderList = await stocklistService.GetOrderList();
                 OrderList = new ObservableCollection<Order>(orderList);
                 Initialize();
+            });
+
+        public ICommand ViewOrder => new Command(
+            async () =>
+            {
+                await navigation.PushAsync(new OrderListView());
             });
     }
 }
