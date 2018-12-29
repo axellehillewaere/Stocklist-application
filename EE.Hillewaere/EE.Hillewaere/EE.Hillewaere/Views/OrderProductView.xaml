@@ -22,6 +22,19 @@
                                 <Label Text="{Binding Price}" />
                                 <Label Text="{Binding Code}" />
                                 <Label Text="{Binding Description}" />
+                                <Label Text="{Binding OrderList}" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <ListView ItemsSource="{Binding OrderList}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>
+                                <Label Text="{Binding Name}" />
+                                <Label Text="{Binding Amount}" />
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

@@ -9,7 +9,7 @@ namespace EE.Hillewaere.Domain.Services
 {
     public class StocklistInMemoryService : IStocklistService
     {
-        private static List<Product> orderList = new List<Product>();
+        private static List<Order> orderList = new List<Order>();
 
         private static List<Category> categoryLists = new List<Category>
         {
@@ -104,6 +104,13 @@ namespace EE.Hillewaere.Domain.Services
             }
         };
 
+        public async Task<IEnumerable<Order>> GetOrderList()
+        {
+            await Task.Delay(0);
+            return orderList;
+
+        }
+
         public async Task<IEnumerable<Category>> GetCategoryList()
         {
             await Task.Delay(0);
@@ -126,6 +133,21 @@ namespace EE.Hillewaere.Domain.Services
         {
             await Task.Delay(0);
             return productLists.Where(s => s.SubCategory.Name == name);
+        }
+
+        public async Task SaveToOrder(Order order)
+        {
+            await Task.Delay(0);
+            var savedOrder = orderList.FirstOrDefault(o => o.Id == order.Id);
+            if (savedOrder == null)
+            {
+                savedOrder = order;
+                savedOrder.Id = order.Id;
+                orderList.Add(savedOrder);
+            }
+            savedOrder.Name = order.Name;
+            savedOrder.Price = order.Price;
+            savedOrder.Amount = order.Amount;
         }
 
         public async Task SaveCategoryList(Category category)

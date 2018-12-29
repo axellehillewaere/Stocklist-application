@@ -21,7 +21,7 @@ namespace EE.Hillewaere.ViewModels
 
         private async void PlaySound()
         {
-            await soundPlayer.PlaySound();
+            //await DependencyService.Get<ISoundPlayer>().PlaySound();
         }
     }
 }

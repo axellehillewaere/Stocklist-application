@@ -32,6 +32,9 @@ namespace EE.Hillewaere.ViewModels
             var products = await stocklistService.GetProductListById(currentSubCategory.Id);
             Products = null;
             Products = new ObservableCollection<Product>(products);
+            var orderList = await stocklistService.GetOrderList();
+            OrderList = null;
+            OrderList = new ObservableCollection<Order>(orderList);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -97,10 +100,31 @@ namespace EE.Hillewaere.ViewModels
             }
         }
 
+        private ObservableCollection<Order> orderList;
+        public  ObservableCollection<Order> OrderList
+        {
+            get { return orderList; }
+            set {
+                orderList = value;
+                RaisePropertyChanged(nameof(OrderList));
+            }
+        }
+
         public ICommand AddToOrderCommand => new Command<Product>(
             async (Product product) =>
             {
-                Debug.WriteLine(product.Name);
+                product.Amount++;
+                var order = new Order
+                {
+                    Id = product.Id,
+                    Name = product.Name,
+                    Price = product.Price,
+                    Amount = product.Amount
+                };
+                OrderList.Add(order);
+                await stocklistService.SaveToOrder(order);
+                var orderList = await stocklistService.GetOrderList();
+                OrderList = new ObservableCollection<Order>(orderList);
             });
     }
 }
