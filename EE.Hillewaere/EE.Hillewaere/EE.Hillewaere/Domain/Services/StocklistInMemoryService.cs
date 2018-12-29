@@ -148,6 +148,7 @@ namespace EE.Hillewaere.Domain.Services
             savedOrder.Name = order.Name;
             savedOrder.Price = order.Price;
             savedOrder.Amount = order.Amount;
+            savedOrder.PricePerProduct = order.PricePerProduct;
         }
 
         public async Task SaveCategoryList(Category category)

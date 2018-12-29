@@ -78,6 +78,17 @@ namespace EE.Hillewaere.ViewModels
             }
         }
 
+        private decimal pricePerProduct;
+        public decimal PricePerProduct
+        {
+            get { return pricePerProduct; }
+            set
+            {
+                pricePerProduct = value;
+                RaisePropertyChanged(nameof(PricePerProduct));
+            }
+        }
+
         private string pageTitle;
         public string PageTitle
         {
@@ -119,12 +130,14 @@ namespace EE.Hillewaere.ViewModels
                     Id = product.Id,
                     Name = product.Name,
                     Price = product.Price,
-                    Amount = product.Amount
+                    Amount = product.Amount,
+                    PricePerProduct =  product.Price * product.Amount
                 };
                 OrderList.Add(order);
                 await stocklistService.SaveToOrder(order);
                 var orderList = await stocklistService.GetOrderList();
                 OrderList = new ObservableCollection<Order>(orderList);
+                Initialize();
             });
     }
 }
