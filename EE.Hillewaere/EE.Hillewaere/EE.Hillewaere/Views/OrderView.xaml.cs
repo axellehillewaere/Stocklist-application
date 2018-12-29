@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Autofac;
+using EE.Hillewaere.IoC;
+using EE.Hillewaere.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +18,7 @@ namespace EE.Hillewaere.Views
 		public OrderView ()
 		{
 			InitializeComponent ();
+            BindingContext = IoCRegistry.Container.Resolve<OrderViewModel>(new NamedParameter("navigation", this.Navigation));
 		}
 	}
 }

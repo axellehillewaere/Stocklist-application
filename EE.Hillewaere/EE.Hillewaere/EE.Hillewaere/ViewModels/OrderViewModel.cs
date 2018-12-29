@@ -7,20 +7,28 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace EE.Hillewaere.ViewModels
 {
-    public class StocklistViewModel : INotifyPropertyChanged
+    public class OrderViewModel
     {
         private IStocklistService stocklistService;
         private INavigation navigation;
 
-        public StocklistViewModel(INavigation navigation, IStocklistService slService)
+        public OrderViewModel(INavigation navigation, IStocklistService slService)
         {
             this.navigation = navigation;
             stocklistService = slService;
+            Initialize();
+        }
+
+        private async Task Initialize()
+        {
+            PageTitle = "New order - Categories";
+            Categories = null;
             Categories = new ObservableCollection<Category>(stocklistService.GetCategoryList().Result);
         }
 
@@ -54,6 +62,17 @@ namespace EE.Hillewaere.ViewModels
             }
         }
 
+        private string pageTitle;
+        public string PageTitle
+        {
+            get { return pageTitle; }
+            set
+            {
+                pageTitle = value;
+                RaisePropertyChanged(nameof(PageTitle));
+            }
+        }
+
         private ObservableCollection<Category> categories;
         public ObservableCollection<Category> Categories
         {
@@ -65,32 +84,11 @@ namespace EE.Hillewaere.ViewModels
             }
         }
 
-        private ObservableCollection<SubCategory> sub;
-        public ObservableCollection<SubCategory> Sub
-        {
-            get { return sub; }
-            set
-            {
-                sub = value;
-                RaisePropertyChanged(nameof(Sub));
-            }
-        }
-
         public ICommand ViewSubCategoriesCommand => new Command<Category>(
             (Category category) =>
             {
-                navigation.PushAsync(new StocklistSubCategoryView(category));
+                navigation.PushAsync(new OrderSubCategoryView(category));
                 Debug.WriteLine(category.Name);
-            });
-
-        public ICommand DeleteCategoryCommand => new Command<Category>(
-            async (Category category) =>
-            {
-                Debug.WriteLine(category.Name);
-                await stocklistService.DeleteCategory(category.Id);
-                var categories = await stocklistService.GetCategoryList();
-                Categories = null;
-                Categories = new ObservableCollection<Category>(categories);
             });
     }
 }

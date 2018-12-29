@@ -4,23 +4,24 @@
              xmlns:bhv="clr-namespace:EE.Hillewaere.Behaviors"
              Title="{Binding PageTitle}"
              x:Name="page"
-             x:Class="EE.Hillewaere.Views.OrderView">
+             x:Class="EE.Hillewaere.Views.OrderProductView">
     <ContentPage.Content>
         <StackLayout>
-            <ListView x:Name="lvCategoriesLists" ItemsSource="{Binding Categories}">
+            <ListView x:Name="lvProductsList" ItemsSource="{Binding Products}">
                 <ListView.Behaviors>
                     <bhv:EventToCommandBehavior
                         EventName="ItemTapped"
-                        Command="{Binding ViewSubCategoriesCommand}"
+                        Command="{Binding AddToOrderCommand}"
                         EventArgsConverter="{StaticResource ItemTappedEventArgsConv}" />
                 </ListView.Behaviors>
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout>
-                                <Label Text="{Binding Name}"
-                                       VerticalOptions="CenterAndExpand"
-                                       HorizontalOptions="StartAndExpand" />
+                                <Label Text="{Binding Name}" />
+                                <Label Text="{Binding Price}" />
+                                <Label Text="{Binding Code}" />
+                                <Label Text="{Binding Description}" />
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

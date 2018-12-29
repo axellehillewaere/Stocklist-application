@@ -1,27 +1,37 @@
 ﻿using EE.Hillewaere.Domain.Models;
 using EE.Hillewaere.Domain.Services;
-using EE.Hillewaere.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace EE.Hillewaere.ViewModels
 {
-    public class StocklistViewModel : INotifyPropertyChanged
+    public class OrderProductViewModel
     {
         private IStocklistService stocklistService;
+        private SubCategory currentSubCategory;
         private INavigation navigation;
 
-        public StocklistViewModel(INavigation navigation, IStocklistService slService)
+        public OrderProductViewModel(SubCategory subCategory, INavigation navigation, IStocklistService slService)
         {
             this.navigation = navigation;
+            this.currentSubCategory = subCategory;
             stocklistService = slService;
-            Categories = new ObservableCollection<Category>(stocklistService.GetCategoryList().Result);
+            Initialize();
+        }
+
+        private async Task Initialize()
+        {
+            PageTitle = "New Order - Products";
+            var products = await stocklistService.GetProductListById(currentSubCategory.Id);
+            Products = null;
+            Products = new ObservableCollection<Product>(products);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -54,43 +64,43 @@ namespace EE.Hillewaere.ViewModels
             }
         }
 
-        private ObservableCollection<Category> categories;
-        public ObservableCollection<Category> Categories
+        private decimal price;
+        public decimal Price
         {
-            get { return categories; }
+            get { return price; }
             set
             {
-                categories = value;
-                RaisePropertyChanged(nameof(Categories));
+                price = value;
+                RaisePropertyChanged(nameof(Price));
             }
         }
 
-        private ObservableCollection<SubCategory> sub;
-        public ObservableCollection<SubCategory> Sub
+        private string pageTitle;
+        public string PageTitle
         {
-            get { return sub; }
+            get { return pageTitle; }
             set
             {
-                sub = value;
-                RaisePropertyChanged(nameof(Sub));
+                pageTitle = value;
+                RaisePropertyChanged(nameof(PageTitle));
             }
         }
 
-        public ICommand ViewSubCategoriesCommand => new Command<Category>(
-            (Category category) =>
+        private ObservableCollection<Product> products;
+        public ObservableCollection<Product> Products
+        {
+            get { return products; }
+            set
             {
-                navigation.PushAsync(new StocklistSubCategoryView(category));
-                Debug.WriteLine(category.Name);
-            });
+                products = value;
+                RaisePropertyChanged(nameof(Products));
+            }
+        }
 
-        public ICommand DeleteCategoryCommand => new Command<Category>(
-            async (Category category) =>
+        public ICommand AddToOrderCommand => new Command<Product>(
+            async (Product product) =>
             {
-                Debug.WriteLine(category.Name);
-                await stocklistService.DeleteCategory(category.Id);
-                var categories = await stocklistService.GetCategoryList();
-                Categories = null;
-                Categories = new ObservableCollection<Category>(categories);
+                Debug.WriteLine(product.Name);
             });
     }
 }

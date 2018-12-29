@@ -9,6 +9,8 @@ namespace EE.Hillewaere.Domain.Services
 {
     public class StocklistInMemoryService : IStocklistService
     {
+        private static List<Product> orderList = new List<Product>();
+
         private static List<Category> categoryLists = new List<Category>
         {
             new Category

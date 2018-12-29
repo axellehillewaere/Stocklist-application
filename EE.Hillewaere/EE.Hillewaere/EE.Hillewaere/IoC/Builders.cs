@@ -13,6 +13,9 @@ namespace EE.Hillewaere.IoC
         public static ContainerBuilder GetDefaultContainerBuilder()
         {
             var containerBuilder = new ContainerBuilder();
+            containerBuilder.RegisterType<OrderViewModel>();
+            containerBuilder.RegisterType<OrderSubCategoryViewModel>();
+            containerBuilder.RegisterType<OrderProductViewModel>();
             containerBuilder.RegisterType<StocklistViewModel>();
             containerBuilder.RegisterType<StocklistSubCategoryViewModel>();
             containerBuilder.RegisterType<StocklistProductViewModel>();

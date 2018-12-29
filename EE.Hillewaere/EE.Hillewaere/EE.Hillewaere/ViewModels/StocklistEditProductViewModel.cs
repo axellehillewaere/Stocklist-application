@@ -55,6 +55,8 @@ namespace EE.Hillewaere.ViewModels
             else
             {
                 PageTitle = "New Product";
+                                    Products = null;
+                Products = new ObservableCollection<Product>(stocklistService.GetProductListBySub(currentProduct.SubCategory.Name).Result);
             }
             LoadProductsState();
         }
