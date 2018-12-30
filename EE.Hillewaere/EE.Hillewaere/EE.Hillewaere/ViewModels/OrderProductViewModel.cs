@@ -137,6 +137,7 @@ namespace EE.Hillewaere.ViewModels
             async (Product product) =>
             {
                 await DependencyService.Get<ISoundPlayer>().PlaySound();
+                DependencyService.Get<IToastNotification>().Show("Product added to order");
 
                 product.Amount++;
                 var order = new Order

@@ -16,8 +16,6 @@ namespace EE.Hillewaere.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class MainView : ContentPage
 	{
-        StocklistInMemoryService stocklistService;
-
 		public MainView ()
 		{
 			InitializeComponent ();

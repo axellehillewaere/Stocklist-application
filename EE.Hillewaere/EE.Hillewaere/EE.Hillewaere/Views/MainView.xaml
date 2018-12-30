@@ -11,8 +11,6 @@
             <Button Text="Place new order" Command="{Binding ViewPlaceNewOrder}" />
             <Button Text="Overview of stocklist" Command="{Binding ViewOverviewStocklist}" />
             <Button Text="Previous orders" Command="{Binding ViewPreviousOrders}" />
-
-            <Button Text="Play Sound" Command="{Binding PlaySoundCommand}"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
