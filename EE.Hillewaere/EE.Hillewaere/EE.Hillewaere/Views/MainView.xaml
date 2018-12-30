@@ -4,13 +4,21 @@
              x:Class="EE.Hillewaere.Views.MainView"
              Title="Stocklist">
     <ContentPage.Content>
-        <StackLayout>
+        <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Image AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" Aspect="AspectFill">
+                <Image.Source>
+                    <OnPlatform UWP="Images/business.jpg" Android="business.jpg" />
+                </Image.Source>
+            </Image>
+            <ScrollView AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+            <StackLayout>
             <Label Text="Welcome to Stocklist"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
             <Button Text="Place new order" Command="{Binding ViewPlaceNewOrder}" />
             <Button Text="Overview of stocklist" Command="{Binding ViewOverviewStocklist}" />
             <Button Text="Previous orders" Command="{Binding ViewPreviousOrders}" />
-        </StackLayout>
+        </StackLayout></ScrollView>
+        </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>
