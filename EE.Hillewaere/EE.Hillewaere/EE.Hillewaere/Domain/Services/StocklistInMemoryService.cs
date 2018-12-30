@@ -17,15 +17,28 @@ namespace EE.Hillewaere.Domain.Services
             {
                 Id = Guid.NewGuid(),
                 Name = "Drinks",
+                Description = "Soft drinks, hot drinks, alcohol"
             },
             new Category
             {
                 Id = Guid.NewGuid(),
                 Name = "Snacks",
+                Description = "Hamburgers, fricandelles, croquettes"
             },
-
+            new Category
+            {
+                Id = Guid.NewGuid(),
+                Name = "Brochettes",
+                Description = "Chicken, porc, fish"
+            },
+            new Category
+            {
+                Id = Guid.NewGuid(),
+                Name = "Sauces",
+                Description = "Cold sauces, hot sauces, fresh sauces"
+            }
         };
-        
+
         private static List<SubCategory> subCategoryLists = new List<SubCategory>
         {
             new SubCategory
@@ -43,15 +56,57 @@ namespace EE.Hillewaere.Domain.Services
             new SubCategory
             {
                 Id = Guid.NewGuid(),
-                Name = "Chicken",
+                Name = "Alcohol",
+                Category = categoryLists[0]
+            },
+            new SubCategory
+            {
+                Id = Guid.NewGuid(),
+                Name = "Popular snacks",
                 Category = categoryLists[1]
             },
             new SubCategory
             {
                 Id = Guid.NewGuid(),
-                Name = "Fish",
+                Name = "Special snacks",
                 Category = categoryLists[1]
-            }
+            },
+            new SubCategory
+            {
+                Id = Guid.NewGuid(),
+                Name = "Croquettes",
+                Category = categoryLists[1]
+            },
+            new SubCategory
+            {
+                Id = Guid.NewGuid(),
+                Name = "Chicken",
+                Category = categoryLists[2]
+            },
+            new SubCategory
+            {
+                Id = Guid.NewGuid(),
+                Name = "Porc",
+                Category = categoryLists[2]
+            },
+            new SubCategory
+            {
+                Id = Guid.NewGuid(),
+                Name = "Fish",
+                Category = categoryLists[2]
+            },
+            new SubCategory
+            {
+                Id = Guid.NewGuid(),
+                Name = "Cold sauces",
+                Category = categoryLists[3]
+            },
+            new SubCategory
+            {
+                Id = Guid.NewGuid(),
+                Name = "Hot sauces",
+                Category = categoryLists[3]
+            },
         };
 
         private static List<Product> productLists = new List<Product>
@@ -60,9 +115,9 @@ namespace EE.Hillewaere.Domain.Services
             {
                 Id = Guid.NewGuid(),
                 Name = "Coca-Cola",
-                Price = 10M,
-                Description = "24 x 33cl",
+                Price = 16M,
                 Code = "A1234",
+                Description = "24 x 33cl",
                 SubCategory = subCategoryLists[0],
                 Category = categoryLists[0]
             },
@@ -70,7 +125,19 @@ namespace EE.Hillewaere.Domain.Services
             {
                 Id = Guid.NewGuid(),
                 Name = "Coca-Cola Zero",
-                Price = 12M,
+                Price = 16M,
+                Code = "B1234",
+                Description = "24 x 33cl",
+                SubCategory = subCategoryLists[0],
+                Category = categoryLists[0]
+            },
+            new Product
+            {
+                Id = Guid.NewGuid(),
+                Name = "Coca-Cola Light",
+                Price = 16M,
+                Code = "C1234",
+                Description = "24 x 33cl",
                 SubCategory = subCategoryLists[0],
                 Category = categoryLists[0]
             },
@@ -79,29 +146,301 @@ namespace EE.Hillewaere.Domain.Services
                 Id = Guid.NewGuid(),
                 Name = "Coffee beans",
                 Price = 14M,
-                SubCategory = subCategoryLists[1]
+                Code = "D1234",
+                Description = "FairTrade 5kg",
+                SubCategory = subCategoryLists[1],
+                Category = categoryLists[0]
             },
             new Product
             {
                 Id = Guid.NewGuid(),
                 Name = "Cécémel",
                 Price = 13M,
-                SubCategory = subCategoryLists[1]
+                Code = "E1234",
+                Description = "Milk Chocolate 6 x 2l ",
+                SubCategory = subCategoryLists[1],
+                Category = categoryLists[0]
             },
             new Product
             {
                 Id = Guid.NewGuid(),
-                Name = "Chicken Nuggets (Nuggiez)",
+                Name = "Tea bags",
+                Price = 8M,
+                Code = "F1234",
+                Description = "Lemon 100 pcs",
+                SubCategory = subCategoryLists[1],
+                Category = categoryLists[0]
+            },
+            new Product
+            {
+              Id = Guid.NewGuid(),
+              Name = "Jupiler",
+              Price = 11M,
+              Code = "G1234",
+              Description = "24 x 33cl",
+              SubCategory = subCategoryLists[2],
+              Category = categoryLists[0]
+            },
+            new Product
+            {
+              Id = Guid.NewGuid(),
+              Name = "Kriek Belle Vue",
+              Price = 13M,
+              Code = "H1234",
+              Description = "24 x 25cl",
+              SubCategory = subCategoryLists[2],
+              Category = categoryLists[0]
+            },
+            new Product
+            {
+              Id = Guid.NewGuid(),
+              Name = "White wine",
+              Price = 12M,
+              Code = "I1234",
+              Description = "J.P. Chenet 6 x 25cl",
+              SubCategory = subCategoryLists[2],
+              Category = categoryLists[0]
+            },
+            new Product
+            {
+              Id = Guid.NewGuid(),
+              Name = "Fricandel original",
+              Price = 11M,
+              Code = "J1234",
+              Description = "Vanreusel 100gr 20pcs",
+              SubCategory = subCategoryLists[3],
+              Category = categoryLists[1]
+            },
+            new Product
+            {
+              Id = Guid.NewGuid(),
+              Name = "Viandelle",
+              Price = 13M,
+              Code = "K1234",
+              Description = "Mora 100 gr 27pcs",
+              SubCategory = subCategoryLists[3],
+              Category = categoryLists[1]
+            },
+            new Product
+            {
+                Id = Guid.NewGuid(),
+                Name = "Chickennuggets",
+                Price = 20M,
+                Code = "L1234",
+                Description = "Ovi 120pcs",
+                SubCategory = subCategoryLists[3],
+                Category = categoryLists[1]
+            },
+            new Product
+            {
+                Id = Guid.NewGuid(),
+                Name = "Lucifer Mini",
+                Price = 19M,
+                Code = "M1234",
+                Description = "Mora 60pcs",
+                SubCategory = subCategoryLists[4],
+                Category = categoryLists[1]
+            },
+            new Product
+            {
+                Id = Guid.NewGuid(),
+                Name = "Viandelle Spicy",
+                Price = 18M,
+                Code = "N1234",
+                Description = "Mora 100gr 27pcs",
+                SubCategory = subCategoryLists[4],
+                Category = categoryLists[1]
+            },
+            new Product
+            {
+                Id = Guid.NewGuid(),
+                Name = "Bami",
+                Price = 8M,
+                Code = "O1234",
+                Description = "Elite 130gr 18pcs",
+                SubCategory = subCategoryLists[4],
+                Category = categoryLists[1]
+            },
+            new Product
+            {
+                Id = Guid.NewGuid(),
+                Name = "Cheese croquette Oud-Brugge",
+                Price = 13M,
+                Code = "P1234",
+                Description = "Ottimo 65gr 20pcs",
+                SubCategory = subCategoryLists[5],
+                Category = categoryLists[1]
+            },
+            new Product
+            {
+                Id = Guid.NewGuid(),
+                Name = "Goulash croquette",
+                Price = 9M,
+                Code = "Q1234",
+                Description = "Devries 90gr 16pcs",
+                SubCategory = subCategoryLists[5],
+                Category = categoryLists[1]
+            },
+            new Product
+            {
+                Id = Guid.NewGuid(),
+                Name = "Shrimp croquette",
+                Price = 60M,
+                Code = "R1234",
+                Description = "Mestdagh 65gr 32pcs",
+                SubCategory = subCategoryLists[5],
+                Category = categoryLists[1]
+            },
+            new Product
+            {
+                Id = Guid.NewGuid(),
+                Name = "Sito Gold",
+                Price = 23M,
+                Code = "S1234",
+                Description = "Mora 125gr 21pcs",
+                SubCategory = subCategoryLists[6],
+                Category = categoryLists[2]
+            },
+            new Product
+            {
+                Id = Guid.NewGuid(),
+                Name = "Chicken Wings",
+                Price = 20M,
+                Code = "T1234",
+                Description = "Hofkip 125gr 15pcs",
+                SubCategory = subCategoryLists[6],
+                Category = categoryLists[2]
+            },
+            new Product
+            {
+                Id = Guid.NewGuid(),
+                Name = "Chickero",
                 Price = 15M,
-                SubCategory = subCategoryLists[2]
+                Code = "U1234",
+                Description = "Hofkip 90gr 20pcs",
+                SubCategory = subCategoryLists[6],
+                Category = categoryLists[2]
             },
             new Product
             {
                 Id = Guid.NewGuid(),
-                Name = "Fish Burger (Mora)",
-                Price = 14M,
-                SubCategory = subCategoryLists[3]
-            }
+                Name = "Sate Excellent",
+                Price = 39M,
+                Code = "AA123",
+                Description = "Mora 85gr 32pcs",
+                SubCategory = subCategoryLists[7],
+                Category = categoryLists[2]
+            },
+            new Product
+            {
+                Id = Guid.NewGuid(),
+                Name = "Sate Fresh",
+                Price = 10M,
+                Code = "BB134",
+                Description = "Nick 150gr 6pcs",
+                SubCategory = subCategoryLists[7],
+                Category = categoryLists[2]
+            },
+            new Product
+            {
+                Id = Guid.NewGuid(),
+                Name = "Merguez",
+                Price = 37M,
+                Code = "CC123",
+                Description = "Vanreusel 95gr 30pcs",
+                SubCategory = subCategoryLists[7],
+                Category = categoryLists[2]
+            },
+            new Product
+            {
+                Id = Guid.NewGuid(),
+                Name = "Picknicker",
+                Price = 27M,
+                Code = "V1234",
+                Description = "Mora 110gr 24pcs",
+                SubCategory = subCategoryLists[8],
+                Category = categoryLists[2]
+            },
+            new Product
+            {
+                Id = Guid.NewGuid(),
+                Name = "Fish Brochette",
+                Price = 23M,
+                Code = "W1234",
+                Description = "Vanreusel 110gr 22pcs",
+                SubCategory = subCategoryLists[8],
+                Category = categoryLists[2]
+            },
+            new Product
+            {
+                Id = Guid.NewGuid(),
+                Name = "Scampi Brochette",
+                Price = 18M,
+                Code = "X1234",
+                Description = "Oceon Prid 150gr 10pcs",
+                SubCategory = subCategoryLists[8],
+                Category = categoryLists[2]
+            },
+            new Product
+            {
+                Id = Guid.NewGuid(),
+                Name = "Mayonaise",
+                Price = 22M,
+                Code = "DD123",
+                Description = "Pauwels 10l",
+                SubCategory = subCategoryLists[9],
+                Category = categoryLists[3]
+            },
+            new Product
+            {
+                Id = Guid.NewGuid(),
+                Name = "Tartaar",
+                Price = 27M,
+                Code = "EE123",
+                Description = "La William 10kg",
+                SubCategory = subCategoryLists[9],
+                Category = categoryLists[3]
+            },
+            new Product
+            {
+                Id = Guid.NewGuid(),
+                Name = "Andalouse Chef",
+                Price = 37M,
+                Code = "FF123",
+                Description = "La William 9,8kg",
+                SubCategory = subCategoryLists[9],
+                Category = categoryLists[3]
+            },
+            new Product
+            {
+                Id = Guid.NewGuid(),
+                Name = "Bearnaise Warm Up",
+                Price = 22M,
+                Code = "GG123",
+                Description = "Verstegen 3 x 1l",
+                SubCategory = subCategoryLists[10],
+                Category = categoryLists[3]
+            },
+            new Product
+            {
+                Id = Guid.NewGuid(),
+                Name = "Pepper Sauce Garde D'Or",
+                Price = 6M,
+                Code = "HH123",
+                Description = "Knorr 1l",
+                SubCategory = subCategoryLists[10],
+                Category = categoryLists[3]
+            },
+            new Product
+            {
+                Id = Guid.NewGuid(),
+                Name = "Beef Stew Sauce",
+                Price = 8M,
+                Code = "GG123",
+                Description = "Coertjens 2,7kg",
+                SubCategory = subCategoryLists[10],
+                Category = categoryLists[3]
+            },
         };
 
         public async Task<IEnumerable<Order>> GetOrderList()

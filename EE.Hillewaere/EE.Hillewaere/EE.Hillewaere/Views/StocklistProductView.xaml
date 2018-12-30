@@ -34,10 +34,6 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-
-            <Button x:Name="btnAddNewProduct"
-                    Text="Add new product"
-                    Command="{Binding ViewProductCommand}" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

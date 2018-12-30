@@ -310,7 +310,6 @@ namespace EE.Hillewaere.ViewModels
                         MessageNames.ProductSaved, currentProduct);
                     SaveFile();
                     await stocklistService.SaveProduct(currentProduct);
-                    //await navigation.PopAsync(true);
                 }
                 else
                 {

@@ -18,7 +18,6 @@ namespace EE.Hillewaere.ViewModels
     {
         private IStocklistService stocklistService;
         private INavigation navigation;
-        private Order currentOrder;
 
         public OrderListViewModel(INavigation navigation, IStocklistService slService)
         {
