@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -21,6 +22,12 @@ namespace EE.Hillewaere.ViewModels
         {
             this.navigation = navigation;
             stocklistService = slService;
+            Initialize();
+        }
+
+        private void Initialize()
+        {
+            PageTitle = "Overview Stocklist - Categories";
             Categories = new ObservableCollection<Category>(stocklistService.GetCategoryList().Result);
         }
 
@@ -51,6 +58,17 @@ namespace EE.Hillewaere.ViewModels
             {
                 name = value;
                 RaisePropertyChanged(nameof(Name));
+            }
+        }
+
+        private string pageTitle;
+        public string PageTitle
+        {
+            get { return pageTitle; }
+            set
+            {
+                pageTitle = value;
+                RaisePropertyChanged(nameof(PageTitle));
             }
         }
 

@@ -31,7 +31,7 @@ namespace EE.Hillewaere.ViewModels
         {
             if (currentCategory != null)
             {
-                PageTitle = currentCategory.Name;
+                PageTitle = "Overview Stocklist - " + currentCategory.Name;
                 var subCategories = await stocklistService.GetSubCategoryListById(currentCategory.Id);
                 SubCategories = null;
                 SubCategories = new ObservableCollection<SubCategory>(subCategories);

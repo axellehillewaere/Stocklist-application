@@ -51,15 +51,11 @@ namespace EE.Hillewaere.ViewModels
         { 
             if (currentProduct.Name != null)
             {
-                PageTitle = currentProduct.Name;
-                Products = null;
-                Products = new ObservableCollection<Product>(stocklistService.GetProductListBySub(currentProduct.SubCategory.Name).Result);
+                PageTitle = "Overview Stocklist - Edit " + currentProduct.Name;;
             }
             else
             {
-                PageTitle = "New Product";
-                                    Products = null;
-                Products = new ObservableCollection<Product>(stocklistService.GetProductListBySub(currentProduct.SubCategory.Name).Result);
+                PageTitle = "Overview Stocklist - New Product";
             }
             LoadProductsState();
         }
@@ -71,7 +67,9 @@ namespace EE.Hillewaere.ViewModels
             Code = currentProduct.Code;
             Description = currentProduct.Description;
             SubCategoryName = currentProduct.SubCategory.Name;
-            Category = currentProduct.Category;;
+            Category = currentProduct.Category;
+            Products = null;
+            Products = new ObservableCollection<Product>(stocklistService.GetProductListBySub(currentProduct.SubCategory.Name).Result);
             LoadFile();
         }
 
