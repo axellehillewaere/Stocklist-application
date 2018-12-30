@@ -4,8 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace EE.Hillewaere.ViewModels
@@ -115,5 +117,17 @@ namespace EE.Hillewaere.ViewModels
                 RaisePropertyChanged(nameof(OrderList));
             }
         }
+
+        public ICommand DeleteOrderProductCommand => new Command<Order>(
+            async (Order orderProduct) =>
+            {
+                orderProduct.Amount--;
+                OrderList.Remove(orderProduct);
+                Debug.WriteLine(orderProduct.Name);
+                await stocklistService.DeleteOrderProduct(orderProduct.Id);
+                var orderList = await stocklistService.GetOrderList();
+                OrderList = null;
+                OrderList = new ObservableCollection<Order>(orderList);
+            });
     }
 }

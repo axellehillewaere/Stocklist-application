@@ -205,6 +205,13 @@ namespace EE.Hillewaere.Domain.Services
             productLists.Remove(product);
         }
 
+        public async Task DeleteOrderProduct(Guid orderProductId)
+        {
+            await Task.Delay(0);
+            var orderProduct = orderList.FirstOrDefault(o => o.Id == orderProductId);
+            orderList.Remove(orderProduct);
+        }
+
         public decimal CalculateTotalPrice()
         {
             return orderList.Sum(o => o.PricePerProduct);

@@ -7,10 +7,16 @@
              x:Class="EE.Hillewaere.Views.OrderListView">
     <ContentPage.Content>
         <StackLayout>
-            <ListView ItemsSource="{Binding OrderList}">
+            <ListView x:Name="lvOrderList" ItemsSource="{Binding OrderList}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
+                            <ViewCell.ContextActions>
+                                <MenuItem Command="{Binding BindingContext.DeleteOrderProductCommand, Source={x:Reference page}}"
+                                          CommandParameter="{Binding .}"
+                                          Text="Delete"
+                                          IsDestructive="True" />
+                            </ViewCell.ContextActions>
                             <StackLayout>
                                 <Label Text="{Binding Name}" />
                                 <Label Text="{Binding Amount}" />
