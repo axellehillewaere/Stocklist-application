@@ -5,14 +5,28 @@
              x:Class="EE.Hillewaere.App">
     <Application.Resources>
         <ResourceDictionary>
+            <Color x:Key="ColorTitle">#14272C</Color>
             <Color x:Key="ColorError">#ff0000</Color>
 
+            <OnPlatform x:Key="BackgroundImage" x:TypeArguments="ImageSource">
+                <On Platform="Android" Value="business.jpg"></On>
+                <On Platform="UWP" Value="Images/business.jpg"></On>
+            </OnPlatform>
+            <OnPlatform x:Key="FontTitle" x:TypeArguments="x:String">
+                <On Platform="Android" Value="Sunset Boulevard.otf#Sunset Boulevard"></On>
+                <On Platform="UWP" Value="/Assets/Fonts/Sunset Boulevard.otf#Sunset Boulevard"></On>
+            </OnPlatform>
             <OnPlatform x:Key="ErrorMessageFontSize" x:TypeArguments="NamedSize">
                 <On Platform="Android" Value="Small"></On>
                 <On Platform="UWP" Value="Micro"></On>
             </OnPlatform>
-            
 
+            <Style x:Key="LabelTitle" TargetType="Label">
+                <Setter Property="FontSize" Value="100" />
+                <Setter Property="TextColor" Value="{StaticResource ColorTitle}" />
+                <Setter Property="Margin" Value="0,30,0,0" />
+                <Setter Property="FontFamily" Value="{StaticResource FontTitle}" />
+            </Style>
             <Style x:Key="ErrorMessage" TargetType="Label">
                 <Setter Property="TextColor" Value="{StaticResource ColorError}" />
                 <Setter Property="FontSize" Value="{StaticResource ErrorMessageFontSize}" />
