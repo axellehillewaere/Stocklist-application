@@ -5,6 +5,9 @@
              Title="{Binding PageTitle}"
              x:Name="page"
              x:Class="EE.Hillewaere.Views.OrderListView">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Send order" Command="{Binding SendOrderCommand}"></ToolbarItem>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
             <ListView x:Name="lvOrderList" ItemsSource="{Binding OrderList}">

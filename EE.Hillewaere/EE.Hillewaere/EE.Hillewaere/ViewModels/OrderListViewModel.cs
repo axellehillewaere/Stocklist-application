@@ -1,5 +1,7 @@
-﻿using EE.Hillewaere.Domain.Models;
+﻿using EE.Hillewaere.Constants;
+using EE.Hillewaere.Domain.Models;
 using EE.Hillewaere.Domain.Services;
+using EE.Hillewaere.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -16,6 +18,7 @@ namespace EE.Hillewaere.ViewModels
     {
         private IStocklistService stocklistService;
         private INavigation navigation;
+        private Order currentOrder;
 
         public OrderListViewModel(INavigation navigation, IStocklistService slService)
         {
@@ -117,6 +120,15 @@ namespace EE.Hillewaere.ViewModels
                 RaisePropertyChanged(nameof(OrderList));
             }
         }
+
+        public ICommand SendOrderCommand => new Command(
+            async () =>
+            {
+                await DependencyService.Get<ISoundPlayer>().PlaySound();
+                DependencyService.Get<IToastNotification>().Show("Order has been sent so supplier");
+                OrderList.Clear();
+                await navigation.PushAsync(new MainView());
+            });
 
         public ICommand DeleteOrderProductCommand => new Command<Order>(
             async (Order orderProduct) =>

@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using EE.Hillewaere.Domain.Models;
 using EE.Hillewaere.IoC;
 using EE.Hillewaere.ViewModels;
 using System;
@@ -21,5 +22,5 @@ namespace EE.Hillewaere.Views
             BindingContext = IoCRegistry.Container.Resolve<OrderListViewModel>(
                 new NamedParameter("navigation", this.Navigation));
         }
-	}
+    }
 }
