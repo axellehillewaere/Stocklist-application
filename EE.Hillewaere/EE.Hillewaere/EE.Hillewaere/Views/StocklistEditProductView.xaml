@@ -7,31 +7,31 @@
         <AbsoluteLayout>
             <ScrollView AbsoluteLayout.LayoutFlags="All"
                         AbsoluteLayout.LayoutBounds="0,0,1,1">
-                <StackLayout>
-                    <Label Text="Name" />
+                <StackLayout Style="{StaticResource Edit}">
+                    <Label Text="Name" Style="{StaticResource LabelHeader}"/>
                     <Entry Text="{Binding Name}" Placeholder="Enter product name" />
                     <Label Text="{Binding NameError}"
                            IsVisible="{Binding NameErrorVisible}" x:Name="lblErrorName"
                            Style="{StaticResource ErrorMessage}"/>
-                    <Label Text="Price" />
+                    <Label Text="Price" Style="{StaticResource LabelHeader}" Margin="0,10,0,0"/>
                     <Entry Text="{Binding Price}" Placeholder="Enter product price" />
                     <Label Text="{Binding PriceError}"
                            IsVisible="{Binding PriceErrorVisible}"
                            Style="{StaticResource ErrorMessage}"/>
-                    <Label Text="Code" />
+                    <Label Text="Code" Style="{StaticResource LabelHeader}" Margin="0,10,0,0"/>
                     <Entry Text="{Binding Code}" Placeholder="Enter product code" />
                     <Label Text="{Binding CodeError}"
                            IsVisible="{Binding CodeErrorVisible}"
                            Style="{StaticResource ErrorMessage}"/>
-                    <Label Text="Description" />
-                    <Entry Text="{Binding Description}" Placeholder="Enter product description" />
-                    <Label Text="{Binding DescriptionError}"
-                           IsVisible="{Binding DescriptionErrorVisible}"
+                    <Label Text="Extra info" Style="{StaticResource LabelHeader}" Margin="0,10,0,0"/>
+                    <Entry Text="{Binding ExtraInfo}" Placeholder="Enter product description" />
+                    <Label Text="{Binding ExtraInfoError}"
+                           IsVisible="{Binding ExtraInfoErrorVisible}"
                            Style="{StaticResource ErrorMessage}"/>
-                    <Label Text="Subcategory" />
+                    <Label Text="Subcategory" Style="{StaticResource LabelHeader}" Margin="0,10,0,0"/>
                     <Label Text="{Binding SubCategoryName}"/>
 
-                    <Button x:Name="btnSaveProduct" 
+                    <Button x:Name="btnSaveProduct" Style="{StaticResource BasicButton}" VerticalOptions="EndAndExpand"
                             Command="{Binding SaveProductCommand}"
                             Text="Save product" />
                 </StackLayout>

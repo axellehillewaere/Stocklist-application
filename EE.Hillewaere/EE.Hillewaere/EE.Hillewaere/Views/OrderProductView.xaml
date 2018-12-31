@@ -6,11 +6,9 @@
              x:Name="page"
              x:Class="EE.Hillewaere.Views.OrderProductView">
     <ContentPage.Content>
-        <StackLayout>
-            <Button Text="View order" Command="{Binding ViewOrder}" />
-            <Label Text="Tap on product to add to orderlist"></Label>
-
-            <ListView x:Name="lvProductsList" ItemsSource="{Binding Products}">
+        <StackLayout Style="{StaticResource Main}">
+            <Button Text="View order" Command="{Binding ViewOrder}" Style="{StaticResource OrderButton}"/>
+            <ListView x:Name="lvProductsList" ItemsSource="{Binding Products}" HasUnevenRows="True">
                 <ListView.Behaviors>
                     <bhv:EventToCommandBehavior
                         EventName="ItemTapped"
@@ -20,11 +18,33 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout>
-                                <Label Text="{Binding Name}" />
-                                <Label Text="{Binding Price}" />
-                                <Label Text="{Binding Code}" />
-                                <Label Text="{Binding Description}" />
+                            <StackLayout Style="{StaticResource ListView}">
+                                <Label Text="{Binding Name}" Style="{StaticResource LabelHeader}" />
+                                <BoxView Style="{StaticResource BoxView}" />
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                    <StackLayout Orientation="Vertical" HorizontalOptions="Start">
+                                        <Label Text="Price: €" Style="{StaticResource LabelInfo}"/>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Vertical" HorizontalOptions="Start">
+                                        <Label Text="{Binding Price}" Style="{StaticResource LabelInfo}"/>
+                                    </StackLayout>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                    <StackLayout Orientation="Vertical" HorizontalOptions="Start">
+                                        <Label Text="Code: " Style="{StaticResource LabelInfo}"/>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Vertical" HorizontalOptions="Start">
+                                        <Label Text="{Binding Code}" Style="{StaticResource LabelInfo}"/>
+                                    </StackLayout>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                    <StackLayout Orientation="Vertical" HorizontalOptions="Start">
+                                        <Label Text="Extra info: " Style="{StaticResource LabelInfo}"/>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Vertical" HorizontalOptions="Start">
+                                        <Label Text="{Binding ExtraInfo}" Style="{StaticResource LabelInfo}"/>
+                                    </StackLayout>
+                                </StackLayout>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

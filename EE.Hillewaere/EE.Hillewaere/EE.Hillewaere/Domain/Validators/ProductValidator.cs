@@ -28,7 +28,7 @@ namespace EE.Hillewaere.Domain.Validators
                 .MaximumLength(20)
                 .WithMessage("Length cannot be greater than 20 characters");
 
-            RuleFor(product => product.Description)
+            RuleFor(product => product.ExtraInfo)
                 .NotEqual(p => p.Name)
                 .WithMessage("Must be different than Name");
         }

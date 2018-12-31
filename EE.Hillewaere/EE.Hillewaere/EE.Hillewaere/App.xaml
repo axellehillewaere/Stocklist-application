@@ -7,6 +7,7 @@
         <ResourceDictionary>
             <Color x:Key="ColorTitle">#14272C</Color>
             <Color x:Key="ColorError">#ff0000</Color>
+            <Color x:Key="ColorExtra">#243337</Color>
 
             <OnPlatform x:Key="BackgroundImage" x:TypeArguments="ImageSource">
                 <On Platform="Android" Value="business.jpg"></On>
@@ -21,11 +22,32 @@
                 <On Platform="UWP" Value="Micro"></On>
             </OnPlatform>
 
+            <Style x:Key="Main" TargetType="StackLayout">
+                <Setter Property="BackgroundColor" Value="#D7D9DA" />
+            </Style>
+            <Style x:Key="Edit" TargetType="StackLayout">
+                <Setter Property="BackgroundColor" Value="#D7D9DA" />
+                <Setter Property="Padding" Value="20,20,20,20" />
+            </Style>
             <Style x:Key="LabelTitle" TargetType="Label">
                 <Setter Property="FontSize" Value="100" />
                 <Setter Property="TextColor" Value="{StaticResource ColorTitle}" />
                 <Setter Property="Margin" Value="0,30,0,0" />
                 <Setter Property="FontFamily" Value="{StaticResource FontTitle}" />
+            </Style>
+            <Style x:Key="LabelHeader" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource ColorTitle}" />
+                <Setter Property="FontFamily" Value="Arial" />
+                <Setter Property="FontSize" Value="18" />
+            </Style>
+            <Style x:Key="LabelDescription" TargetType="Label">
+                <Setter Property="FontAttributes" Value="Italic" />
+                <Setter Property="TextColor" Value="{StaticResource ColorExtra}" />
+                <Setter Property="FontFamily" Value="Arial" />
+            </Style>
+            <Style x:Key="LabelInfo" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource ColorExtra}" />
+                <Setter Property="FontFamily" Value="Arial" />
             </Style>
             <Style x:Key="ErrorMessage" TargetType="Label">
                 <Setter Property="TextColor" Value="{StaticResource ColorError}" />
@@ -35,15 +57,35 @@
             </Style>
 
             <Style x:Key="BasicButton" TargetType="Button">
-                <Setter Property="BorderRadius" Value="7" />
+                <Setter Property="BorderRadius" Value="6" />
                 <Setter Property="Padding" Value="15,15,15,15" />
-                <Setter Property="WidthRequest" Value="220" />
+                <Setter Property="WidthRequest" Value="300" />
                 <Setter Property="HorizontalOptions" Value="Center" />
                 <Setter Property="FontSize" Value="14" />
                 <Setter Property="BorderColor" Value="#253337" />
                 <Setter Property="BorderWidth" Value="1" />
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="FontFamily" Value="Arial" />
+            </Style>
+            <Style x:Key="OrderButton" TargetType="Button">
+                <Setter Property="BorderRadius" Value="6" />
+                <Setter Property="Padding" Value="5,5,5,5" />
+                <Setter Property="WidthRequest" Value="150" />
+                <Setter Property="HorizontalOptions" Value="End" />
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="BorderColor" Value="#253337" />
+                <Setter Property="BorderWidth" Value="1" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontFamily" Value="Arial" />
+                <Setter Property="Margin" Value="0,5,5,0" />
+            </Style>
+
+            <Style x:Key="ListView" TargetType="ListView">
+                <Setter Property="Margin" Value="40,20,40,20" />
+            </Style>
+            <Style x:Key="BoxView" TargetType="BoxView">
+                <Setter Property="Color" Value="{StaticResource ColorTitle}" />
+                <Setter Property="HeightRequest" Value="0.5" />
             </Style>
 
             <conv:ItemTappedEventArgsConverter x:Key="ItemTappedEventArgsConv" />

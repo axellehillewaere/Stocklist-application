@@ -117,7 +117,7 @@ namespace EE.Hillewaere.Domain.Services
                 Name = "Coca-Cola",
                 Price = 16M,
                 Code = "A1234",
-                Description = "24 x 33cl",
+                ExtraInfo = "24 x 33cl",
                 SubCategory = subCategoryLists[0],
                 Category = categoryLists[0]
             },
@@ -127,7 +127,7 @@ namespace EE.Hillewaere.Domain.Services
                 Name = "Coca-Cola Zero",
                 Price = 16M,
                 Code = "B1234",
-                Description = "24 x 33cl",
+                ExtraInfo = "24 x 33cl",
                 SubCategory = subCategoryLists[0],
                 Category = categoryLists[0]
             },
@@ -137,7 +137,7 @@ namespace EE.Hillewaere.Domain.Services
                 Name = "Coca-Cola Light",
                 Price = 16M,
                 Code = "C1234",
-                Description = "24 x 33cl",
+                ExtraInfo = "24 x 33cl",
                 SubCategory = subCategoryLists[0],
                 Category = categoryLists[0]
             },
@@ -147,7 +147,7 @@ namespace EE.Hillewaere.Domain.Services
                 Name = "Coffee beans",
                 Price = 14M,
                 Code = "D1234",
-                Description = "FairTrade 5kg",
+                ExtraInfo = "FairTrade 5kg",
                 SubCategory = subCategoryLists[1],
                 Category = categoryLists[0]
             },
@@ -157,7 +157,7 @@ namespace EE.Hillewaere.Domain.Services
                 Name = "Cécémel",
                 Price = 13M,
                 Code = "E1234",
-                Description = "Milk Chocolate 6 x 2l ",
+                ExtraInfo = "Milk Chocolate 6 x 2l ",
                 SubCategory = subCategoryLists[1],
                 Category = categoryLists[0]
             },
@@ -167,7 +167,7 @@ namespace EE.Hillewaere.Domain.Services
                 Name = "Tea bags",
                 Price = 8M,
                 Code = "F1234",
-                Description = "Lemon 100 pcs",
+                ExtraInfo = "Lemon 100 pcs",
                 SubCategory = subCategoryLists[1],
                 Category = categoryLists[0]
             },
@@ -177,7 +177,7 @@ namespace EE.Hillewaere.Domain.Services
               Name = "Jupiler",
               Price = 11M,
               Code = "G1234",
-              Description = "24 x 33cl",
+              ExtraInfo = "24 x 33cl",
               SubCategory = subCategoryLists[2],
               Category = categoryLists[0]
             },
@@ -187,7 +187,7 @@ namespace EE.Hillewaere.Domain.Services
               Name = "Kriek Belle Vue",
               Price = 13M,
               Code = "H1234",
-              Description = "24 x 25cl",
+              ExtraInfo = "24 x 25cl",
               SubCategory = subCategoryLists[2],
               Category = categoryLists[0]
             },
@@ -197,7 +197,7 @@ namespace EE.Hillewaere.Domain.Services
               Name = "White wine",
               Price = 12M,
               Code = "I1234",
-              Description = "J.P. Chenet 6 x 25cl",
+              ExtraInfo = "J.P. Chenet 6 x 25cl",
               SubCategory = subCategoryLists[2],
               Category = categoryLists[0]
             },
@@ -207,7 +207,7 @@ namespace EE.Hillewaere.Domain.Services
               Name = "Fricandel original",
               Price = 11M,
               Code = "J1234",
-              Description = "Vanreusel 100gr 20pcs",
+              ExtraInfo = "Vanreusel 100gr 20pcs",
               SubCategory = subCategoryLists[3],
               Category = categoryLists[1]
             },
@@ -217,7 +217,7 @@ namespace EE.Hillewaere.Domain.Services
               Name = "Viandelle",
               Price = 13M,
               Code = "K1234",
-              Description = "Mora 100 gr 27pcs",
+              ExtraInfo = "Mora 100 gr 27pcs",
               SubCategory = subCategoryLists[3],
               Category = categoryLists[1]
             },
@@ -227,7 +227,7 @@ namespace EE.Hillewaere.Domain.Services
                 Name = "Chickennuggets",
                 Price = 20M,
                 Code = "L1234",
-                Description = "Ovi 120pcs",
+                ExtraInfo = "Ovi 120pcs",
                 SubCategory = subCategoryLists[3],
                 Category = categoryLists[1]
             },
@@ -237,7 +237,7 @@ namespace EE.Hillewaere.Domain.Services
                 Name = "Lucifer Mini",
                 Price = 19M,
                 Code = "M1234",
-                Description = "Mora 60pcs",
+                ExtraInfo = "Mora 60pcs",
                 SubCategory = subCategoryLists[4],
                 Category = categoryLists[1]
             },
@@ -247,7 +247,7 @@ namespace EE.Hillewaere.Domain.Services
                 Name = "Viandelle Spicy",
                 Price = 18M,
                 Code = "N1234",
-                Description = "Mora 100gr 27pcs",
+                ExtraInfo = "Mora 100gr 27pcs",
                 SubCategory = subCategoryLists[4],
                 Category = categoryLists[1]
             },
@@ -257,7 +257,7 @@ namespace EE.Hillewaere.Domain.Services
                 Name = "Bami",
                 Price = 8M,
                 Code = "O1234",
-                Description = "Elite 130gr 18pcs",
+                ExtraInfo = "Elite 130gr 18pcs",
                 SubCategory = subCategoryLists[4],
                 Category = categoryLists[1]
             },
@@ -267,7 +267,7 @@ namespace EE.Hillewaere.Domain.Services
                 Name = "Cheese croquette Oud-Brugge",
                 Price = 13M,
                 Code = "P1234",
-                Description = "Ottimo 65gr 20pcs",
+                ExtraInfo = "Ottimo 65gr 20pcs",
                 SubCategory = subCategoryLists[5],
                 Category = categoryLists[1]
             },
@@ -277,7 +277,7 @@ namespace EE.Hillewaere.Domain.Services
                 Name = "Goulash croquette",
                 Price = 9M,
                 Code = "Q1234",
-                Description = "Devries 90gr 16pcs",
+                ExtraInfo = "Devries 90gr 16pcs",
                 SubCategory = subCategoryLists[5],
                 Category = categoryLists[1]
             },
@@ -287,7 +287,7 @@ namespace EE.Hillewaere.Domain.Services
                 Name = "Shrimp croquette",
                 Price = 60M,
                 Code = "R1234",
-                Description = "Mestdagh 65gr 32pcs",
+                ExtraInfo = "Mestdagh 65gr 32pcs",
                 SubCategory = subCategoryLists[5],
                 Category = categoryLists[1]
             },
@@ -297,7 +297,7 @@ namespace EE.Hillewaere.Domain.Services
                 Name = "Sito Gold",
                 Price = 23M,
                 Code = "S1234",
-                Description = "Mora 125gr 21pcs",
+                ExtraInfo = "Mora 125gr 21pcs",
                 SubCategory = subCategoryLists[6],
                 Category = categoryLists[2]
             },
@@ -307,7 +307,7 @@ namespace EE.Hillewaere.Domain.Services
                 Name = "Chicken Wings",
                 Price = 20M,
                 Code = "T1234",
-                Description = "Hofkip 125gr 15pcs",
+                ExtraInfo = "Hofkip 125gr 15pcs",
                 SubCategory = subCategoryLists[6],
                 Category = categoryLists[2]
             },
@@ -317,7 +317,7 @@ namespace EE.Hillewaere.Domain.Services
                 Name = "Chickero",
                 Price = 15M,
                 Code = "U1234",
-                Description = "Hofkip 90gr 20pcs",
+                ExtraInfo = "Hofkip 90gr 20pcs",
                 SubCategory = subCategoryLists[6],
                 Category = categoryLists[2]
             },
@@ -327,7 +327,7 @@ namespace EE.Hillewaere.Domain.Services
                 Name = "Sate Excellent",
                 Price = 39M,
                 Code = "AA123",
-                Description = "Mora 85gr 32pcs",
+                ExtraInfo = "Mora 85gr 32pcs",
                 SubCategory = subCategoryLists[7],
                 Category = categoryLists[2]
             },
@@ -337,7 +337,7 @@ namespace EE.Hillewaere.Domain.Services
                 Name = "Sate Fresh",
                 Price = 10M,
                 Code = "BB134",
-                Description = "Nick 150gr 6pcs",
+                ExtraInfo = "Nick 150gr 6pcs",
                 SubCategory = subCategoryLists[7],
                 Category = categoryLists[2]
             },
@@ -347,7 +347,7 @@ namespace EE.Hillewaere.Domain.Services
                 Name = "Merguez",
                 Price = 37M,
                 Code = "CC123",
-                Description = "Vanreusel 95gr 30pcs",
+                ExtraInfo = "Vanreusel 95gr 30pcs",
                 SubCategory = subCategoryLists[7],
                 Category = categoryLists[2]
             },
@@ -357,7 +357,7 @@ namespace EE.Hillewaere.Domain.Services
                 Name = "Picknicker",
                 Price = 27M,
                 Code = "V1234",
-                Description = "Mora 110gr 24pcs",
+                ExtraInfo = "Mora 110gr 24pcs",
                 SubCategory = subCategoryLists[8],
                 Category = categoryLists[2]
             },
@@ -367,7 +367,7 @@ namespace EE.Hillewaere.Domain.Services
                 Name = "Fish Brochette",
                 Price = 23M,
                 Code = "W1234",
-                Description = "Vanreusel 110gr 22pcs",
+                ExtraInfo = "Vanreusel 110gr 22pcs",
                 SubCategory = subCategoryLists[8],
                 Category = categoryLists[2]
             },
@@ -377,7 +377,7 @@ namespace EE.Hillewaere.Domain.Services
                 Name = "Scampi Brochette",
                 Price = 18M,
                 Code = "X1234",
-                Description = "Oceon Prid 150gr 10pcs",
+                ExtraInfo = "Oceon Prid 150gr 10pcs",
                 SubCategory = subCategoryLists[8],
                 Category = categoryLists[2]
             },
@@ -387,7 +387,7 @@ namespace EE.Hillewaere.Domain.Services
                 Name = "Mayonaise",
                 Price = 22M,
                 Code = "DD123",
-                Description = "Pauwels 10l",
+                ExtraInfo = "Pauwels 10l",
                 SubCategory = subCategoryLists[9],
                 Category = categoryLists[3]
             },
@@ -397,7 +397,7 @@ namespace EE.Hillewaere.Domain.Services
                 Name = "Tartaar",
                 Price = 27M,
                 Code = "EE123",
-                Description = "La William 10kg",
+                ExtraInfo = "La William 10kg",
                 SubCategory = subCategoryLists[9],
                 Category = categoryLists[3]
             },
@@ -407,7 +407,7 @@ namespace EE.Hillewaere.Domain.Services
                 Name = "Andalouse Chef",
                 Price = 37M,
                 Code = "FF123",
-                Description = "La William 9,8kg",
+                ExtraInfo = "La William 9,8kg",
                 SubCategory = subCategoryLists[9],
                 Category = categoryLists[3]
             },
@@ -417,7 +417,7 @@ namespace EE.Hillewaere.Domain.Services
                 Name = "Bearnaise Warm Up",
                 Price = 22M,
                 Code = "GG123",
-                Description = "Verstegen 3 x 1l",
+                ExtraInfo = "Verstegen 3 x 1l",
                 SubCategory = subCategoryLists[10],
                 Category = categoryLists[3]
             },
@@ -427,7 +427,7 @@ namespace EE.Hillewaere.Domain.Services
                 Name = "Pepper Sauce Garde D'Or",
                 Price = 6M,
                 Code = "HH123",
-                Description = "Knorr 1l",
+                ExtraInfo = "Knorr 1l",
                 SubCategory = subCategoryLists[10],
                 Category = categoryLists[3]
             },
@@ -437,7 +437,7 @@ namespace EE.Hillewaere.Domain.Services
                 Name = "Beef Stew Sauce",
                 Price = 8M,
                 Code = "GG123",
-                Description = "Coertjens 2,7kg",
+                ExtraInfo = "Coertjens 2,7kg",
                 SubCategory = subCategoryLists[10],
                 Category = categoryLists[3]
             },
@@ -518,7 +518,7 @@ namespace EE.Hillewaere.Domain.Services
             savedProduct.Name = product.Name;
             savedProduct.Price = product.Price;
             savedProduct.Code = product.Code;
-            savedProduct.Description = product.Description;
+            savedProduct.ExtraInfo = product.ExtraInfo;
             savedProduct.SubCategory = product.SubCategory;
             savedProduct.Category = product.Category;
         }

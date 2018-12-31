@@ -72,6 +72,18 @@ namespace EE.Hillewaere.ViewModels
             }
         }
 
+
+        private string description;
+        public string Description
+        {
+            get { return description; }
+            set
+            {
+                description = value;
+                RaisePropertyChanged(nameof(Description));
+            }
+        }
+
         private ObservableCollection<Category> categories;
         public ObservableCollection<Category> Categories
         {
@@ -80,17 +92,6 @@ namespace EE.Hillewaere.ViewModels
             {
                 categories = value;
                 RaisePropertyChanged(nameof(Categories));
-            }
-        }
-
-        private ObservableCollection<SubCategory> sub;
-        public ObservableCollection<SubCategory> Sub
-        {
-            get { return sub; }
-            set
-            {
-                sub = value;
-                RaisePropertyChanged(nameof(Sub));
             }
         }
 

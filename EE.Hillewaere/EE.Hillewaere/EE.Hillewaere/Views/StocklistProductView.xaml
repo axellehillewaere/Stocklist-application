@@ -9,8 +9,8 @@
         <ToolbarItem Text="Add product" Command="{Binding ViewProductCommand}"></ToolbarItem>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <StackLayout>
-            <ListView x:Name="lvProductsList" ItemsSource="{Binding Products}">
+        <StackLayout Style="{StaticResource Main}">
+            <ListView x:Name="lvProductsList" ItemsSource="{Binding Products}" HasUnevenRows="True">
                 <ListView.Behaviors>
                     <bhv:EventToCommandBehavior
                         EventName="ItemTapped"
@@ -26,9 +26,33 @@
                                           Text="Delete" 
                                           IsDestructive="True"/>
                             </ViewCell.ContextActions>
-                            <StackLayout>
-                                <Label Text="{Binding Name}" />
-                                <Label Text="{Binding Price}" />
+                            <StackLayout Style="{StaticResource ListView}">
+                                <Label Text="{Binding Name}" Style="{StaticResource LabelHeader}" />
+                                <BoxView Style="{StaticResource BoxView}" />
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                    <StackLayout Orientation="Vertical" HorizontalOptions="Start">
+                                        <Label Text="Price: €" Style="{StaticResource LabelInfo}"/>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Vertical" HorizontalOptions="Start">
+                                        <Label Text="{Binding Price}" Style="{StaticResource LabelInfo}"/>
+                                    </StackLayout>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                    <StackLayout Orientation="Vertical" HorizontalOptions="Start">
+                                        <Label Text="Code: " Style="{StaticResource LabelInfo}"/>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Vertical" HorizontalOptions="Start">
+                                        <Label Text="{Binding Code}" Style="{StaticResource LabelInfo}"/>
+                                    </StackLayout>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                    <StackLayout Orientation="Vertical" HorizontalOptions="Start">
+                                        <Label Text="Extra info: " Style="{StaticResource LabelInfo}"/>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Vertical" HorizontalOptions="Start">
+                                        <Label Text="{Binding ExtraInfo}" Style="{StaticResource LabelInfo}"/>
+                                    </StackLayout>
+                                </StackLayout>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

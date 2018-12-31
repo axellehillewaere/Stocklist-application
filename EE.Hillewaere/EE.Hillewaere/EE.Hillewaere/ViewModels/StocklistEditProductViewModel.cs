@@ -65,7 +65,7 @@ namespace EE.Hillewaere.ViewModels
             Name = currentProduct.Name;
             Price = currentProduct.Price;
             Code = currentProduct.Code;
-            Description = currentProduct.Description;
+            ExtraInfo = currentProduct.ExtraInfo;
             SubCategoryName = currentProduct.SubCategory.Name;
             Category = currentProduct.Category;
             Products = null;
@@ -142,14 +142,14 @@ namespace EE.Hillewaere.ViewModels
             }
         }
 
-        private string description;
-        public string Description
+        private string extraInfo;
+        public string ExtraInfo
         {
-            get { return description; }
+            get { return extraInfo; }
             set
             {
-                description = value;
-                RaisePropertyChanged(nameof(Description));
+                extraInfo = value;
+                RaisePropertyChanged(nameof(ExtraInfo));
             }
         }
 
@@ -200,15 +200,15 @@ namespace EE.Hillewaere.ViewModels
             }
         }
 
-        private string descriptionError;
-        public string DescriptionError
+        private string extraInfoError;
+        public string ExtraInfoError
         {
-            get { return descriptionError; }
+            get { return extraInfoError; }
             set
             {
-                descriptionError = value;
-                RaisePropertyChanged(nameof(DescriptionError));
-                RaisePropertyChanged(nameof(DescriptionErrorVisible));
+                extraInfoError = value;
+                RaisePropertyChanged(nameof(ExtraInfoError));
+                RaisePropertyChanged(nameof(ExtraInfoErrorVisible));
             }
         }
 
@@ -227,9 +227,9 @@ namespace EE.Hillewaere.ViewModels
             get { return !string.IsNullOrWhiteSpace(CodeError); }
         }
 
-        public bool DescriptionErrorVisible
+        public bool ExtraInfoErrorVisible
         {
-            get { return !string.IsNullOrWhiteSpace(DescriptionError); }
+            get { return !string.IsNullOrWhiteSpace(ExtraInfoError); }
         }
 
         private ObservableCollection<Product> products;
@@ -293,7 +293,7 @@ namespace EE.Hillewaere.ViewModels
             currentProduct.Name = Name;
             currentProduct.Price = Price;
             currentProduct.Code = Code;
-            currentProduct.Description = Description;
+            currentProduct.ExtraInfo = ExtraInfo;
             currentProduct.SubCategory.Name = SubCategoryName;
         }
 
@@ -360,9 +360,9 @@ namespace EE.Hillewaere.ViewModels
                 {
                     CodeError = error.ErrorMessage;
                 }
-                if (error.PropertyName == nameof(product.Description))
+                if (error.PropertyName == nameof(product.ExtraInfo))
                 {
-                    DescriptionError = error.ErrorMessage;
+                    ExtraInfoError = error.ErrorMessage;
                 }
             }
             return validationResult.IsValid;

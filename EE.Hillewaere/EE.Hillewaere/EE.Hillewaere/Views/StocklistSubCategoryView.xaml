@@ -6,8 +6,8 @@
              x:Name="page"
              x:Class="EE.Hillewaere.Views.StocklistSubCategoryView">
     <ContentPage.Content>
-        <StackLayout>
-            <ListView x:Name="lvSubCategoriesList" ItemsSource="{Binding SubCategories}">
+        <StackLayout Style="{StaticResource Main}">
+            <ListView x:Name="lvSubCategoriesList" ItemsSource="{Binding SubCategories}" HasUnevenRows="True">
                 <ListView.Behaviors>
                     <bhv:EventToCommandBehavior
                         EventName="ItemTapped"
@@ -23,8 +23,8 @@
                                           Text="Delete"
                                           IsDestructive="True" />
                             </ViewCell.ContextActions>
-                            <StackLayout>
-                            <Label Text="{Binding Name}" />
+                            <StackLayout Style="{StaticResource ListView}">
+                                <Label Text="{Binding Name}" Style="{StaticResource LabelHeader}"/>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

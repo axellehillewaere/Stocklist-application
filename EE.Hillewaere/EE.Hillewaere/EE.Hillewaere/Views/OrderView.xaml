@@ -6,10 +6,9 @@
              x:Name="page"
              x:Class="EE.Hillewaere.Views.OrderView">
     <ContentPage.Content>
-        <StackLayout>
-            <Button Text="View order" Command="{Binding ViewOrder}" />
-
-            <ListView x:Name="lvCategoriesLists" ItemsSource="{Binding Categories}">
+        <StackLayout Style="{StaticResource Main}">
+            <Button Text="View order" Command="{Binding ViewOrder}" Style="{StaticResource OrderButton}"/>
+            <ListView x:Name="lvCategoriesLists" ItemsSource="{Binding Categories}" HasUnevenRows="True">
                 <ListView.Behaviors>
                     <bhv:EventToCommandBehavior
                         EventName="ItemTapped"
@@ -19,8 +18,12 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout>
-                                <Label Text="{Binding Name}"
+                            <StackLayout Style="{StaticResource ListView}">
+                                <Label Text="{Binding Name}" Style="{StaticResource LabelHeader}"
+                                       VerticalOptions="CenterAndExpand"
+                                       HorizontalOptions="StartAndExpand" />
+                                <BoxView Style="{StaticResource BoxView}" />
+                                <Label Text="{Binding Description}" Style="{StaticResource LabelDescription}"
                                        VerticalOptions="CenterAndExpand"
                                        HorizontalOptions="StartAndExpand" />
                             </StackLayout>
