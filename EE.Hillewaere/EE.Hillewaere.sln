@@ -7,7 +7,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EE.Hillewaere.Android", "EE
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EE.Hillewaere.UWP", "EE.Hillewaere\EE.Hillewaere.UWP\EE.Hillewaere.UWP.csproj", "{07E79A57-563D-4F4E-85C4-5F1FF52069BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EE.Hillewaere", "EE.Hillewaere\EE.Hillewaere\EE.Hillewaere.csproj", "{229CFE02-B6F4-4B26-8CB5-79D05B2A52FA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EE.Hillewaere", "EE.Hillewaere\EE.Hillewaere\EE.Hillewaere.csproj", "{229CFE02-B6F4-4B26-8CB5-79D05B2A52FA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EE.Hillewaere.UnitTesting", "EE.Hillewaere.UnitTesting\EE.Hillewaere.UnitTesting.csproj", "{F7E72CB8-42A7-4CC3-8366-8F08B1A77DCC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -93,6 +95,22 @@ Global
 		{229CFE02-B6F4-4B26-8CB5-79D05B2A52FA}.Release|x86.ActiveCfg = Release|Any CPU
 		{229CFE02-B6F4-4B26-8CB5-79D05B2A52FA}.Release|x86.Build.0 = Release|Any CPU
 		{229CFE02-B6F4-4B26-8CB5-79D05B2A52FA}.Release|x86.Deploy.0 = Release|Any CPU
+		{F7E72CB8-42A7-4CC3-8366-8F08B1A77DCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7E72CB8-42A7-4CC3-8366-8F08B1A77DCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7E72CB8-42A7-4CC3-8366-8F08B1A77DCC}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{F7E72CB8-42A7-4CC3-8366-8F08B1A77DCC}.Debug|ARM.Build.0 = Debug|Any CPU
+		{F7E72CB8-42A7-4CC3-8366-8F08B1A77DCC}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F7E72CB8-42A7-4CC3-8366-8F08B1A77DCC}.Debug|x64.Build.0 = Debug|Any CPU
+		{F7E72CB8-42A7-4CC3-8366-8F08B1A77DCC}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F7E72CB8-42A7-4CC3-8366-8F08B1A77DCC}.Debug|x86.Build.0 = Debug|Any CPU
+		{F7E72CB8-42A7-4CC3-8366-8F08B1A77DCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7E72CB8-42A7-4CC3-8366-8F08B1A77DCC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7E72CB8-42A7-4CC3-8366-8F08B1A77DCC}.Release|ARM.ActiveCfg = Release|Any CPU
+		{F7E72CB8-42A7-4CC3-8366-8F08B1A77DCC}.Release|ARM.Build.0 = Release|Any CPU
+		{F7E72CB8-42A7-4CC3-8366-8F08B1A77DCC}.Release|x64.ActiveCfg = Release|Any CPU
+		{F7E72CB8-42A7-4CC3-8366-8F08B1A77DCC}.Release|x64.Build.0 = Release|Any CPU
+		{F7E72CB8-42A7-4CC3-8366-8F08B1A77DCC}.Release|x86.ActiveCfg = Release|Any CPU
+		{F7E72CB8-42A7-4CC3-8366-8F08B1A77DCC}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

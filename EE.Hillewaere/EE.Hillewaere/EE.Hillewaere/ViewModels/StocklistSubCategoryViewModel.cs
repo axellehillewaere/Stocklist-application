@@ -35,8 +35,6 @@ namespace EE.Hillewaere.ViewModels
                 var subCategories = await stocklistService.GetSubCategoryListById(currentCategory.Id);
                 SubCategories = null;
                 SubCategories = new ObservableCollection<SubCategory>(subCategories);
-                var product = await stocklistService.GetProductListById(currentCategory.Id);
-                Prod = new ObservableCollection<Product>(product);
             }
             else
             {

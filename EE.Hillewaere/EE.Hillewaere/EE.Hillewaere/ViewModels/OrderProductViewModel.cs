@@ -152,14 +152,6 @@ namespace EE.Hillewaere.ViewModels
                     PricePerProduct = product.Price * product.Amount
                 };
 
-                //foreach (var item in OrderList)
-                //{
-                //    if (item.Name.Equals(item.Name))
-                //    {
-                //        await stocklistService.DeleteOrderProduct(item.Id);
-                //    }
-                //}
-
                 OrderList.Add(order);
                 await stocklistService.SaveToOrder(order);
 
