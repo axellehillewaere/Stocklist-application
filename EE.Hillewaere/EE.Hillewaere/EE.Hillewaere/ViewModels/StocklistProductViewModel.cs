@@ -2,14 +2,17 @@
 using EE.Hillewaere.Domain.Models;
 using EE.Hillewaere.Domain.Services;
 using EE.Hillewaere.Views;
+using PCLStorage;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Xml.Serialization;
 using Xamarin.Forms;
 
 namespace EE.Hillewaere.ViewModels
@@ -32,8 +35,32 @@ namespace EE.Hillewaere.ViewModels
                 {
                     Products = new ObservableCollection<Product>(await stocklistService.GetProductListById(currentSubCategory.Id));
                 });
+            LoadFile();
         }
 
+        private async void LoadFile()
+        {
+            string fileName = "products.xml";
+            IFolder folder = PCLStorage.FileSystem.Current.LocalStorage;
+            ExistenceCheckResult result = await folder.CheckExistsAsync(fileName);
+            if (result == ExistenceCheckResult.FileExists)
+            {
+                try
+                {
+                    IFile file = await folder.GetFileAsync(fileName);
+                    string text = await file.ReadAllTextAsync();
+                    using (var reader = new StringReader(text))
+                    {
+                        var serializer = new XmlSerializer(typeof(Product));
+                        Product product = (Product)serializer.Deserialize(reader);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine($"Error reading location: {ex.Message}");
+                }
+            }
+        }
         private async Task RefreshProducts()
         {
             if (currentSubCategory != null)

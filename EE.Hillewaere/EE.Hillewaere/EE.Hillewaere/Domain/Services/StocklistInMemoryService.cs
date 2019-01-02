@@ -476,19 +476,24 @@ namespace EE.Hillewaere.Domain.Services
 
         public async Task SaveToOrder(Order order)
         {
+            //await Task.Delay(0);
+            //var savedOrder = orderList.FirstOrDefault(o => o.Id == order.Id);
+            //if (savedOrder == null)
+            //{
+            //    savedOrder = order;
+            //    savedOrder.Id = order.Id;
+            //    savedOrder.Amount = 1;
+            //    orderList.Add(savedOrder);
+            //}
+            //savedOrder.Name = order.Name;
+            //savedOrder.Price = order.Price;
+            //savedOrder.Amount = order.Amount;
+            ////savedOrder.PricePerProduct = order.PricePerProduct;
+            //savedOrder.TotalPrice = CalculateTotalPrice();
+
             await Task.Delay(0);
-            var savedOrder = orderList.FirstOrDefault(o => o.Id == order.Id);
-            if (savedOrder == null)
-            {
-                savedOrder = order;
-                savedOrder.Id = order.Id;
-                orderList.Add(savedOrder);
-            }
-            savedOrder.Name = order.Name;
-            savedOrder.Price = order.Price;
-            savedOrder.Amount = order.Amount;
-            savedOrder.PricePerProduct = order.PricePerProduct;
-            savedOrder.TotalPrice = CalculateTotalPrice();
+            var neworder = order;
+            orderList.Add(neworder);
         }
 
         public async Task SaveCategoryList(Category category)
@@ -548,6 +553,7 @@ namespace EE.Hillewaere.Domain.Services
         {
             await Task.Delay(0);
             var orderProduct = orderList.FirstOrDefault(o => o.Id == orderProductId);
+            orderProduct.Amount = 0;
             orderList.Remove(orderProduct);
         }
 

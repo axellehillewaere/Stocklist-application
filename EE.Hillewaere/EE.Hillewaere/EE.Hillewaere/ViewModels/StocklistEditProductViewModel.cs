@@ -88,6 +88,8 @@ namespace EE.Hillewaere.ViewModels
                     {
                         var serializer = new XmlSerializer(typeof(Product));
                         Product product = (Product)serializer.Deserialize(reader);
+                        Products.Add(product);
+
                     }
                 }
                 catch (Exception ex)

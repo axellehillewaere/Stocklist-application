@@ -127,7 +127,8 @@ namespace EE.Hillewaere.ViewModels
         public ObservableCollection<Order> OrderList
         {
             get { return orderList; }
-            set {
+            set
+            {
                 orderList = value;
                 RaisePropertyChanged(nameof(OrderList));
             }
@@ -140,6 +141,8 @@ namespace EE.Hillewaere.ViewModels
                 DependencyService.Get<IToastNotification>().Show("Product added to order");
 
                 product.Amount++;
+                var orderList = await stocklistService.GetOrderList();
+                OrderList = new ObservableCollection<Order>(orderList);
                 var order = new Order
                 {
                     Id = product.Id,
@@ -148,10 +151,18 @@ namespace EE.Hillewaere.ViewModels
                     Amount = product.Amount,
                     PricePerProduct = product.Price * product.Amount
                 };
+
+                //foreach (var item in OrderList)
+                //{
+                //    if (item.Name.Equals(item.Name))
+                //    {
+                //        await stocklistService.DeleteOrderProduct(item.Id);
+                //    }
+                //}
+
                 OrderList.Add(order);
                 await stocklistService.SaveToOrder(order);
-                var orderList = await stocklistService.GetOrderList();
-                OrderList = new ObservableCollection<Order>(orderList);
+
                 Initialize();
             });
 

@@ -139,6 +139,7 @@ namespace EE.Hillewaere.ViewModels
                 var orderList = await stocklistService.GetOrderList();
                 OrderList = null;
                 OrderList = new ObservableCollection<Order>(orderList);
+                TotalPrice = stocklistService.CalculateTotalPrice();
             });
     }
 }
