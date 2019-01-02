@@ -28,6 +28,8 @@ namespace EE.Hillewaere.ViewModels
             this.navigation = navigation;
             this.currentSubCategory = subCategory;
             stocklistService = slService;
+            LoadFile();
+
             RefreshProducts();
 
             MessagingCenter.Subscribe(this, MessageNames.ProductSaved,
@@ -35,7 +37,6 @@ namespace EE.Hillewaere.ViewModels
                 {
                     Products = new ObservableCollection<Product>(await stocklistService.GetProductListById(currentSubCategory.Id));
                 });
-            LoadFile();
         }
 
         private async void LoadFile()
@@ -53,6 +54,7 @@ namespace EE.Hillewaere.ViewModels
                     {
                         var serializer = new XmlSerializer(typeof(Product));
                         Product product = (Product)serializer.Deserialize(reader);
+                        this.Products.Add(product);
                     }
                 }
                 catch (Exception ex)
