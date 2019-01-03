@@ -139,7 +139,6 @@ namespace EE.Hillewaere.ViewModels
             {
                 await DependencyService.Get<ISoundPlayer>().PlaySound();
                 DependencyService.Get<IToastNotification>().Show("Product added to order");
-
                 product.Amount++;
                 var orderList = await stocklistService.GetOrderList();
                 OrderList = new ObservableCollection<Order>(orderList);
@@ -153,6 +152,7 @@ namespace EE.Hillewaere.ViewModels
                 };
 
                 OrderList.Add(order);
+
                 await stocklistService.SaveToOrder(order);
 
                 Initialize();

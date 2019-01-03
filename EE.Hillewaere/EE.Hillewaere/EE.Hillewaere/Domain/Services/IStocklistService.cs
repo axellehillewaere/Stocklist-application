@@ -19,6 +19,7 @@ namespace EE.Hillewaere.Domain.Services
         Task DeleteSubCategory(Guid subCategoryId);
         Task DeleteProduct(Guid productId);
         Task DeleteOrderProduct(Guid orderProductId);
+        Task SendOrder();
         decimal CalculateTotalPrice();
     }
 }

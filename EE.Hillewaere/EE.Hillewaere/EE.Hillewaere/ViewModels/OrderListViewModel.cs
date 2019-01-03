@@ -125,8 +125,7 @@ namespace EE.Hillewaere.ViewModels
             {
                 await DependencyService.Get<ISoundPlayer>().PlaySound();
                 DependencyService.Get<IToastNotification>().Show("Order has been sent so supplier");
-                OrderList.Clear();
-                await navigation.PushAsync(new MainView());
+                await stocklistService.SendOrder();
             });
 
         public ICommand DeleteOrderProductCommand => new Command<Order>(
