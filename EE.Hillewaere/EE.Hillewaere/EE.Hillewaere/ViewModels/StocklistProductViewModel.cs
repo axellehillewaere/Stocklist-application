@@ -54,7 +54,8 @@ namespace EE.Hillewaere.ViewModels
                     {
                         var serializer = new XmlSerializer(typeof(Product));
                         Product product = (Product)serializer.Deserialize(reader);
-                        this.Products.Add(product);
+                        this.currentSubCategory.Products.Add(product);
+                        //this.Products.Add(product);
                     }
                 }
                 catch (Exception ex)
