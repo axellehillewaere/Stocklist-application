@@ -22,6 +22,7 @@ namespace EE.Hillewaere.IoC
             containerBuilder.RegisterType<StocklistSubCategoryViewModel>();
             containerBuilder.RegisterType<StocklistProductViewModel>();
             containerBuilder.RegisterType<StocklistEditProductViewModel>();
+            containerBuilder.RegisterType<PreviousOrdersViewModel>();
             containerBuilder.RegisterType<StocklistInMemoryService>().As<IStocklistService>();
             return containerBuilder;
         }

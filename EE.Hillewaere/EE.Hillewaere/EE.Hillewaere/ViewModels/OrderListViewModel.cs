@@ -2,14 +2,18 @@
 using EE.Hillewaere.Domain.Models;
 using EE.Hillewaere.Domain.Services;
 using EE.Hillewaere.Views;
+using PCLStorage;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Xml;
+using System.Xml.Serialization;
 using Xamarin.Forms;
 
 namespace EE.Hillewaere.ViewModels
@@ -125,6 +129,7 @@ namespace EE.Hillewaere.ViewModels
             {
                 await DependencyService.Get<ISoundPlayer>().PlaySound();
                 DependencyService.Get<IToastNotification>().Show("Order has been sent so supplier");
+                SaveFile();
                 await stocklistService.SendOrder();
             });
 
@@ -140,5 +145,25 @@ namespace EE.Hillewaere.ViewModels
                 OrderList = new ObservableCollection<Order>(orderList);
                 TotalPrice = stocklistService.CalculateTotalPrice();
             });
+
+        private async void SaveFile()
+        {
+            var orderList = new OrderList { Id = Guid.NewGuid(), Name = "Orderlist", Orders = this.OrderList, Price = this.TotalPrice };
+            var serializer = new XmlSerializer(typeof(OrderList));
+            string orderListAsXml = "";
+            using (var stringWriter = new StringWriter())
+            {
+                using (var writer = XmlWriter.Create(stringWriter))
+                {
+                    serializer.Serialize(writer, orderList);
+                    orderListAsXml = stringWriter.ToString();
+                }
+            }
+            IFolder folder = PCLStorage.FileSystem.Current.LocalStorage;
+            IFile file = await folder.CreateFileAsync("orderlist.xml", CreationCollisionOption.ReplaceExisting);
+            await file.WriteAllTextAsync(orderListAsXml);
+            Debug.WriteLine(folder);
+            Debug.WriteLine(file);
+        }
     }
 }

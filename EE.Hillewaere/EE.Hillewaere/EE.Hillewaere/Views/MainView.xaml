@@ -17,9 +17,11 @@
                             Style="{StaticResource BasicButton}"/>
                     <Button Text="OVERVIEW OF STOCKLIST" 
                             Command="{Binding ViewOverviewStocklist}"
+                            Style="{StaticResource BasicButton}" />
+                    <Button Text="PREVIOUS ORDERS" 
+                            Command="{Binding ViewPreviousOrders}"
                             Style="{StaticResource BasicButton}"
-                            Margin="0,10,0,20"/>
-                    <!--<Button Text="Previous orders" Command="{Binding ViewPreviousOrders}" />-->
+                            Margin="0,0,0,20"/>
                 </StackLayout>
             </ScrollView>
         </AbsoluteLayout>

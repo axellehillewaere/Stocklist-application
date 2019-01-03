@@ -1,12 +1,34 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:bhv="clr-namespace:EE.Hillewaere.Behaviors"
+             Title="{Binding PageTitle}"
+             x:Name="page"
              x:Class="EE.Hillewaere.Views.PreviousOrdersView">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout Style="{StaticResource Main}">
+            <!--<ListView x:Name="lvPrevOrderLists" ItemsSource="{Binding OrderList}" HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Style="{StaticResource ListView}">
+                                <Label Text="{Binding Name}" Style="{StaticResource LabelHeader}"
+                                       VerticalOptions="CenterAndExpand"
+                                       HorizontalOptions="StartAndExpand" />
+                                <Label Text="{Binding Price}" Style="{StaticResource LabelDescription}" 
+                                       VerticalOptions="CenterAndExpand"
+                                       HorizontalOptions="StartAndExpand" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>-->
+            <Label Text="{Binding Name}" Style="{StaticResource LabelHeader}"
+                                       VerticalOptions="CenterAndExpand"
+                                       HorizontalOptions="StartAndExpand" />
+            <Label Text="{Binding Price}" Style="{StaticResource LabelDescription}" 
+                                       VerticalOptions="CenterAndExpand"
+                                       HorizontalOptions="StartAndExpand" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
