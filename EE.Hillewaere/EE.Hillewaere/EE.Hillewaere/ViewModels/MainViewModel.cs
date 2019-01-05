@@ -12,17 +12,10 @@ namespace EE.Hillewaere.ViewModels
     public class MainViewModel
     {
         private INavigation navigation;
-        public ICommand PlaySoundCommand { get; private set; }
 
         public MainViewModel(INavigation navigation)
         {
             this.navigation = navigation;
-            PlaySoundCommand = new Command(PlaySound);
-        }
-
-        private async void PlaySound()
-        {
-            await DependencyService.Get<ISoundPlayer>().PlaySound();
         }
 
         public ICommand ViewPlaceNewOrder => new Command(

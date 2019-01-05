@@ -6,29 +6,28 @@
              x:Name="page"
              x:Class="EE.Hillewaere.Views.PreviousOrdersView">
     <ContentPage.Content>
-        <StackLayout Style="{StaticResource Main}">
-            <!--<ListView x:Name="lvPrevOrderLists" ItemsSource="{Binding OrderList}" HasUnevenRows="True">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout Style="{StaticResource ListView}">
-                                <Label Text="{Binding Name}" Style="{StaticResource LabelHeader}"
+        <StackLayout Style="{StaticResource Main}" Padding="40,20,40,20">
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                <StackLayout Orientation="Vertical" HorizontalOptions="Start">
+                    <Label Text="Name: " Style="{StaticResource LabelHeader}" />
+                </StackLayout>
+                <StackLayout Orientation="Vertical" HorizontalOptions="Start">
+                    <Label Text="{Binding Name}" Style="{StaticResource LabelHeader}"
                                        VerticalOptions="CenterAndExpand"
                                        HorizontalOptions="StartAndExpand" />
-                                <Label Text="{Binding Price}" Style="{StaticResource LabelDescription}" 
+                </StackLayout>
+            </StackLayout>
+            <BoxView Style="{StaticResource BoxView}"/>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                <StackLayout Orientation="Vertical" HorizontalOptions="Start">
+                    <Label Text="Price: €" Style="{StaticResource LabelInfo}" />
+                </StackLayout>
+                <StackLayout Orientation="Vertical" HorizontalOptions="Start">
+                    <Label Text="{Binding Price}" Style="{StaticResource LabelDescription}" 
                                        VerticalOptions="CenterAndExpand"
                                        HorizontalOptions="StartAndExpand" />
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>-->
-            <Label Text="{Binding Name}" Style="{StaticResource LabelHeader}"
-                                       VerticalOptions="CenterAndExpand"
-                                       HorizontalOptions="StartAndExpand" />
-            <Label Text="{Binding Price}" Style="{StaticResource LabelDescription}" 
-                                       VerticalOptions="CenterAndExpand"
-                                       HorizontalOptions="StartAndExpand" />
+                </StackLayout>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
