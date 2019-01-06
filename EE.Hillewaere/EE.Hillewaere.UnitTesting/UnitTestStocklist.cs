@@ -3,6 +3,8 @@ using EE.Hillewaere.Domain.Services;
 using EE.Hillewaere.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using Xamarin.Forms;
 using Xunit;
 
@@ -89,6 +91,17 @@ namespace EE.Hillewaere.UnitTesting
             await stocklistService.SaveToOrder(order);
             var result = stocklistService.CalculateTotalPrice();
             Assert.Equal(16, result);
+        }
+
+        [Fact]
+        public void TestDeleteCategoryCommand()
+        {
+            var stocklistService = new StocklistInMemoryService();
+            var vm = new StocklistViewModel(null, stocklistService);
+            var categories = stocklistService.GetCategoryList().Result;
+            var categoryOne = categories.FirstOrDefault();
+            vm.DeleteCategoryCommand.Execute(categoryOne);
+            Assert.True(vm.Categories.Count == 3);
         }
     }
 }
