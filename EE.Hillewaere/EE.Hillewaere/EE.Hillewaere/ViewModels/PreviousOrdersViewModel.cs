@@ -36,6 +36,7 @@ namespace EE.Hillewaere.ViewModels
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        #region Properties
         private Guid id;
         public Guid Id
         {
@@ -80,24 +81,41 @@ namespace EE.Hillewaere.ViewModels
             }
         }
 
+        private ObservableCollection<OrderList> orderLists;
+        public ObservableCollection<OrderList> OrderLists
+        {
+            get { return orderLists; }
+            set
+            {
+                orderLists = value;
+                RaisePropertyChanged(nameof(OrderLists));
+            }
+        }
+        #endregion
+
         private async void LoadFile()
         {
-            string fileName = "orderlist.xml";
+            string folderName = "orders";
             IFolder folder = PCLStorage.FileSystem.Current.LocalStorage;
-            ExistenceCheckResult result = await folder.CheckExistsAsync(fileName);
-            if (result == ExistenceCheckResult.FileExists)
+            ExistenceCheckResult result = await folder.CheckExistsAsync(folderName);
+            if (result == ExistenceCheckResult.FolderExists)
             {
                 try
                 {
-                    IFile file = await folder.GetFileAsync(fileName);
-                    string text = await file.ReadAllTextAsync();
-                    using (var reader = new StringReader(text))
+                    IFolder orderFolder = await folder.GetFolderAsync(folderName);
+                    IList<IFile> files = await orderFolder.GetFilesAsync();
+                    OrderLists = new ObservableCollection<OrderList>();
+                    foreach (var item in files)
                     {
-                        var serializer = new XmlSerializer(typeof(OrderList));
-                        OrderList orderList = (OrderList)serializer.Deserialize(reader);
-                        this.Name = orderList.Name;
-                        this.Price = orderList.Price;
-
+                        string text = await item.ReadAllTextAsync();
+                        using (var reader = new StringReader(text))
+                        {
+                            var serializer = new XmlSerializer(typeof(OrderList));
+                            OrderList orderList = (OrderList)serializer.Deserialize(reader);
+                            this.Name = orderList.Name;
+                            this.Price = orderList.Price;
+                            OrderLists.Add(orderList);
+                        }
                     }
                 }
                 catch (Exception ex)

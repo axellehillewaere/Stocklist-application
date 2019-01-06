@@ -148,7 +148,7 @@ namespace EE.Hillewaere.ViewModels
 
         private async void SaveFile()
         {
-            var orderList = new OrderList { Id = Guid.NewGuid(), Name = "Orderlist", Orders = this.OrderList, Price = this.TotalPrice };
+            var orderList = new OrderList { Id = Guid.NewGuid(), Name = "Orderlist of " + DateTime.Now.ToShortDateString(), Orders = this.OrderList, Price = this.TotalPrice };
             var serializer = new XmlSerializer(typeof(OrderList));
             string orderListAsXml = "";
             using (var stringWriter = new StringWriter())
@@ -159,11 +159,9 @@ namespace EE.Hillewaere.ViewModels
                     orderListAsXml = stringWriter.ToString();
                 }
             }
-            IFolder folder = PCLStorage.FileSystem.Current.LocalStorage;
-            IFile file = await folder.CreateFileAsync("orderlist.xml", CreationCollisionOption.ReplaceExisting);
+            IFolder folder = await PCLStorage.FileSystem.Current.LocalStorage.CreateFolderAsync("orders", CreationCollisionOption.OpenIfExists);
+            IFile file = await folder.CreateFileAsync("orderlist.xml", CreationCollisionOption.GenerateUniqueName);
             await file.WriteAllTextAsync(orderListAsXml);
-            Debug.WriteLine(folder);
-            Debug.WriteLine(file);
         }
     }
 }

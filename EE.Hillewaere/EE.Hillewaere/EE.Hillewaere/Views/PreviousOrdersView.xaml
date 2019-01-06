@@ -6,28 +6,33 @@
              x:Name="page"
              x:Class="EE.Hillewaere.Views.PreviousOrdersView">
     <ContentPage.Content>
-        <StackLayout Style="{StaticResource Main}" Padding="40,20,40,20">
-            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                <StackLayout Orientation="Vertical" HorizontalOptions="Start">
-                    <Label Text="Name: " Style="{StaticResource LabelHeader}" />
-                </StackLayout>
-                <StackLayout Orientation="Vertical" HorizontalOptions="Start">
-                    <Label Text="{Binding Name}" Style="{StaticResource LabelHeader}"
+        <StackLayout Style="{StaticResource Main}">
+            <ListView ItemsSource="{Binding OrderLists}" HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Style="{StaticResource ListView}">
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                    <StackLayout Orientation="Vertical" HorizontalOptions="Start">
+                                        <Label Text="{Binding Name}" Style="{StaticResource LabelHeader}" />
+                                    </StackLayout>
+                                </StackLayout>
+                            <BoxView Style="{StaticResource BoxView}"/>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                <StackLayout Orientation="Vertical" HorizontalOptions="Start">
+                                    <Label Text="Price: €" Style="{StaticResource LabelInfo}" />
+                                </StackLayout>
+                                <StackLayout Orientation="Vertical" HorizontalOptions="Start">
+                                    <Label Text="{Binding Price}" Style="{StaticResource LabelDescription}" 
                                        VerticalOptions="CenterAndExpand"
                                        HorizontalOptions="StartAndExpand" />
-                </StackLayout>
-            </StackLayout>
-            <BoxView Style="{StaticResource BoxView}"/>
-            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                <StackLayout Orientation="Vertical" HorizontalOptions="Start">
-                    <Label Text="Price: €" Style="{StaticResource LabelInfo}" />
-                </StackLayout>
-                <StackLayout Orientation="Vertical" HorizontalOptions="Start">
-                    <Label Text="{Binding Price}" Style="{StaticResource LabelDescription}" 
-                                       VerticalOptions="CenterAndExpand"
-                                       HorizontalOptions="StartAndExpand" />
-                </StackLayout>
-            </StackLayout>
+                                </StackLayout>
+                            </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
