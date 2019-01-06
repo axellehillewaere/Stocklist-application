@@ -47,6 +47,7 @@ namespace EE.Hillewaere.ViewModels
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        #region Properties
         private Guid id;
         public Guid Id
         {
@@ -123,6 +124,7 @@ namespace EE.Hillewaere.ViewModels
                 RaisePropertyChanged(nameof(OrderList));
             }
         }
+        #endregion
 
         public ICommand SendOrderCommand => new Command(
             async () =>

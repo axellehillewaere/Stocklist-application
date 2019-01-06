@@ -8,7 +8,8 @@ namespace EE.Hillewaere.IoC
     public class IoCRegistry
     {
         private static IContainer container;
-        public static IContainer Container { get
+        public static IContainer Container
+        { get
             {
                 if (container == null)
                 {
@@ -16,6 +17,7 @@ namespace EE.Hillewaere.IoC
                     container = builder.Build();
                 }
                 return container;
-            } }
+            }
+        }
     }
 }

@@ -35,11 +35,7 @@
                             Command="{Binding SaveProductCommand}"
                             Text="Save product" />
                 </StackLayout>
-
-
             </ScrollView>
-
-
         </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>

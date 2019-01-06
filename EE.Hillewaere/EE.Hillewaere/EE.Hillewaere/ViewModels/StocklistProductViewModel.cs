@@ -96,7 +96,7 @@ namespace EE.Hillewaere.ViewModels
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
-
+        #region Properties
         private Guid id;
         public Guid Id
         {
@@ -151,6 +151,7 @@ namespace EE.Hillewaere.ViewModels
                 RaisePropertyChanged(nameof(Products));
             }
         }
+        #endregion
 
         public ICommand ViewProductCommand => new Command<Product>(
             async (Product product) =>

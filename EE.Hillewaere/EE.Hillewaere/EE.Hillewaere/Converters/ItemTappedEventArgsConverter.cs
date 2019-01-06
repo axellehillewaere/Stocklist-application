@@ -13,7 +13,6 @@ namespace EE.Hillewaere.Converters
             var eventArgs = value as ItemTappedEventArgs;
             if (eventArgs == null)
                 throw new ArgumentException("Expected TappedEventArgs as value", "value");
-            //Item contains the tapped item 
             return eventArgs.Item; 
         }
 

@@ -46,6 +46,7 @@ namespace EE.Hillewaere.ViewModels
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        #region Properties
         private Guid id;
         public Guid Id
         {
@@ -133,6 +134,7 @@ namespace EE.Hillewaere.ViewModels
                 RaisePropertyChanged(nameof(OrderList));
             }
         }
+        #endregion
 
         public ICommand AddToOrderCommand => new Command<Product>(
             async (Product product) =>
@@ -150,11 +152,8 @@ namespace EE.Hillewaere.ViewModels
                     Amount = product.Amount,
                     PricePerProduct = product.Price * product.Amount
                 };
-
                 OrderList.Add(order);
-
                 await stocklistService.SaveToOrder(order);
-
                 Initialize();
             });
 

@@ -39,6 +39,7 @@ namespace EE.Hillewaere.ViewModels
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        #region Properties
         private Guid id;
         public Guid Id
         {
@@ -94,6 +95,7 @@ namespace EE.Hillewaere.ViewModels
                 RaisePropertyChanged(nameof(Categories));
             }
         }
+        #endregion
 
         public ICommand ViewSubCategoriesCommand => new Command<Category>(
             (Category category) =>

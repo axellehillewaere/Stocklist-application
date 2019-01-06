@@ -13,8 +13,8 @@ namespace EE.Hillewaere.Domain.Validators
             RuleFor(product => product.Name)
                 .NotEmpty()
                 .WithMessage("Name cannot be empty")
-                .Length(3, 20)
-                .WithMessage("Length must be between 3 and 20 characters");
+                .Length(3, 40)
+                .WithMessage("Length must be between 3 and 40 characters");
 
             RuleFor(product => product.Price)
                 .NotEmpty()

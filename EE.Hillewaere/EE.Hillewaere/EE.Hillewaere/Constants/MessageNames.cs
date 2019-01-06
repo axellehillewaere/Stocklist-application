@@ -7,6 +7,5 @@ namespace EE.Hillewaere.Constants
     public static class MessageNames
     {
         public const string ProductSaved = "PRODUCTSAVED";
-        public const string OrderSent = "ORDERSENT";
     }
 }
